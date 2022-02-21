@@ -22,4 +22,6 @@ jobs:
       - run: set -eu
       - run: echo "${{ SECRETS.DEPLOY_KEY }}" > key
       - run: chmod 600 "./key"
-      - run: rsync -e "ssh -i ./key -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
+      #- run: rsync -e "ssh -i ./key -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
+      - run: rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' --exclude /deploy_key --exclude /.git/ --exclude /.github/ --exclude /node_modules/ \
+          ./ ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
