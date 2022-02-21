@@ -21,6 +21,6 @@ jobs:
       - run: npm run prod
       - run: set -eu
       - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ SECRETS.DEPLOY_KEY }}" > "$HOME/.ssh/key"
+      - run: echo "${{ SECRETS.DEPLOY_KEY_PUB }}" > "$HOME/.ssh/key"
       - run: chmod 600 "$HOME/.ssh/key"
       - run: rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
