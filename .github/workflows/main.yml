@@ -20,4 +20,7 @@ jobs:
       - run: npm ci
       - run: npm run prod
       - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ SECRETS.DEPLOY_KEY }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
       - run: rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" . "${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}"
