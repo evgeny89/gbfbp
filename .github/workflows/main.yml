@@ -20,4 +20,4 @@ jobs:
       - run: npm ci
       - run: npm run prod
       - run: set -eu
-      - run: rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" . "${{ SECRETS.DEPLOY_PATH }}"
+      - run: rsync -e "ssh ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }} -p 22 -o StrictHostKeyChecking=no" . "${{ SECRETS.DEPLOY_PATH }}"
