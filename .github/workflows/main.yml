@@ -17,10 +17,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm run prod
+      #- run: npm ci
+      #- run: npm run prod
       - run: set -eu
-      - run: mkdir "$HOME/.ssh"
-      - run: echo "${{ SECRETS.DEPLOY_KEY_PUB }}" > "$HOME/.ssh/key"
-      - run: chmod 600 "$HOME/.ssh/key"
-      - run: rsync -e "ssh -D localhost:3500 -i $HOME/.ssh/key -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
+      #- run: mkdir "$HOME/.ssh"
+      #- run: echo "${{ SECRETS.DEPLOY_KEY_PUB }}" > "$HOME/.ssh/key"
+      #- run: chmod 600 "$HOME/.ssh/key"
+      #- run: rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
+      - run: rsync -e "ssh -o StrictHostKeyChecking=no"  --archive --compress --delete . ${{ SECRETS.DEPLOY_USER }}@${{ SECRETS.DEPLOY_HOST }}:${{ SECRETS.DEPLOY_PATH }}
