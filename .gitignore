@@ -15,5 +15,3 @@ yarn-error.log
 /.vscode
 /.DS_Store
 .git
-composer.lock
-package-lock.json
