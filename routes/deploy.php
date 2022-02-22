@@ -15,7 +15,12 @@ use Symfony\Component\Process\Process;
 */
 
 Route::post('/deploy', function (\Illuminate\Http\Request $request) {
-    dump($request->all());
+    $payload = $request->all();
+    if ($payload['ref'] === 'refs/heads/master') {
+        dump($request->all());
+    } else {
+        return response('ok');
+    }
 /*    $process = new Process(['sh', env('APP_PATH')]);
     $process->run();
 
