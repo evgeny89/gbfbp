@@ -16,7 +16,12 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next)
     {
-        // check secret
+        $deployKey = md5(env('APP_DEPLOY_KEY'));
+
+        if ($deployKey !== $request->header('X-Hub-Signature-256')) {
+            abort(401);
+        }
+
         return $next($request);
     }
 }
