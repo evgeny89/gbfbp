@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class WebHookGitHub
 {
@@ -16,9 +17,7 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next)
     {
-        $deployKey = md5(env('APP_DEPLOY_KEY'));
-
-        if ($deployKey !== $request->header('X-Hub-Signature-256')) {
+        if (!Hash::check(env('APP_DEPLOY_KEY'), $request->header('X-Hub-Signature-256'))) {
             abort(401);
         }
 
