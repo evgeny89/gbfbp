@@ -17,7 +17,7 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Hash::check(env('APP_DEPLOY_KEY'), $request->header('X-Hub-Signature-256'))) {
+        if (!Hash::check(env('APP_DEPLOY_KEY'), $request->header('X-Hub-Signature-256'))) {
             abort(401);
         }
 
