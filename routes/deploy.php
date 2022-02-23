@@ -17,14 +17,14 @@ use Symfony\Component\Process\Process;
 Route::post('/deploy', function (\Illuminate\Http\Request $request) {
     $payload = $request->all();
     if ($payload['ref'] === 'refs/heads/master') {
-        $process = new Process(['sh', 'test.sh'], env('APP_PATH'));
+        $process = new Process([env('APP_DEPLOY_PATH') .'deploy.sh']);
         $process->run();
 
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
 
-        Log::debug('deploy '. $process->getOutput());
+        Log::info('deploy '. $process->getOutput());
         return response($process->getOutput());
     } else {
         return response('not master');
