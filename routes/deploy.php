@@ -17,7 +17,7 @@ use Symfony\Component\Process\Process;
 Route::post('/deploy', function (\Illuminate\Http\Request $request) {
     $payload = $request->all();
     if ($payload['ref'] === 'refs/heads/master') {
-        $process = new Process(['source', env('APP_PATH')]);
+        $process = new Process(['sh', 'test.sh'], env('APP_PATH'));
         $process->run();
 
         if (!$process->isSuccessful()) {
