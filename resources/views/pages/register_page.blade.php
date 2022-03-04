@@ -22,14 +22,14 @@
                 @error('password')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <input type="text" name="password" placeholder="пароль" class="h-8">
+                <input type="password" name="password" placeholder="пароль" class="h-8">
             </div>
 
             <div class="form-register__wrapper px-6 py-4">
                 @error('password_confirmation')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <input type="text" name="password_confirmation" placeholder="подтвердите пароль" class="h-8">
+                <input type="password" name="password_confirmation" placeholder="подтвердите пароль" class="h-8">
             </div>
 
             <div class="form-register__wrapper px-6 py-4">
