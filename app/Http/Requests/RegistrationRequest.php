@@ -12,7 +12,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return !Auth::check();
     }
@@ -22,7 +22,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|min:3|max:32',
@@ -36,7 +36,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return array
      */
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'email' => 'e-mail address',
