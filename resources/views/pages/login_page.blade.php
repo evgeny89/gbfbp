@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-register__wrapper px-6 py-4">
-                <button class="h-8">войти</button>
+                <button>войти</button>
             </div>
         </form>
     </div>

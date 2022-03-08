@@ -1,0 +1,33 @@
+@font-face
+    font-family: 'Maler'
+    src: url('../font/maler.ttf') format('ttf')
+    font-display: swap
+
+*
+    box-sizing: border-box
+
+html, body
+    min-width: 320px
+
+body, textarea
+    font-family: $text-base-family
+    font-size: $text-base-size
+strong, h1, h2, h3
+    font-weight: 500 // ubuntu
+
+body
+    background-color: $bg-color
+    max-width: 100%
+
+input, button
+    outline: none
+    font-size: 20px
+    line-height: 24px
+    font-weight: 400
+    padding: 25px 20px
+    border: 1px solid $main-blue
+    border-radius: 40px
+    background-color: transparent
+    width: 280px
+    &::placeholder
+        color: $placeholder-color
