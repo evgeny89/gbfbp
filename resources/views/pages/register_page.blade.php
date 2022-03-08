@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-register__wrapper px-6 py-4">
-                <button class="h-8">зарегистрироваться</button>
+                <button>зарегистрироваться</button>
             </div>
         </form>
     </div>
