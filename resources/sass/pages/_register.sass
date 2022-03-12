@@ -1,48 +1,54 @@
-/*form
- *   padding: 40px
- *  border-radius: 20px */
-
 .register-block
-    max-width: 660px
-    background: linear-gradient(270deg, #000000 79.47%, rgba(255, 255, 255, 0) 148.24%)
+    max-width: 660px  
+    min-height: 100%
+    background: linear-gradient(270deg, #000000 65.47%, rgba(255, 255, 255, 0) 148.24%)
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25))
     border-radius: 20px
+    padding: 40px 0
     &__title
         font-size: 30px
         line-height: 36px
         display: flex
         align-items: center
+        justify-content: center
         text-transform: uppercase
         margin-bottom: 40px
+        color: $main-pink
 .register-form
     display: flex
     flex-direction: column 
-.register-form__input 
-    border: 2px solid $main-blue
-    filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25))
-    color: rgba(251, 251, 251, 0.5);
-    border-radius: 40px
-    padding-left: 20px
-    padding-right: 20px
-    height: 75px
-    font-size: 20px;
-    line-height: 24px
-    display: flex
-    align-items: center
-    margin-bottom: 20px
+    &__wrapper
+        height: 115px
+    &__input 
+        border: 2px solid $main-blue
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25))
+        color: rgba(251, 251, 251, 0.5)
+        border-radius: 40px
+        padding-left: 20px
+        padding-right: 20px
+        height: 75px
+        font-size: 20px
+        line-height: 24px
+        display: flex
+        align-items: center
+        width: 100%
+    &__button
+        height: 75px
+        border: 2px solid #1F95F2
+        filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25))
+        border-radius: 40px
+        font-size: 20px
+        line-height: 24px
+        display: flex
+        align-items: center
+        text-align: center
+        color: $main-purple
+        text-transform: uppercase
 
-.register-form__button
-    height: 75px
-    border: 2px solid #1F95F2
-    filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25))
-    border-radius: 40px
-    font-size: 20px
-    line-height: 24px
+.alert-danger
+    font-size: 14px
+    color: $main-pink
     display: flex
+    justify-content: center
     align-items: center
-    text-align: center
-    color: $main-purple
-    text-transform: uppercase
-
-.register-form:nth-child(n + 4)
-    margin-bottom: 40px
+    height: 40px 
