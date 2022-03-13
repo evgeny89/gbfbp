@@ -26,14 +26,10 @@
 
             <div class="register-form__wrapper ">
                 <input type="password" name="password_confirmation" placeholder="подтвердите пароль" class="register-form__input">
-                @error('password_confirmation')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
             </div>
-
-            <div class="register-form__wrapper ">
-                <button class="register-form__button fs-5">зарегистрироваться</button>
-            </div>
+           
+            <button class="register-form__button fs-5">зарегистрироваться</button>
+            
         </form>
     </div>
   </div>
