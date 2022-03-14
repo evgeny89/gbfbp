@@ -41,4 +41,16 @@ class LoginRequest extends FormRequest
             'email' => 'e-mail address',
         ];
     }
+
+    /**
+     * Get custom attributes for massages errors.
+     *
+     * @return array
+     */
+    public function messages(): array
+    {
+        return [
+            'email.exists' => 'Комбинация логин и пароль не найдена в базе данных',
+        ];
+    }
 }
