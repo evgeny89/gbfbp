@@ -102,6 +102,8 @@
         width: 27px
     +media(0, 375px)
         width: 24px
+.header__user
+    position: relative
 .header__auth
     svg
         object-fit: contain
@@ -119,8 +121,20 @@
         .person
             fill: $main-pink
     &.header__auth_logout
+        border: none
+        padding: 0
+        width: auto
+        cursor: pointer
         .person
             fill: $main-blue
         &:hover
             .person
                 fill: $main-pink
+.header-popup
+    position: absolute
+    visibility: hidden
+    background-color: #EFEFEF
+    padding: 20px
+    border-radius: 20px
+    &_active
+        visibility: visible
