@@ -2,9 +2,23 @@
     padding: 52px 0
     background: linear-gradient(270deg, #000000 81.77%, rgba(255, 255, 255, 0) 138.94%)
 .header-wrapper
+    display: grid
+    grid-template-columns: 1fr 2fr 121px
+    align-items: center
+    grid-gap: 40px
+    +media-md(down)
+        grid-template-columns: 2fr
+    +media-xs(down)
+        grid-gap: 20px
+    +media(0, 375px)
+        grid-gap: 12px
+.header__mobile-row
     display: flex
     align-items: center
-    margin: 0 -20px
+    &:nth-child(2)
+        +media-md(down)
+            order: 1
+            grid-column: 1 / 3
 .header__btn-menu
     border: none
     width: auto
@@ -13,36 +27,93 @@
     align-items: center
     justify-content: center
     cursor: pointer
-    margin: 0 20px
+.header__menu-icon
+    object-fit: contain
+    +media-sm(down)
+        width: 44px
+        height: auto
+    +media(376px, 420px)
+        width: 34px
+    +media(0, 375px)
+        width: 32px
 .header__logo
-    margin: 0 20px
+    margin-left: 40px
     position: relative
+    width: 313px
+    +media-sm(down)
+        margin-left: 24px
+        width: 204px
+    +media(376px, 420px)
+        margin-left: 18px
+        width: 181px
+    +media(0, 375px)
+        margin-left: 12px
+        width: 176px
 .header__tagline
     position: absolute
     font-size: 18px
     font-weight: 400
     line-height: 22px
-    width: 100%
     color: $black-text
     padding: 5px 13px
     background-color: $light-text
     border-radius: 0 0 20px 20px
     top: -65px
+    display: flex
+    align-items: center
+    justify-content: center
+    +media-sm(down)
+        font-size: 10px
+        top: -52px
+    +media(0, 375px)
+        font-size: 9px
+.header__logo-img
+    object-fit: contain
+    width: 100%
 .header__search
-    margin: 0 20px
     padding: 20px 20px 20px 72px
     width: 100%
     background-image: url(/images/svg/search.svg)
     background-repeat: no-repeat
     background-position: 20px center
     color: $light-text
+    +media-xs(down)
+        padding: 12px 20px 12px 60px
+        background-size: 20px
+    +media(376px, 420px)
+        font-size: 16px
 .header__personal
-    margin: 0 20px
     display: flex
     align-items: center
 .header__cart
     margin-right: 30px
+    +media-sm(down)
+        margin-right: 16px
+    +media(376px, 420px)
+        margin-right: 12px
+    +media(0, 375px)
+        margin-right: 10px
+.header__cart-image
+    object-fit: contain
+    +media-sm(down)
+        width: 36px
+        height: auto
+    +media(376px, 420px)
+        width: 27px
+    +media(0, 375px)
+        width: 24px
+.header__user
+    position: relative
 .header__auth
+    svg
+        object-fit: contain
+        +media-sm(down)
+            width: 36px
+            height: auto
+        +media(376px, 420px)
+            width: 28px
+        +media(0, 375px)
+            width: 25px
     .person
         fill: $main-purple
         transition: fill .4s
@@ -50,8 +121,20 @@
         .person
             fill: $main-pink
     &.header__auth_logout
+        border: none
+        padding: 0
+        width: auto
+        cursor: pointer
         .person
             fill: $main-blue
         &:hover
             .person
                 fill: $main-pink
+.header-popup
+    position: absolute
+    visibility: hidden
+    background-color: #EFEFEF
+    padding: 20px
+    border-radius: 20px
+    &_active
+        visibility: visible
