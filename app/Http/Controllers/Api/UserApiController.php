@@ -11,7 +11,7 @@ class UserApiController extends Controller
     {
         return response()->json([
             'userName' => Auth::user()->name,
-            'profileLink' => '#',
+            'profileLink' => route('profile_page'),
             'favoriteLink' => '#',
             'purchasesLink' => '#',
             'shopLink' => '#',
