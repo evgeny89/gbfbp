@@ -24,6 +24,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'registration'])->name('registration');
+Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
 
 /*
 |=======================================================================================================================

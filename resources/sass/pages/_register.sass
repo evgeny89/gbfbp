@@ -7,6 +7,8 @@
     padding: 40px 0
     margin-top: 100px
     margin-bottom: 100px
+    +media(0, 575px)
+        padding: 20px 0
     &__title
         font-size: 30px
         line-height: 36px
@@ -16,11 +18,21 @@
         text-transform: uppercase
         margin-bottom: 40px
         color: $main-pink
+        +media(0, 575px)
+            margin-bottom: 20px
+            font-size: 25px
+            line-height: 30px
 .register-form
     display: flex
     flex-direction: column
     &__wrapper
         height: 115px
+        +media(0, 575px)
+            height: 95px
+            display: flex
+            flex-direction: column
+            align-items: center
+            align-content: center
     &__input
         border: 2px solid $main-blue
         filter: drop-shadow(5px 5px 5px rgba(255, 255, 255, 0.25))
@@ -34,6 +46,10 @@
         display: flex
         align-items: center
         width: 100%
+        +media(0, 575px)
+            padding: 12px 20px
+            height: 50px
+            border: 1px solid $main-blue
     &__button
         height: 75px
         border: 2px solid $main-blue
@@ -48,6 +64,11 @@
         text-transform: uppercase
         cursor: pointer
         font-family: inherit
+        +media(0, 575px)
+            padding: 12px 20px
+            height: 50px
+            border: 1px solid $main-blue
+            width: 272px
     &__button_link
         color: $main-purple
         text-decoration: none
@@ -64,7 +85,12 @@
         text-transform: uppercase
         margin-top: 40px
         padding: 0 20px
-
+        +media(0, 575px)
+            padding: 12px 20px
+            height: 50px
+            border: 1px solid $main-blue
+            width: 272px
+            margin-top: 20px
 .alert-danger
     font-size: 14px
     color: $main-pink
