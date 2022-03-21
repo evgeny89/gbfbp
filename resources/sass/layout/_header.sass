@@ -104,6 +104,8 @@
         width: 24px
 .header__user
     position: relative
+    &:hover .header-popup
+        visibility: visible
 .header__auth
     svg
         object-fit: contain
@@ -133,8 +135,57 @@
 .header-popup
     position: absolute
     visibility: hidden
-    background-color: #EFEFEF
-    padding: 20px
-    border-radius: 20px
-    &_active
-        visibility: visible
+    right: 0
+    .react-popup
+        width: 450px
+        padding: 20px
+        border-radius: 20px
+        background-color: #EFEFEF
+        margin-top: 34px
+        text-transform: uppercase
+    .user-popup
+        display: flex
+        align-items: center
+    .user-popup__avatar
+        height: 100px
+        width: 100px
+        background-color: #c4c4c4
+        border-radius: 50%
+        margin-right: 30px
+    .user-popup__name
+        font-size: 18px
+        font-weight: 400
+        line-height: 21px
+        margin-bottom: 15px
+        color: $black-text
+    .user-popup__profile-link
+        font-size: 15px
+        font-weight: 400
+        line-height: 18px
+        color: $main-pink
+        text-decoration: none
+    .user-popup__links
+        padding: 40px 28px
+    .user-popup__link
+        font-size: 18px
+        font-weight: 400
+        line-height: 21px
+        color: $black-text
+        text-decoration: none
+        margin: 20px 0
+        padding: 5px 0
+        display: flex
+        align-items: center
+    .user-popup__icon
+        margin-right: 24px
+        width: 34px
+        object-fit: contain
+    .user-popup__logout-link
+        font-size: 15px
+        font-weight: 400
+        line-height: 18px
+        color: $black-50
+        text-decoration: none
+
+
+
