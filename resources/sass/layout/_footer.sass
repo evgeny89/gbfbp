@@ -71,6 +71,7 @@
     text-decoration: none
     text-transform: uppercase
     margin-bottom: 20px
+    transition: .4s
     +media-xl(down)
         font-size: 20px
         line-height: 20px
@@ -117,3 +118,12 @@
         display: flex
         flex-direction: column
         align-items: center
+
+/* Эффект hover для ссылок в футере*/
+
+.title_buyer ~ .footer-link:hover
+    color: $main-purple
+.title_seller ~ .footer-link:hover
+    color: $main-blue
+.title_company ~ .footer-link:hover
+    color: $main-pink
