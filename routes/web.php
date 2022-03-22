@@ -20,12 +20,20 @@ Route::get('/', function () {
     return view('pages.home_page');
 })->name('home');
 
+// GET
 Route::get('login', [AuthController::class, 'loginPage'])->name('login_page');
-Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
+
+// POST
+Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'registration'])->name('registration');
-Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
+
+// Auth groups
+Route::middleware('auth')->group(function () {
+    // GET
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
+});
 
 /*
 |=======================================================================================================================
@@ -33,5 +41,7 @@ Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_
 |=======================================================================================================================
  */
 Route::prefix('api')->group(function () {
-    Route::get('user-popup', [UserApiController::class, 'getPopupData'])->name('get-popup-data');
+    Route::middleware('auth')->group(function () {
+        Route::get('user-popup', [UserApiController::class, 'getPopupData'])->name('get-popup-data');
+    });
 });
