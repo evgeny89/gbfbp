@@ -15,9 +15,6 @@ class UserApiController extends Controller
             'favoriteLink' => '#',
             'purchasesLink' => '#',
             'shopLink' => '#',
-            'heartIcon' => asset('/images/svg/heart-black.svg'),
-            'packageIcon' => asset('/images/svg/package-black.svg'),
-            'showcaseIcon' => asset('/images/svg/showcase-black.svg'),
             'logoutLink' => route('logout'),
         ]);
     }

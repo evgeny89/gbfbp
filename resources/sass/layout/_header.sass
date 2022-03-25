@@ -136,6 +136,7 @@
     position: absolute
     visibility: hidden
     right: 0
+    z-index: 1
     .react-popup
         width: 450px
         padding: 20px
@@ -163,10 +164,22 @@
         font-weight: 400
         line-height: 18px
         color: $main-pink
-        text-decoration: none
+        text-transform: underline
     .user-popup__links
         padding: 40px 28px
         margin: -20px 0
+    
+    .user-popup__logout-link
+        font-size: 15px
+        font-weight: 400
+        line-height: 18px
+        color: $black-50
+        text-decoration: none
+        margin-left: 28px
+        transition: color .4s
+
+    .user-popup__logout-link:hover
+        color: $main-pink
     .user-popup__link
         font-size: 18px
         font-weight: 400
@@ -177,17 +190,15 @@
         padding: 5px 0
         display: flex
         align-items: center
+        transition: color .4s
     .user-popup__icon
         margin-right: 24px
         width: 34px
         object-fit: contain
-    .user-popup__logout-link
-        font-size: 15px
-        font-weight: 400
-        line-height: 18px
-        color: $black-50
-        text-decoration: none
-        margin-left: 28px
-
-
+        fill: $black-text
+        transition: fill .4s
+    .user-popup__link:hover .user-popup__icon 
+        fill: $main-pink
+    .user-popup__link:hover
+        color: $main-pink
 
