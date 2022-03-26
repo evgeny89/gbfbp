@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoryController extends CrudController
 {
@@ -11,6 +10,7 @@ class CategoryController extends CrudController
     {
         $this->model = Category::class;
         $this->title = 'Категории';
+        $this->setRoutes('category', 'categories');
 
         $this->addColumns([
             [
@@ -34,5 +34,25 @@ class CategoryController extends CrudController
                 'type' => 'check',
             ],
         ]);
+
+        $this->addFields([
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Название категории',
+            ],
+            [
+                'name' => 'slug',
+                'type' => 'text',
+                'label' => 'Slug',
+            ],
+            [
+                'name' => 'published',
+                'type' => 'check',
+                'label' => 'Опубликован',
+            ],
+        ]);
+
+        $this->addButtons(['edit', 'delete', 'add']);
     }
 }
