@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends CrudController
 {
@@ -11,6 +11,7 @@ class UserController extends CrudController
     {
         $this->model = User::class;
         $this->title = 'Пользователи';
+        $this->setRoutes('user', 'users');
 
         $this->addColumns([
             [
@@ -35,5 +36,27 @@ class UserController extends CrudController
                 'type' => 'text',
             ],
         ]);
+
+        $this->addFields([
+            [
+                'name' => 'name',
+                'type' => 'text',
+                'label' => 'Имя пользователя',
+            ],
+            [
+                'name' => 'email',
+                'type' => 'text',
+                'label' => 'E-mail',
+            ],
+            [
+                'name' => 'role_id',
+                'type' => 'select',
+                'label' => 'Роль',
+                'model' => Role::class,
+                'relation' => 'name',
+            ],
+        ]);
+
+        $this->addButton('edit');
     }
 }
