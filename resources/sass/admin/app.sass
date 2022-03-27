@@ -1,5 +1,6 @@
 @import "../reset"
 @import "../grid"
+@import "../variables"
 
 .wrapper
     margin: 10px 0
@@ -11,13 +12,54 @@
 .menu
     display: flex
     flex-direction: column
+.menu-link-svg 
+    fill: #7B7B7B
+    transition: fill .4s
+    margin-right: 12px
+    &_user
+        margin: 2px 12px 2px 2px
+    &_logs
+        fill: none
+        stroke: #7B7B7B
+        transition: stroke .4s
 .menu-link
     font-size: 25px
     font-weight: 600
     color: #7B7B7B
+    text-decoration: none
+    margin-bottom: 20px
+    display: flex
+    align-items: center
+    transition: color .4s
     &.active
-       color: #1F95F2
+        color: $main-blue
+    &.active > .menu-link-svg
+        fill: $main-blue
+    &.active > .menu-link-svg_logs
+        fill: none
+        stroke: $main-blue
+    &:hover 
+        color: $main-blue
+    &:hover > .menu-link-svg
+        fill: $main-blue
+    &:hover > .menu-link-svg_logs
+        fill: none
+        stroke: $main-blue
 .workspace
     padding: 30px 20px
 table
     width: 100%
+.title-home-link 
+    display: block
+    font-family: 'Inter'
+    font-style: normal
+    font-weight: 600
+    font-size: 30px
+    line-height: 36px
+    text-align: center
+    color: $black-text
+    text-decoration: none
+    margin-bottom: 40px
+    transition: color .4s
+    &:hover
+        color: $main-blue
