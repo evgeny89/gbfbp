@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CrudController extends Controller
 {
-    protected $columns, $model, $title, $all_fields, $create_fields, $update_fields, $buttons, $routes;
+    protected $columns, $model, $title, $all_fields, $create_fields, $update_fields, $buttons, $routes, $where;
 
     public function __construct()
     {
@@ -58,12 +58,20 @@ class CrudController extends Controller
      */
     public function newEntry(): View
     {
-        $fields = $this->all_fields->merge($this->update_fields);
+        $fields = $this->all_fields->merge($this->create_fields);
         return view('admin.base.new_item', ['fields' => $fields, 'routes' => $this->routes]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * create new entry
+     */
     public function create(Request $request): RedirectResponse
     {
+        if (!$this->buttons['add']) {
+            return redirect()->route('home');
+        }
         $this->model::create($request->all());
         return redirect()->route($this->routes['all']);
     }
@@ -86,8 +94,11 @@ class CrudController extends Controller
      * @return RedirectResponse
      * update entry properties
      */
-    public function save(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
+        if (!$this->buttons['edit']) {
+            return redirect()->route('home');
+        }
         $this->model::find($id)->update($request->all());
         return redirect()->route($this->routes['all']);
     }
@@ -99,6 +110,9 @@ class CrudController extends Controller
      */
     public function delete($id): RedirectResponse
     {
+        if (!$this->buttons['delete']) {
+            return redirect()->route('home');
+        }
         $this->model::find($id)->delete();
         return redirect()->route($this->routes['all']);
     }

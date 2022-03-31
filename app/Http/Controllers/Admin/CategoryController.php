@@ -3,9 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\Role;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends CrudController
 {
+    protected $validation = [
+        'name' => 'required|string|min:3|max:255',
+        'slug' => 'required|string|min:3|max:255',
+        'published' => 'required|boolean',
+    ];
+
     public function setup()
     {
         $this->model = Category::class;
@@ -54,5 +64,19 @@ class CategoryController extends CrudController
         ]);
 
         $this->addButtons(['edit', 'delete', 'add']);
+    }
+
+    public function create(Request $request): RedirectResponse
+    {
+        $request->validate($this->validation);
+
+        return parent::create($request);
+    }
+
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $request->validate($this->validation);
+
+        return parent::update($request, $id);
     }
 }
