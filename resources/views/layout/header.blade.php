@@ -2,7 +2,7 @@
     <div class="container">
         <div class="header-wrapper">
             <div class="header__mobile-row">
-                <button class="header__btn-menu">
+                <button id="menu_open" class="header__btn-menu">
                     <img class="header__menu-icon" src="{{ asset('/images/svg/menu.svg') }}" alt="burger" width="83" height="75">
                 </button>
                 <div class="header__logo">
