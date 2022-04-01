@@ -9,6 +9,7 @@
 </head>
 <body>
     @include('layout.header')
+    @include('layout.burger_menu')
 
     @yield('content')
 
