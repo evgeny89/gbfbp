@@ -96,9 +96,13 @@ class UserController extends CrudController
             return redirect()->route('home');
         }
 
+        $user = $this->model::find($id);
+
+        $emailValidationRules = $user->email === $request->input('email') ? 'required|email:rfc' : 'required|email:rfc|unique:users,email';
+
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email:rfc|unique:users,email',
+            'email' => $emailValidationRules,
             'role_id' => ['required', 'exists:roles,id', 'in:'. implode(',', Role::where('level', '<', $this->getUserLevelRole())->pluck('id')->toArray())],
         ]);
 

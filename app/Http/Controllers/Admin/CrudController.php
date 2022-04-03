@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 
 class CrudController extends Controller
 {
-    protected $columns, $model, $title, $all_fields, $create_fields, $update_fields, $buttons, $routes, $where;
+    protected $columns, $model, $title, $all_fields, $create_fields, $update_fields, $buttons, $routes;
 
     public function __construct()
     {
