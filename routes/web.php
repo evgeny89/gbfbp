@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     // GET
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
+    Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
 });
 
 /*
