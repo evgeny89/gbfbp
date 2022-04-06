@@ -1,0 +1,76 @@
+.product__thumb
+  padding: 20px
+  border-radius: 20px
+  &:hover
+    background-color: $gray
+    box-shadow: 0 4px 4px $black-50
+  &:hover .button__buy
+    display: block
+  &:hover .button__remove
+    display: inline
+  .image__wrapper
+    position: relative
+  .product__image
+    border-radius: 20px
+    box-shadow: 0 4px 4px $black-50
+    max-width: 100%
+    height: auto
+  .product__caption
+    margin-top: 10px
+  .product__price
+    text-shadow: 0 4px 4px $black-50
+    font-weight: 400
+    font-size: 25px
+    line-height: 30px
+    color: $black-text
+    margin-bottom: 10px
+  .product__name
+    font-weight: 400
+    font-size: 20px
+    line-height: 24px
+    color: $black-50
+    margin-bottom: 10px
+  .product__buttons
+    height: 35px
+  .button__buy
+    width: 70%
+    display: none
+    padding: 8px 20px
+    background-color: $main-pink
+    color: $black-text
+    font-size: 15px
+    line-height: 18px
+    text-align: center
+  .button__remove
+    display: none
+    position: absolute
+    top: 10%
+    right: 10%
+    background-color: $light-text
+    border-radius: 50%
+    width: 30px
+    height: 30px
+    cursor: pointer
+  .remove__icon
+    position: relative
+    width: 100%
+    height: 100%
+    &:before,
+    &:after
+      content: ''
+      position: absolute
+      width: 20px
+      height: 4px
+      background-color: $black-text
+      border-radius: 2px
+      top: 12px
+      right: 5px
+    &:before
+      -webkit-transform: rotate(45deg)
+      -moz-transform: rotate(45deg)
+      transform: rotate(45deg)
+    &:after
+      -webkit-transform: rotate(-45deg)
+      -moz-transform: rotate(-45deg)
+      transform: rotate(-45deg)
+
