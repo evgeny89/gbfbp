@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Material;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class MaterialController extends CrudController
 {
@@ -66,15 +67,26 @@ class MaterialController extends CrudController
 
     public function create(Request $request): RedirectResponse
     {
-        $request->validate($this->validation);
+        $request = $this->validationData($request);
 
         return parent::create($request);
     }
 
     public function update(Request $request, $id): RedirectResponse
     {
-        $request->validate($this->validation);
+        $request = $this->validationData($request);
 
         return parent::update($request, $id);
+    }
+
+    protected function validationData($request)
+    {
+        if (!$request->filled('slug')) {
+            $request->merge(['slug' => Str::slug($request->name, '-')]);
+        }
+
+        $request->validate($this->validation);
+
+        return $request;
     }
 }
