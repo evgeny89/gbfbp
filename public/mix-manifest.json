@@ -5,5 +5,6 @@
     "/css/admin.css": "/css/admin.css",
     "/css/app.css": "/css/app.css",
     "/js/vendor.js": "/js/vendor.js",
-    "/images/logo.png": "/images/logo.png"
+    "/images/logo.png": "/images/logo.png",
+    "/images/product_image.png": "/images/product_image.png"
 }

@@ -18,4 +18,12 @@ class ProfileController extends Controller
     {
         return view('pages.profile_page');
     }
+
+    /**
+     * @return View
+     */
+    public function favoritePage(): View
+    {
+        return view('pages.favorite_page');
+    }
 }
