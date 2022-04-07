@@ -13,12 +13,7 @@ const AppAdmin = (props) => {
     const headerColumns = [];
     for (let i = 0; i < columns.length; i++) {
       headerColumns.push({...columns[i]});
-      if (headerColumns[i].type === 'text') {
-        headerColumns[i].type = 'headerText';
-      }
-      if (headerColumns[i].type === 'check') {
-        headerColumns[i].type = 'headerText';
-      }
+      headerColumns[i].type = 'headerText';
     }
     headerColumns.unshift({'name': 'edit', 'text': null, 'type': 'emptyBlock'});
     headerColumns.push({'name': "delete", 'text': null, 'type': 'emptyBlock'});
@@ -58,7 +53,6 @@ const AppAdmin = (props) => {
 
   let headerColumns = getHeaderColumns(dataAdmin.columns);
   let dataRows = getRowsData(dataAdmin);
-  console.log(dataAdmin, headerColumns, dataRows);
 
   return (
     <>

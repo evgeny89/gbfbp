@@ -104,7 +104,6 @@ class CrudController extends Controller
      */
     protected function addColumn(array $column)
     {
-        $column['type'] = $column['type'];
         $this->columns->push($column);
     }
 
