@@ -68,19 +68,7 @@ class UserController extends CrudController
 
     public function list(): View
     {
-        return view('admin.base.list',
-            [
-                'entries' => $this->model::whereIn('role_id', function ($query) {
-                    $query->select('id')
-                        ->from(with(new Role)->getTable())
-                        ->where('level', '<', $this->getUserLevelRole());
-                })->get(),
-                'columns' => $this->columns,
-                'title' => $this->title,
-                'buttons' => $this->buttons,
-                'routes' => $this->routes,
-            ]
-        );
+        return view('admin.layout.react-base', ['dataAdmin' => $this->getJsonData()]);
     }
 
     public function edit($id): View
@@ -126,5 +114,20 @@ class UserController extends CrudController
     private final function getUserLevelRole()
     {
         return Role::whereId(Auth::user()->role_id)->first()->level;
+    }
+
+    private function getJsonData(): string
+    {
+        return collect([
+            'entries' => $this->model::whereIn('role_id', function ($query) {
+                $query->select('id')
+                    ->from(with(new Role)->getTable())
+                    ->where('level', '<', $this->getUserLevelRole());
+            })->get(),
+            'columns' => $this->columns,
+            'title' => $this->title,
+            'buttons' => $this->buttons,
+            'routes' => $this->routes,
+        ])->toJson();
     }
 }

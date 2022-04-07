@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
@@ -211,33 +212,17 @@ class CrudController extends Controller
     }
 
     /**
-     * @return JSON string data
-     * @param string $mark
+     * @param string|null $mark
+     * @return string
      */
-    public function getJson($mark = null) 
+    public function getJson(string $mark = null): string
     {
-        if ($mark === 'home') {
-            return json_encode(
-                [
-                    'entries' => collect([]),
-                    'columns' => $this->columns,
-                    'title' => $this->title,
-                    'buttons' => $this->buttons,
-                    'routes' => $this->routes,
-                ]
-            );
-        } else {
-            return json_encode(
-                [
-                    'entries' => $this->model::all(),
-                    'columns' => $this->columns,
-                    'title' => $this->title,
-                    'buttons' => $this->buttons,
-                    'routes' => $this->routes,
-                ]
-            );
-        }
-        
-        
+        return collect([
+            'entries' => $mark === 'home' ? collect([]) : $this->model::all(),
+            'columns' => $this->columns,
+            'title' => $this->title,
+            'buttons' => $this->buttons,
+            'routes' => $this->routes,
+        ])->toJson();
     }
 }
