@@ -5,30 +5,7 @@
         <div class="container">
             <div class="profile__wrapper">
 
-                {{-- PROFILE TABS --}}
-                <div class="profile__tabs">
-                    <div class="tabs__item item__active">
-                        <h2 class="item__title">
-                            Личные данные
-                        </h2>
-                    </div>
-                    <div class="tabs__item">
-                        <h2 class="item__title">
-                            Избранное
-                        </h2>
-                    </div>
-                    <div class="tabs__item">
-                        <h2 class="item__title">
-                            Мои покупки
-                        </h2>
-                    </div>
-                    <div class="tabs__item">
-                        <h2 class="item__title">
-                            Моя витрина
-                        </h2>
-                    </div>
-                </div>
-                {{-- PROFILE TABS --}}
+                @include('partials.profile_tabs', ['active' => 'profile'])
 
                 {{-- USER DATA --}}
                 <div class="profile__data">

@@ -1,0 +1,68 @@
+.burger__menu
+    position: fixed
+    overflow-x: hidden
+    top: 0
+    left: -480px
+    width: 480px
+    height: 100vh
+    z-index: 1
+    background-color: $main-gray
+    transition: left linear .5s
+    .burger__menu-wrapper
+        position: relative
+        padding: 40px 0 40px 60px
+    .menu__hide
+        position: absolute
+        cursor: pointer
+        width: 35px
+        height: 35px
+        top: 10px
+        right: 10px
+        &:before,
+        &:after
+            content: ''
+            position: absolute
+            top: 15px
+            width: 35px
+            height: 4px
+            background-color: $black-text
+            border-radius: 2px
+        &:before
+            -webkit-transform: rotate(45deg)
+            -moz-transform: rotate(45deg)
+            transform: rotate(45deg)
+        &:after
+            -webkit-transform: rotate(-45deg)
+            -moz-transform: rotate(-45deg)
+            transform: rotate(-45deg)
+    .menu__item
+        margin-bottom: 20px
+        font-size: 20px
+        line-height: 24px
+    .item__link
+        display: flex
+        align-items: center
+        color: $black-text
+        text-decoration: none
+        &:hover
+            color: $main-green
+    .item__title
+        text-shadow: 0 4px 4px $black-50
+    .item__link.link__active
+        color: $main-green
+    .item__icon
+        width: 30px
+        text-align: center
+        margin-right: 20px
+    .item__image
+        max-width: 100%
+        height: 20px
+    .item__child
+        margin-top: 15px
+        margin-left: 60px
+        font-size: 15px
+        line-height: 18px
+    .item__child .item__link
+        margin-bottom: 15px
+.burger__menu.open
+    left: 0
