@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::name('admin.')->group(function () {
     Route::get('/', function () {return view('admin.index');})->name('home');
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs');
 
     Route::get('/users', [UserController::class, 'list'])->name('users');
     Route::get('/users/new', [UserController::class, 'newEntry'])->name('new-user');
