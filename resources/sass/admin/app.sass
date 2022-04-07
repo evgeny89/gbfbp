@@ -1,6 +1,7 @@
 @import "../reset"
 @import "../grid"
 @import "../variables"
+@import "../default"
 
 .wrapper
     margin: 10px 0
@@ -23,6 +24,7 @@
         stroke: #7B7B7B
         transition: stroke .4s
 .menu-link
+    font-family: 'Inter-600'
     font-size: 25px
     font-weight: 600
     color: #7B7B7B
@@ -46,15 +48,15 @@
         fill: none
         stroke: $main-blue
 .workspace
-    padding: 30px 20px
+    padding: 30px 16px 20px 31px
 table
     width: 100%
 .title-home-link 
     display: block
-    font-family: 'Inter'
+    font-family: 'Inter-600'
     font-style: normal
     font-weight: 600
-    font-size: 30px
+    font-size: 27px
     line-height: 36px
     text-align: center
     color: $black-text
@@ -63,3 +65,116 @@ table
     transition: color .4s
     &:hover
         color: $main-blue
+
+/* Стили правой части админки */
+.workspace
+    background-color: $light-text
+.admin-right-title
+    font-family: 'Inter-600'
+    font-style: normal
+    font-weight: 600
+    font-size: 30px
+    line-height: 36px
+    color: $black-text
+    padding-left: 69px
+    margin-bottom: 50px
+    
+.admin-right-table 
+    display: grid
+    grid-template-columns: 69px auto auto auto auto  69px
+.admin-header-text
+    font-family: 'Inter-600'
+    font-style: normal
+    font-weight: 600
+    font-size: 20px
+    line-height: 24px
+    border-bottom: 2px solid $main-gray
+    color: $black-text
+    min-height: 40px
+    display: flex
+    align-items: center
+    padding-right: 5px
+
+.admin-header-svg
+    margin-left: 2px
+    fill: $black-text
+    transition: fill .4s
+.admin-header-svg:hover
+    fill: $main-blue
+.admin-text
+    font-family: 'Inter-400'
+    font-style: normal
+    font-weight: 400
+    font-size: 18px
+    line-height: 22px
+    color: $black-text
+    border-bottom: 2px solid $main-gray
+    min-height: 40px
+    display: flex
+    align-items: center
+    padding-right: 5px
+.admin-empty-block
+    height: 40px
+.admin-button-edit
+    width: 60px
+    height: 30px
+    background-color: #ECECEC
+    border-radius: 20px
+    margin-right: 9px
+    cursor: pointer
+    padding: 0 18.5px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    transition: background-color .4s
+    align-self: center
+    &__point 
+        width: 5px
+        height: 5px
+        background-color: $black-text
+        border-radius: 2.5px
+        transition: background-color .4s
+    &:hover
+        background-color: $main-blue
+    &:hover &__point
+        background-color: #ECECEC
+
+.admin-button-delete
+    width: 60px
+    height: 30px
+    background-color: #ECECEC
+    border-radius: 20px
+    margin-left: 9px
+    cursor: pointer
+    display: flex
+    justify-content: center
+    align-items: center
+    transition: background-color .4s
+    align-self: center
+    &__cross
+        stroke: $black-text
+        transition: stroke .4s
+    &:hover 
+        background-color: $main-blue
+    &:hover &__cross
+        stroke: #ECECEC
+
+.admin-div-input
+    border-bottom: 2px solid $main-gray
+    min-height: 40px 
+    display: flex
+    align-items: center
+.admin-input
+    width: 0px
+    appearance: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    padding: 0
+    border: none
+.admin-input-new
+    position: absolute
+    width: 18px
+    height: 18px
+    background-image: url('/images/check-0__18-18.png')
+.admin-input:checked + .admin-input-new
+    background-image: url('/images/check-1__18-18.png')
