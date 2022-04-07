@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row wrapper">
             <aside class="col-2 aside">
-                <a href="{{ route('admin.home') }}">Hand Made Admin</a>
+                <a href="{{ route('admin.home') }}" class="title-home-link">Hand Made Admin</a>
                 <div class="menu">
                     <a href="{{ route('admin.users') }}" class="menu-link {{ request()->is('admin/users*') ? 'active' : '' }}">
                         <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" class="menu-link-svg menu-link-svg_user">
@@ -38,7 +38,7 @@
                         </svg>
                         Материалы
                     </a>
-                    <a href="#" class="menu-link TODO">
+                    <a href="{{ route('admin.logs') }}" class="menu-link {{ request()->is('admin/logs*') ? 'active' : '' }}">
                         <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"  class="menu-link-svg menu-link-svg_logs">
                             <g clip-path="url(#clip0_242_3)">
                                 <path d="M18.75 2.8125V4.6875H11.25V2.8125V0.9375H18.75V2.8125Z"  stroke-width="2" stroke-linejoin="round"/>
@@ -58,7 +58,6 @@
                         </svg>
                         Логи
                     </a>
-                    <a href="{{ route('admin.logs') }}" class="menu-link {{ request()->is('admin/logs*') ? 'active' : '' }}">Логи</a>
                     @yield('log-files')
                 </div>
             </aside>
