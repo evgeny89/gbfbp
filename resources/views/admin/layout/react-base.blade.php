@@ -60,10 +60,12 @@
                     </a>
                 </div>
             </aside>
-            <section class="col-8 workspace">
-                @yield('workspace')
-            </section>
+            <section class="col-8 workspace" id="admin-left-field"
+                data-dataAdmin =   "{{ $dataAdmin }}"
+            ></section>
+            @push('footer-scripts')
+                <script src="{{ mix('/js/admin.js') }}"></script>
+            @endpush
         </div>
     </div>
 @endsection
-
