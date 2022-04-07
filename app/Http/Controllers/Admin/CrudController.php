@@ -41,15 +41,9 @@ class CrudController extends Controller
      */
     public function list(): View
     {
-        return view('admin.base.list',
-            [
-                'entries' => $this->model::all(),
-                'columns' => $this->columns,
-                'title' => $this->title,
-                'buttons' => $this->buttons,
-                'routes' => $this->routes,
-            ]
-        );
+        return view('admin.layout.react-base', [
+            'dataAdmin' => $this->getJson()
+        ]);
     }
 
     /**
@@ -124,7 +118,6 @@ class CrudController extends Controller
      */
     protected function addColumn(array $column)
     {
-        $column['type'] = 'admin.columns.'. $column['type'];
         $this->columns->push($column);
     }
 
@@ -204,5 +197,47 @@ class CrudController extends Controller
         $this->routes['edit'] = "admin.save-{$name}";
         $this->routes['delete'] = "admin.delete-{$name}";
         $this->routes['create'] = "admin.new-{$name}";
+    }
+
+    /**
+     * @return View
+     * home admin
+     */
+    public function home(): View
+    {
+        return view('admin.layout.react-base', [
+            'dataAdmin' => $this->getJson('home')
+        ]);
+    }
+
+    /**
+     * @return JSON string data
+     * @param string $mark
+     */
+    public function getJson($mark = null) 
+    {
+        if ($mark === 'home') {
+            return json_encode(
+                [
+                    'entries' => collect([]),
+                    'columns' => $this->columns,
+                    'title' => $this->title,
+                    'buttons' => $this->buttons,
+                    'routes' => $this->routes,
+                ]
+            );
+        } else {
+            return json_encode(
+                [
+                    'entries' => $this->model::all(),
+                    'columns' => $this->columns,
+                    'title' => $this->title,
+                    'buttons' => $this->buttons,
+                    'routes' => $this->routes,
+                ]
+            );
+        }
+        
+        
     }
 }
