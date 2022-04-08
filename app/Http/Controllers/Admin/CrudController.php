@@ -193,11 +193,12 @@ class CrudController extends Controller
      */
     protected function setRoutes(string $name, string $list)
     {
-        $this->routes['all'] = "admin.$list";
-        $this->routes['get'] = "admin.$name";
-        $this->routes['edit'] = "admin.save-{$name}";
-        $this->routes['delete'] = "admin.delete-{$name}";
-        $this->routes['create'] = "admin.new-{$name}";
+        $this->routes['all'] = "admin.$list"; // список
+        $this->routes['get'] = "admin.$name"; // форма редактирования
+        $this->routes['edit'] = "admin.save-{$name}"; // сохранение изменений
+        $this->routes['save'] = "admin.save-new-{$name}"; // сохранение новой записи
+        $this->routes['delete'] = "admin.delete-{$name}"; // удаление записи
+        $this->routes['create'] = "admin.new-{$name}"; // форма новой записи
     }
 
     /**
