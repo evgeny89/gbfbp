@@ -30,12 +30,12 @@ Route::name('admin.')->group(function () {
     Route::get('/materials/{id}/edit', [MaterialController::class, 'edit'])->name('material');
     Route::get('/materials/{id}/delete', [MaterialController::class, 'delete'])->name('delete-material');
 
-    Route::post('/users/new', [UserController::class, 'create'])->name('new-user');
+    Route::post('/users/new', [UserController::class, 'create'])->name('save-new-user');
     Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('save-user');
 
-    Route::post('/categories/new', [CategoryController::class, 'create'])->name('new-category');
+    Route::post('/categories/new', [CategoryController::class, 'create'])->name('save-new-category');
     Route::post('/categories/{id}/edit', [CategoryController::class, 'update'])->name('save-category');
 
-    Route::post('/materials/new', [MaterialController::class, 'create'])->name('new-material');
+    Route::post('/materials/new', [MaterialController::class, 'create'])->name('save-new-material');
     Route::post('/materials/{id}/edit', [MaterialController::class, 'update'])->name('save-material');
 });
