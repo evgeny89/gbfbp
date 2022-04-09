@@ -1,7 +1,7 @@
 @extends('admin.layout.base')
 
 @section('workspace')
-    <form action="{{ route($routes['create']) }}" method="post">
+    <form action="{{ route($routes['save']) }}" method="post">
         @csrf
         @foreach($fields as $field)
             @include($field['type'], ['field' => $field])
