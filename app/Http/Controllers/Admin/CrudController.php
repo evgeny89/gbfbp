@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CrudController extends Controller
 {
@@ -52,12 +53,20 @@ class CrudController extends Controller
      */
     public function newEntry(): View
     {
-        $fields = $this->all_fields->merge($this->update_fields);
+        $fields = $this->all_fields->merge($this->create_fields);
         return view('admin.base.new_item', ['fields' => $fields, 'routes' => $this->routes]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * create new entry
+     */
     public function create(Request $request): RedirectResponse
     {
+        if (!$this->buttons['add']) {
+            return redirect()->route('home');
+        }
         $this->model::create($request->all());
         return redirect()->route($this->routes['all']);
     }
@@ -80,8 +89,11 @@ class CrudController extends Controller
      * @return RedirectResponse
      * update entry properties
      */
-    public function save(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id): RedirectResponse
     {
+        if (!$this->buttons['edit']) {
+            return redirect()->route('home');
+        }
         $this->model::find($id)->update($request->all());
         return redirect()->route($this->routes['all']);
     }
@@ -93,6 +105,9 @@ class CrudController extends Controller
      */
     public function delete($id): RedirectResponse
     {
+        if (!$this->buttons['delete']) {
+            return redirect()->route('home');
+        }
         $this->model::find($id)->delete();
         return redirect()->route($this->routes['all']);
     }
@@ -178,11 +193,38 @@ class CrudController extends Controller
      */
     protected function setRoutes(string $name, string $list)
     {
-        $this->routes['all'] = "admin.$list";
-        $this->routes['get'] = "admin.$name";
-        $this->routes['edit'] = "admin.save-{$name}";
-        $this->routes['delete'] = "admin.delete-{$name}";
-        $this->routes['create'] = "admin.new-{$name}";
+        $this->routes['all'] = "admin.$list"; // список
+        $this->routes['get'] = "admin.$name"; // форма редактирования
+        $this->routes['edit'] = "admin.save-{$name}"; // сохранение изменений
+        $this->routes['save'] = "admin.save-new-{$name}"; // сохранение новой записи
+        $this->routes['delete'] = "admin.delete-{$name}"; // удаление записи
+        $this->routes['create'] = "admin.new-{$name}"; // форма новой записи
+    }
+
+    /**
+     * @return View
+     * home admin
+     */
+    public function home(): View
+    {
+        return view('admin.layout.react-base', [
+            'dataAdmin' => $this->getJson('home')
+        ]);
+    }
+
+    /**
+     * @param string|null $mark
+     * @return string
+     */
+    public function getJson(string $mark = null): string
+    {
+        return collect([
+            'entries' => $mark === 'home' ? collect([]) : $this->model::all(),
+            'columns' => $this->columns,
+            'title' => $this->title,
+            'buttons' => $this->buttons,
+            'routes' => $this->routes,
+        ])->toJson();
     }
 
     /**
