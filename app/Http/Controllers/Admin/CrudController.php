@@ -226,46 +226,4 @@ class CrudController extends Controller
             'routes' => $this->routes,
         ])->toJson();
     }
-
-    /**
-     * @return View
-     * home admin
-     */
-    public function home(): View
-    {
-        return view('admin.layout.react-base', [
-            'dataAdmin' => $this->getJson('home')
-        ]);
-    }
-
-    /**
-     * @return JSON string data
-     * @param string $mark
-     */
-    public function getJson($mark = null) 
-    {
-        if ($mark === 'home') {
-            return json_encode(
-                [
-                    'entries' => collect([]),
-                    'columns' => $this->columns,
-                    'title' => $this->title,
-                    'buttons' => $this->buttons,
-                    'routes' => $this->routes,
-                ]
-            );
-        } else {
-            return json_encode(
-                [
-                    'entries' => $this->model::all(),
-                    'columns' => $this->columns,
-                    'title' => $this->title,
-                    'buttons' => $this->buttons,
-                    'routes' => $this->routes,
-                ]
-            );
-        }
-        
-        
-    }
 }
