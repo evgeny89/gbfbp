@@ -144,6 +144,8 @@
         background-color: #EFEFEF
         margin-top: 34px
         text-transform: uppercase
+        +media-xs(down)
+            width: 320px
     .user-popup
         display: flex
         align-items: center
@@ -169,7 +171,6 @@
     .user-popup__links
         padding: 40px 28px
         margin: -20px 0
-
     .user-popup__logout-link
         font-size: 15px
         font-weight: 400
@@ -178,7 +179,6 @@
         text-decoration: none
         margin-left: 28px
         transition: color .4s
-
     .user-popup__logout-link:hover
         color: $main-pink
     .user-popup__link
