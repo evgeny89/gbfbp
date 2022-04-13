@@ -38,7 +38,7 @@ class PaymentCard extends Model
     | ACCESSORS
     |--------------------------------------------------------------------------
     */
-    public function getNumberFroShowAttribute()
+    public function getNumberFroShowAttribute(): string
     {
         return Str::mask($this->number, '*', 6, 6);
     }
