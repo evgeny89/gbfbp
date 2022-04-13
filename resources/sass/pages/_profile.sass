@@ -9,18 +9,28 @@
         display: flex
     .user__photo
         margin-right: 100px
-    .photo__wrapper
         width: 150px
         height: 150px
         border-radius: 50%
-        background-color: $black-50
-        cursor: pointer
+        background-color: #c4c4c4
         display: flex
         justify-content: center
         align-items: center
+        position: relative
+        overflow: hidden
+    .user__photo-input
+        cursor: pointer
+        &:hover > .icon__camera
+            opacity: 1
+    .file-input
+        display: none
     .icon__camera
-        width: 55px
-        height: auto
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        opacity: 0
+        transition: .5s opacity
     .user__data
         padding: 20px 0
         display: flex
@@ -29,17 +39,32 @@
     .data__input
         display: flex
         align-items: center
+        margin-bottom: 20px
     .input__title
         min-width: 110px
         margin-right: 20px
     .input__text
         display: flex
         align-items: center
+    .input__text-data
+        display: none
+        padding: 0
+        border: none
+        border-radius: initial
+        & + .input__text-span
+            display: inline
+        &.active
+            display: inline
+            & + .input__text-span
+                display: none
     .icon__edit
         cursor: pointer
-        width: 25px
-        height: auto
-        margin-left: 20px
+        margin: 0 20px
+        path
+            fill: $black-text
+            transition: .3s fill
+        &:hover path
+          fill: $main-pink
     .profile__cards
         margin-bottom: 100px
     .cards__title
@@ -78,10 +103,23 @@
         cursor: pointer
         display: flex
         align-items: center
-        color: $main-pink
-    .icon__logout
+    .logout__icon
         margin-left: 10px
-    .button__logout:hover
-        color: $black-text
-
+        path
+            transition: .3s fill, .3s stroke
+        & path:not(.logout__icon_fill)
+            stroke: $main-pink
+        path.logout__icon_fill
+            fill: $main-pink
+    .logout__link
+        text-decoration: none
+        color: $main-pink
+        transition: .3s color
+        &:hover
+            color: $black-text
+            .logout__icon
+                & path:not(.logout__icon_fill)
+                    stroke: $black-text
+                path.logout__icon_fill
+                    fill: $black-text
 

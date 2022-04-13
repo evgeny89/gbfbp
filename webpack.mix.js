@@ -21,3 +21,4 @@ mix.sass('resources/sass/app.sass', 'public/css');
 mix.sass('resources/sass/admin/app.sass', 'public/css/admin.css');
 
 mix.copyDirectory('resources/images', 'public/images');
+mix.copyDirectory('resources/js/vendors', 'public/js/vendors');

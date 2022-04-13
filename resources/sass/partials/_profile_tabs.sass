@@ -9,13 +9,18 @@
     text-align: center
     border-bottom: 10px solid transparent
     cursor: pointer
+    transition: .3s border-color
   .item__title
     font-size: 25px
     line-height: 30px
     font-weight: 400
+    text-decoration: none
+    color: inherit
+    transition: .3s color
   .tabs__item:hover
-    color: $main-pink
     border-color: $main-pink
+    .item__title
+      color: $main-pink
   .tabs__item.item__active
     color: $main-pink
     border-color: $main-pink
