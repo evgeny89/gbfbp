@@ -7,6 +7,8 @@
     .profile__data
         margin-bottom: 100px
         display: flex
+        +media-sm(down)
+            display: block
     .user__photo
         margin-right: 100px
         width: 150px
@@ -73,8 +75,10 @@
     .cards__wrapper
         display: flex
         flex-wrap: wrap
-        justify-content: space-between
         align-items: center
+        margin: -20px
+        +media-lg(down)
+            display: block
     .user__card
         flex: 0 1 calc(50% - 20px)
         min-height: 320px
@@ -85,20 +89,25 @@
         border: 1px solid $main-pink
         border-radius: 20px
         color: $main-pink
+        margin: 20px
+        max-width: 530px
+        +media-xs(down)
+            min-height: 220px
     .card__title
-        cursor: pointer
         color: $black-text
-    .card__title:hover
-        color: $main-pink
-    .card__title.title__button
-        color: $main-pink
+    .title__button
+        transition: .3s color
+        color: inherit
+        &:hover
+            color: $main-pink
     .card__body
         display: flex
         justify-content: space-between
         align-items: flex-end
     .card__image
-        min-width: 125px
-        height: 40px
+        width: 100%
+    .empty-cards
+        margin: 20px
     .button__logout
         cursor: pointer
         display: flex

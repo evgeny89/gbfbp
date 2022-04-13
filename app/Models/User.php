@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'photo',
+        'favorite_card_id',
     ];
 
     /**
@@ -69,6 +70,11 @@ class User extends Authenticatable
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function paymentCards(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PaymentCard::class);
     }
 
     /*

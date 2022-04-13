@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileDataRequest;
 use App\Http\Requests\ProfilePhotoRequest;
+use App\Models\PaymentCard;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class ProfileController extends Controller
      */
     public function profilePage(): View
     {
-        $user = Auth::user();
+        $user = User::with('paymentCards')->find(Auth::id());
         return view('pages.profile_page', compact('user'));
     }
 
@@ -35,12 +36,27 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * @param ProfilePhotoRequest $request
+     * @return RedirectResponse
+     */
     public function saveUserImage(ProfilePhotoRequest $request): RedirectResponse
     {
         $user = Auth::user();
         $user->photo = $request->file('image');
         $user->save();
         return redirect()->back();
+    }
+
+    public function setFavoriteCard(PaymentCard $card)
+    {
+        $user = Auth::user();
+        if ($card->user_id === $user->id) {
+            $user->update(['favorite_card_id' => $card->id]);
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors(['set-card' => 'Ошибка выбора основной карты']);
+        }
     }
 
     /**

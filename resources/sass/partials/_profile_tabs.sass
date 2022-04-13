@@ -3,6 +3,9 @@
   display: flex
   justify-content: space-between
   align-items: center
+  +media-md(down)
+    flex-direction: column
+    align-items: flex-start
   .tabs__item
     flex: 0 1 calc(25% - 5px)
     padding: 10px 0

@@ -86,20 +86,31 @@
                         Банковские карты
                     </h2>
                     <div class="cards__wrapper">
-                        <div class="user__card">
-                            <div class="card__title title__button">
-                                Сделать основной
-                            </div>
-                            <div class="card__body">
-                                <div class="card__number">
-                                    1234********6789
+                        @error('set-card')
+                            <span class="alert alert-danger">{{ $message }}</span>
+                        @enderror
+                        @forelse($user->paymentCards as $card)
+                            <div class="user__card">
+                                <div class="card__title">
+                                    @if($card->id === $user->favorite_card_id)
+                                        Основная карта
+                                    @else
+                                        <a href="{{ route('set_favorite_card', ['card' => $card->id]) }}" class="title__button">Сделать основной</a>
+                                    @endif
                                 </div>
-                                <div class="card__logo">
-                                    <img class="card__image" src="{{ asset('/images/svg/card_visa.svg') }}" alt="">
+                                <div class="card__body">
+                                    <div class="card__number">
+                                        {{ $card->numberFroShow }}
+                                    </div>
+                                    <div class="card__logo">
+                                        <img class="card__image" src="{{ $card->paymentIcon }}" alt="">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="user__card">
+                        @empty
+                            <p class="empty-cards">No cards</p>
+                        @endforelse
+                        {{--<div class="user__card">
                             <div class="card__title">
                                 Основная карта
                             </div>
@@ -111,7 +122,7 @@
                                     <img class="card__image" src="{{ asset('/images/svg/card_mir.svg') }}" alt="">
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
                 {{-- USER CARDS --}}
