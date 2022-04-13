@@ -34,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
     Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
+
+    // POST
+    Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
+    Route::post('profile/photo', [ProfileController::class, 'saveUserImage'])->name('profile_update_photo');
 });
 
 /*
