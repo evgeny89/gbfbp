@@ -81,7 +81,11 @@ class ProfileController extends Controller
         return view('pages.user_shop', ['user' => User::with('shop')->find(Auth::id())]);
     }
 
-    public function createUserShop(CreateShopRequest $request)
+    /**
+     * @param CreateShopRequest $request
+     * @return RedirectResponse
+     */
+    public function createUserShop(CreateShopRequest $request): RedirectResponse
     {
         Shop::create($request->only(['name', 'user_id']));
         return redirect()->back();

@@ -15,7 +15,7 @@ class UserApiController extends Controller
             'profileLink' => route('profile_page'),
             'favoriteLink' => route('favorite_page'),
             'purchasesLink' => '#',
-            'shopLink' => '#',
+            'shopLink' => route('shop_page'),
             'logoutLink' => route('logout'),
         ]);
     }
