@@ -110,19 +110,6 @@
                         @empty
                             <p class="empty-cards">No cards</p>
                         @endforelse
-                        {{--<div class="user__card">
-                            <div class="card__title">
-                                Основная карта
-                            </div>
-                            <div class="card__body">
-                                <div class="card__number">
-                                    1234********6789
-                                </div>
-                                <div class="card__logo">
-                                    <img class="card__image" src="{{ asset('/images/svg/card_mir.svg') }}" alt="">
-                                </div>
-                            </div>
-                        </div>--}}
                     </div>
                 </div>
                 {{-- USER CARDS --}}
