@@ -15,10 +15,10 @@
             Мои покупки
         </h2>
     </div>
-    <div class="tabs__item">
-        <h2 class="item__title">
+    <div class="tabs__item @if ($active == 'shop') item__active @endif">
+        <a href="{{ route('shop_page') }}" class="item__title">
             Моя витрина
-        </h2>
+        </a>
     </div>
 </div>
 {{-- PROFILE TABS --}}
