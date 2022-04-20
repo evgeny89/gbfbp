@@ -30,7 +30,7 @@
                             <div class="data__input">
                                 <div class="input__title">Имя:</div>
                                 <div class="input__text">
-                                    <input type="text" value="{{ $user->name }}" name="name" class="input__text-data">
+                                    <input type="text" value="{{ $user->name }}" name="name" class="input__text-data" oninput="this.size = this.value.length">
                                     <span class="input__text-span">{{ $user->name }}</span>
                                     <svg class="icon__edit" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@
                             <div class="data__input">
                                 <div class="input__title">E-mail:</div>
                                 <div class="input__text">
-                                    <input type="text" value="{{ $user->email }}" name="email" class="input__text-data">
+                                    <input type="text" value="{{ $user->email }}" name="email" class="input__text-data"  oninput="this.size = this.value.length">
                                     <span class="input__text-span">{{ $user->email }}</span>
                                     <svg class="icon__edit" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -62,7 +62,7 @@
                             <div class="data__input">
                                 <div class="input__title">Телефон:</div>
                                 <div class="input__text">
-                                    <input type="text" value="{{ $user->phone }}" name="phone" class="input__text-data">
+                                    <input type="text" value="{{ $user->phone }}" name="phone" class="input__text-data"  oninput="this.size = this.value.length">
                                     <span class="input__text-span">{{ $user->phone }}</span>
                                     <svg class="icon__edit" width="22" height="22" viewBox="0 0 22 22" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">

@@ -42,6 +42,8 @@
         display: flex
         align-items: center
         margin-bottom: 20px
+        +media-sm(down)
+            flex-direction: column
     .input__title
         min-width: 110px
         margin-right: 20px
@@ -52,7 +54,10 @@
         display: none
         padding: 0
         border: none
+        outline: none
+        background-color: transparent
         border-radius: initial
+        font-size: 20px
         & + .input__text-span
             display: inline
         &.active

@@ -27,6 +27,7 @@
     align-items: center
     justify-content: center
     cursor: pointer
+    background-color: transparent
 .header__menu-icon
     object-fit: contain
     +media-sm(down)
@@ -76,7 +77,17 @@
     background-image: url(/images/svg/search.svg)
     background-repeat: no-repeat
     background-position: 20px center
+    background-color: transparent
     color: $light-text
+    border: 2px solid $main-blue
+    border-radius: 40px
+    font-size: 20px
+    line-height: 24px
+    font-weight: 400
+    outline: none
+    &::placeholder
+        color: $black-50
+        font-family: $text-base-family
     +media-xs(down)
         padding: 12px 20px 12px 60px
         background-size: 20px
@@ -127,6 +138,7 @@
         padding: 0
         width: auto
         cursor: pointer
+        background-color: transparent
         .person
             fill: $main-blue
         &:hover
