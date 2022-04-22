@@ -67,6 +67,22 @@ class ProfileController extends Controller
         return view('pages.favorite_page');
     }
 
+    /**
+     * @return View
+     */
+    public function ordersPage(): View
+    {
+        return view('pages.orders_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function shopsPage(): View
+    {
+        return view('pages.shops_page');
+    }
+
     protected function validateUserPrivateData(ProfileDataRequest $request)
     {
         $errors = [];
