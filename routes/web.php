@@ -33,10 +33,10 @@ Route::middleware('auth')->group(function () {
     // GET
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
+    Route::get('profile/set-card/{card}', [ProfileController::class, 'setFavoriteCard'])->name('set_favorite_card');
     Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
     Route::get('orders', [ProfileController::class, 'ordersPage'])->name('orders_page');
-    Route::get('profile/set-card/{card}', [ProfileController::class, 'setFavoriteCard'])->name('set_favorite_card');
-    Route::get('shop', [ProfileController::class, 'shopPage'])->name('shop_page');
+    Route::get('user_shop', [ProfileController::class, 'shopPage'])->name('shop_page');
 
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
