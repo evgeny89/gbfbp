@@ -15,8 +15,8 @@
             Мои покупки
         </a>
     </div>
-    <div class="tabs__item @if ($active == 'shops') item__active @endif">
-        <a href="{{ route('shops_page') }}" class="item__title">
+    <div class="tabs__item @if ($active == 'shop') item__active @endif">
+        <a href="{{ route('shop_page') }}" class="item__title">
             Моя витрина
         </a>
     </div>

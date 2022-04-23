@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateShopRequest;
 use App\Http\Requests\ProfileDataRequest;
 use App\Http\Requests\ProfilePhotoRequest;
 use App\Models\PaymentCard;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +50,11 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function setFavoriteCard(PaymentCard $card)
+    /**
+     * @param PaymentCard $card
+     * @return RedirectResponse
+     */
+    public function setFavoriteCard(PaymentCard $card): RedirectResponse
     {
         $user = Auth::user();
         if ($card->user_id === $user->id) {
@@ -78,12 +84,26 @@ class ProfileController extends Controller
     /**
      * @return View
      */
-    public function shopsPage(): View
+    public function shopPage(): View
     {
-        return view('pages.shops_page');
+        return view('pages.user_shop', ['user' => User::with('shop')->find(Auth::id())]);
     }
 
-    protected function validateUserPrivateData(ProfileDataRequest $request)
+    /**
+     * @param CreateShopRequest $request
+     * @return RedirectResponse
+     */
+    public function createUserShop(CreateShopRequest $request): RedirectResponse
+    {
+        Shop::create($request->only(['name', 'user_id']));
+        return redirect()->back();
+    }
+
+    /**
+     * @param ProfileDataRequest $request
+     * @return array
+     */
+    protected function validateUserPrivateData(ProfileDataRequest $request): array
     {
         $errors = [];
         $emailUser = User::whereEmail($request->input('email'))->first();

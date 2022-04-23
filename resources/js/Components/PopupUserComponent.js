@@ -14,8 +14,9 @@ function PopupUserComponent() {
         <div className="react-popup">
             <header className="user-popup">
                 <div className="user-popup__avatar">
-                    {userData?.avatar &&
-                        <img src={userData?.avatar} alt={userData?.userName} width="100" height="100"/>
+                    {userData?.avatar
+                        ? <img src={userData?.avatar} alt={userData?.userName} width="100" height="100"/>
+                        : userData?.userName
                     }
                 </div>
                 <div className="user-popup__info">
@@ -43,7 +44,7 @@ function PopupUserComponent() {
                     моя витрина
                 </a>
             </ul>
-            <a href={userData?.outLink} className="user-popup__logout-link">выйти</a>
+            <a href={userData?.logoutLink} className="user-popup__logout-link">выйти</a>
         </div>
     );
 }

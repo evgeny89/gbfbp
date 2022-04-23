@@ -11,7 +11,9 @@
     @include('layout.header')
     @include('layout.burger_menu')
 
-    @yield('content')
+    <div class="main-content">
+        @yield('content')
+    </div>
 
     @include('layout.footer')
 <script src="{{ mix('/js/app.js') }}"></script>

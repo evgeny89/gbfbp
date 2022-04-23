@@ -77,6 +77,11 @@ class User extends Authenticatable
         return $this->hasMany(PaymentCard::class);
     }
 
+    public function shop(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Shop::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
@@ -87,7 +92,7 @@ class User extends Authenticatable
      */
     public function getSmallAvatarAttribute(): string
     {
-        return asset("photos/{$this->images['small']}/{$this->photo}");
+        return $this->photo ? asset("photos/{$this->images['small']}/{$this->photo}") : '';
     }
 
     /*
