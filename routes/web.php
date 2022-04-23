@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('profile', [ProfileController::class, 'profilePage'])->name('profile_page');
     Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
+    Route::get('orders', [ProfileController::class, 'ordersPage'])->name('orders_page');
+    Route::get('shops', [ProfileController::class, 'shopsPage'])->name('shops_page');
     Route::get('profile/set-card/{card}', [ProfileController::class, 'setFavoriteCard'])->name('set_favorite_card');
 
     // POST
