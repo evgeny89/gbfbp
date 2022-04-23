@@ -76,6 +76,14 @@ class ProfileController extends Controller
     /**
      * @return View
      */
+    public function ordersPage(): View
+    {
+        return view('pages.orders_page');
+    }
+
+    /**
+     * @return View
+     */
     public function shopPage(): View
     {
         return view('pages.user_shop', ['user' => User::with('shop')->find(Auth::id())]);
