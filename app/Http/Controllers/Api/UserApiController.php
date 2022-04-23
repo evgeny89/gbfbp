@@ -14,7 +14,7 @@ class UserApiController extends Controller
             'avatar' => Auth::user()->small_avatar,
             'profileLink' => route('profile_page'),
             'favoriteLink' => route('favorite_page'),
-            'purchasesLink' => '#',
+            'purchasesLink' => route('orders_page'),
             'shopLink' => route('shop_page'),
             'logoutLink' => route('logout'),
         ]);
