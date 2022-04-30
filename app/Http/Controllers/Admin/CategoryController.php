@@ -72,7 +72,7 @@ class CategoryController extends CrudController
         return parent::create($request);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $request = $this->validationData($request);
 
