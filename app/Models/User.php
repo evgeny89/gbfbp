@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\UploadImages;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, UploadImages;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'photo',
+        'favorite_card_id',
     ];
 
     /**
@@ -42,6 +46,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * The image resolutions to save
+     *
+     * @var array<int, string>
+     */
+    protected $images = [
+        'origin' => 'origin',
+        'small' => '150x150',
+    ];
+
+    /**
+     * photo directory
+     * @var string
+     */
+    protected $image_folder = 'photos';
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -52,6 +72,29 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function paymentCards(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(PaymentCard::class);
+    }
+
+    public function shop(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Shop::class);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACCESSORS
+    |--------------------------------------------------------------------------
+    */
+    /**
+     * @return string
+     */
+    public function getSmallAvatarAttribute(): string
+    {
+        return $this->photo ? asset("photos/{$this->images['small']}/{$this->photo}") : '';
+    }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -59,9 +102,24 @@ class User extends Authenticatable
     */
     /**
      * Add a mutator to ensure hashed passwords
+     * @param $password
+     * @return void
      */
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * @param $photo
+     * @return void
+     */
+    public function setPhotoAttribute($photo)
+    {
+        $fileName = $this->uploadImage($photo);
+
+        $this->deleteOldImages($this->photo);
+
+        $this->attributes['photo'] = $fileName;
     }
 }

@@ -1,24 +1,24 @@
 {{-- PROFILE TABS --}}
 <div class="profile__tabs">
     <div class="tabs__item @if ($active == 'profile') item__active @endif">
-        <h2 class="item__title">
+        <a href="{{ route('profile_page') }}" class="item__title">
             Личные данные
-        </h2>
+        </a>
     </div>
     <div class="tabs__item @if ($active == 'favorite') item__active @endif">
-        <h2 class="item__title">
+        <a href="{{ route('favorite_page') }}" class="item__title">
             Избранное
-        </h2>
+        </a>
     </div>
-    <div class="tabs__item">
-        <h2 class="item__title">
+    <div class="tabs__item @if ($active == 'orders') item__active @endif">
+        <a href="{{ route('orders_page') }}" class="item__title">
             Мои покупки
-        </h2>
+        </a>
     </div>
-    <div class="tabs__item">
-        <h2 class="item__title">
+    <div class="tabs__item @if ($active == 'shop') item__active @endif">
+        <a href="{{ route('shop_page') }}" class="item__title">
             Моя витрина
-        </h2>
+        </a>
     </div>
 </div>
 {{-- PROFILE TABS --}}

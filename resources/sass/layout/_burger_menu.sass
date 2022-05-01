@@ -17,12 +17,15 @@
     width: 480px
     height: 100vh
     z-index: 2
+    max-width: 100%
     background-color: $main-gray
     transition: left linear .5s
     &.open
         left: 0
     .burger__menu-wrapper
         padding: 40px 0 40px 60px
+        +media-sm(down)
+            padding-left: 40px
     .menu__hide
         position: relative
         cursor: pointer

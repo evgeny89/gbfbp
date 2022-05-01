@@ -1,0 +1,68 @@
+.orders__wrapper
+  padding: 40px 0
+  +media-xs(down)
+    padding: 10px 0
+
+.orders__row
+  padding: 40px
+  border-radius: 20px
+  background-color: $gray
+  color: $black-text
+  font-weight: 400
+  margin-bottom: 20px
+  +media-sm(down)
+    padding: 10px
+
+  .order__details
+    margin-bottom: 20px
+
+  .order__number,
+  .order__status
+    margin-bottom: 10px
+
+  .order__number
+    font-size: 20px
+    line-height: 24px
+
+  .order__status,
+  .order__total,
+  .item__name
+    font-size: 16px
+    line-height: 18px
+
+  .item__name
+    +media-sm(down)
+      font-size: 12px
+    +media-xs(down)
+      font-size: 10px
+
+  .order__status.delivered
+    color: $main-green
+
+  .order__status.cancelled
+    color: $main-pink
+
+  .order__products
+    display: flex
+    flex-wrap: wrap
+    margin: 0 -10px
+
+  .order__products-item
+    padding: 0 10px
+    flex: 0 1 calc(100% / 6)
+    margin-bottom: 10px
+    +media-md(down)
+      flex: 0 1 calc(100% / 4)
+    +media-xs(down)
+      flex: 0 1 calc(100% / 3)
+
+  .item__image
+    margin-bottom: 10px
+
+  .item__image img
+    object-fit: cover
+    max-width: 100%
+
+  .item__name
+    color: $black-50
+

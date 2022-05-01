@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class WebHookGitHub
 {
@@ -16,9 +17,15 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next)
     {
-        $post_data = file_get_contents('php://input');
+        $post_data = $request->getContent();
         $appHash = 'sha256='. hash_hmac('sha256', $post_data, env('APP_DEPLOY_KEY'));
         $hunHash = $request->header('X-Hub-Signature-256');
+
+        Log::channel('deploy')->info(<<<DEPLOY
+Deploy info:
+github hash => $hunHash;
+app hash => $appHash;
+DEPLOY);
 
         if ($appHash !== $hunHash) {
             abort(401);
