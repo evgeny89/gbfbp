@@ -11,8 +11,12 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
   }, [active]);
   let textRoutes = data?.textRoutes;
   let countRows = data?.columns.length || null;
-  if (data?.entries.id) {
+  if (data?.entries?.id) {
     textRoutes = textRoutes.replace('=id=', data.entries.id);
+  }
+
+  const closeModal = () => {
+    setActive(false);
   }
 
   /**
@@ -22,7 +26,7 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
    */
   const getPrepareData = (data) => {
     if (data === undefined) return;
-    const { columns, entries, roleUsers } = data;
+    const { columns, entries=undefined, roleUsers } = data;
     countRows = columns.length;
     const readyData = [];
     for (let i = 0; i < columns.length; i++) {
@@ -40,10 +44,19 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
       } else {
         objElem.name = columns[i].name;
       }
-      if (columns[i].name === 'role') {
-        objElem.value = entries.role_id || '';
+      if (entries === undefined ) {
+        if (objElem.type === 'check') {
+          objElem.value = 0;
+        } else {
+          objElem.value = '';
+        }
+
       } else {
-        objElem.value = entries[columns[i].name] ?? '';
+        if (columns[i].name === 'role') {
+          objElem.value = entries.role_id || '';
+        } else {
+          objElem.value = entries[columns[i].name] ?? '';
+        }
       }
       objElem.text = columns[i].text;
       readyData.push(objElem);
@@ -58,12 +71,18 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
    * @param {object} objErrors 
    * @returns void
    */
-  const getErrors = (objErrors) => {
+  const getErrors = (objErrors, textError) => {
     const arrayErrors = [];
-    Object.values(objErrors).forEach((el) => {
-      arrayErrors.push(...el);
-    });
-    setErrorsText(arrayErrors);
+    if (objErrors) {
+      Object.values(objErrors).forEach((el) => {
+        arrayErrors.push(...el);
+      });
+      setErrorsText(arrayErrors);
+    } else {
+      arrayErrors.push(textError);
+      setErrorsText(arrayErrors);
+    }
+    
   }
 
   /**
@@ -81,23 +100,29 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
     })
       .then((data) => {
         if (data.data.message === 'ok') {
-          elemData.id = Number(elemData.id);
+          if (Number(elemData.id) !== 0) {
+            elemData.id = Number(elemData.id);
+          } else {
+            elemData.id = data.data.id.id;
+          }
           actionAfter(elemData);
           setActive(false);
         }
       })
-      .catch((error) => getErrors(error.response.data.errors));
+      .catch((error) => {
+        getErrors(error.response.data.errors, error.response.data.message);
+      });
   }
 
   return (
-    <div className={active ? "modal-view active" : "modal-view"} onClick={() => setActive(false)}>
+    <div className={active ? "modal-view active" : "modal-view"} onClick={closeModal}>
       <div className={active ? "modal-view__content active" : "modal-view__content"} onClick={e => e.stopPropagation()}>
         <h3 className="modal-title">{data?.entries ? "Редактирование" : "Создание"}</h3>
         <form ref={formRef} id="form-modal" className="modal-form" style={{ "gridTemplateRows": `repeat(${countRows - 1}, 1fr)` }}>
           {prepareData ? prepareData.map((item, id) => <RowModal data={{ ...item }} key={id} />) : null}
         </form>
         <div className="modal-wrapper-button-errors">
-          <button className="modal-button-submit" onClick={() => submitForm()}>Отправить</button>
+          <button className="modal-button-submit" onClick={submitForm}>Отправить</button>
           <div className="modal-div-errors">
             {errorsText.map((el, id) => <TextError text={el} key={id} />)}
           </div>

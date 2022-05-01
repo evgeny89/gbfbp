@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import axios from 'axios';
 import RowAdmin from './RowAdmin';
 import Modal from "./Modal";
+import CreateButtons from "./CreateButton";
 const AppAdmin = (props) => {
   
   let data = JSON.parse(props.dataadmin);
@@ -10,7 +11,6 @@ const AppAdmin = (props) => {
   const [dataInModal, setDataInModal] = useState(undefined);
   const countRows = dataAdmin.entries.length + 1;
   const countColumns = dataAdmin.columns.length;
- console.log(dataAdmin);
 
   /**
    * Формирует массив объектов с данными для построения заголовков таблицы, 
@@ -57,7 +57,7 @@ const AppAdmin = (props) => {
    * @param {object} elemData объект с данными измененной (созданной) сущности
    */
   const actionAfter = (elemData) => { 
-    if (elemData.id) {
+    if (dataAdmin.entries.find(el => el.id === elemData.id)) {
       setDataAdmin({...dataAdmin, 'entries': dataAdmin.entries.map((el) => {
         if (el.id === elemData.id) {
           if (el.role) {
@@ -69,9 +69,9 @@ const AppAdmin = (props) => {
         }
         return el;
       })});
-        
+    } else {
+      setDataAdmin({...dataAdmin, 'entries': [...dataAdmin.entries, elemData]});
     }
-    
   };
 
   /**
@@ -131,7 +131,28 @@ const AppAdmin = (props) => {
           {dataRows.map((dataRow, id) => <RowAdmin columns={dataRow} key={id}/>)}
         </>
       </section>
-      <Modal active={modalActive} setActive={setModalActive} data={dataInModal} setData={setDataAdmin} actionAfter={actionAfter} />
+      <div className="admin-right-button-pag">
+        <div className="wrapper-create-button">
+          {dataAdmin.buttons.add ? 
+              <CreateButtons 
+                columns={dataAdmin.columns}  
+                textRoutes={dataAdmin.routes.save}
+                setActive={setModalActive}
+                setData={setDataInModal}
+                roleUsers={dataAdmin.roleUsers ? dataAdmin.roleUsers : null}
+              /> 
+              : 
+              ''
+          }
+        </div>
+        <div className="admin-right-pagination"></div>
+      </div>
+      <Modal  active={modalActive} 
+              setActive={setModalActive} 
+              data={dataInModal} 
+              setData={setDataAdmin} 
+              actionAfter={actionAfter}
+      />
     </>
   )
 }

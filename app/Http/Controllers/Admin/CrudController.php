@@ -62,13 +62,13 @@ class CrudController extends Controller
      * @return RedirectResponse
      * create new entry
      */
-    public function create(Request $request): RedirectResponse
-    {
+    public function create(Request $request)
+    {   
         if (!$this->buttons['add']) {
             return redirect()->route('home');
         }
-        $this->model::create($request->all());
-        return redirect()->route($this->routes['all']);
+        $res = $this->model::create($request->all());
+        return (bool) $res ? collect(['message' => 'ok', 'id' => $res]) : collect(['message' => 'error']);
     }
 
     /**
@@ -94,10 +94,8 @@ class CrudController extends Controller
         if (!$this->buttons['edit']) {
             return redirect()->route('home');
         }
-        //return $this->model::find($id)->update($request->all());
         $res = $this->model::find($id)->update($request->all());
         return (bool) $res ? collect(['message' => 'ok']) : collect(['message' => 'error']);
-
     }
 
     /**

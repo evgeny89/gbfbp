@@ -65,7 +65,7 @@ class CategoryController extends CrudController
         $this->addButtons(['edit', 'delete', 'add']);
     }
 
-    public function create(Request $request): RedirectResponse
+    public function create(Request $request)
     {
         $request = $this->validationData($request);
 

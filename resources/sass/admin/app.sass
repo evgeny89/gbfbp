@@ -292,7 +292,28 @@ h3.modal-title
     font-size: 18px
 .modal-div-errors
     margin-top: 20px
+    max-width: 400px
     
 .modal-wrapper-button-errors 
     display: flex
     justify-content: space-between
+
+/* Нижний блок правого окна админки (кнопка, пагинация и контейнеры их содержащие*/
+.admin-right-button-pag 
+    margin-top: 30px
+    padding: 0px 69px
+    display: flex
+    justify-content: space-between
+/* Кнопка создания сущности*/
+.admin-button-create
+    width: 60px
+    height: 40px
+    background-color: #ECECEC
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M19.6023 7.67051C19.3371 7.40533 19.0149 7.2728 18.6362 7.2728H12.7271V1.3635C12.7271 0.984841 12.5945 0.662796 12.3294 0.397618C12.0643 0.132639 11.7425 0 11.3633 0H8.63625C8.25754 0 7.93554 0.13249 7.67036 0.397668C7.40519 0.662846 7.27265 0.98489 7.27265 1.36355V7.27285H1.36355C0.98489 7.27285 0.662846 7.40538 0.397668 7.67056C0.13249 7.93574 0 8.25749 0 8.6364V11.3638C0 11.7428 0.13244 12.0646 0.397618 12.3295C0.662796 12.5948 0.984841 12.7272 1.3635 12.7272H7.2726V18.6366C7.2726 19.0153 7.40514 19.3376 7.67031 19.6026C7.93549 19.8676 8.25749 20 8.6362 20H11.3634C11.7424 20 12.0642 19.8676 12.3294 19.6026C12.5947 19.3374 12.7272 19.0153 12.7272 18.6366V12.7272H18.6362C19.0152 12.7272 19.3372 12.5948 19.6022 12.3295C19.8674 12.0646 20 11.7428 20 11.3638V8.6364C19.9999 8.25749 19.8676 7.93554 19.6023 7.67051Z' fill='black'/%3e%3c/svg%3e ")
+    background-repeat: no-repeat
+    background-position: center center
+    border-radius: 10px
+    cursor: pointer
+    transition: background-color .4s
+    &:hover 
+        background-color: $main-blue

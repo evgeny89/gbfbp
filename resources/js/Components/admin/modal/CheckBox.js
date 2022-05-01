@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 const CheckBox = (props) => {
   let { name, value, text } = props;
   const [val, setVal] = useState(value);
+  
   let classSpan = `admin-input-new ${Number(val) ? "check" : ''}`;
   
   /**
