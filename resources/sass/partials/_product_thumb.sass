@@ -1,11 +1,16 @@
 .product__thumb
-  padding: 20px
+  padding: 10px
   border-radius: 20px
+  flex: 0 1 calc(100% / 6)
+  +media-md(down)
+    flex: 0 1 calc(100% / 4)
+  +media-xs(down)
+    flex: 0 1 calc(100% / 3)
   &:hover
     background-color: $gray
     box-shadow: 0 4px 4px $black-50
   &:hover .button__buy
-    display: block
+    display: inline
   &:hover .button__remove
     display: inline
   .image__wrapper
@@ -24,12 +29,22 @@
     line-height: 30px
     color: $black-text
     margin-bottom: 10px
+    +media-lg(down)
+      font-size: 22px
+    +media-md(down)
+      font-size: 18px
   .product__name
     font-weight: 400
-    font-size: 20px
+    font-size: 18px
     line-height: 24px
     color: $black-50
     margin-bottom: 10px
+    +media-lg(down)
+      font-size: 16px
+    +media-md(down)
+      font-size: 14px
+    +media-sm(down)
+      font-size: 12px
   .product__buttons
     height: 35px
   .button__buy
@@ -41,6 +56,11 @@
     font-size: 15px
     line-height: 18px
     text-align: center
+    +media-md(down)
+      font-size: 14px
+    +media-sm(down)
+      font-size: 12px
+      padding: 5px 15px
   .button__remove
     display: none
     position: absolute
@@ -63,7 +83,7 @@
       height: 4px
       background-color: $black-text
       border-radius: 2px
-      top: 12px
+      top: 45%
       right: 5px
     &:before
       -webkit-transform: rotate(45deg)

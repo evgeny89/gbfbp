@@ -27,6 +27,7 @@
     align-items: center
     justify-content: center
     cursor: pointer
+    background-color: transparent
 .header__menu-icon
     object-fit: contain
     +media-sm(down)
@@ -76,7 +77,17 @@
     background-image: url(/images/svg/search.svg)
     background-repeat: no-repeat
     background-position: 20px center
+    background-color: transparent
     color: $light-text
+    border: 2px solid $main-blue
+    border-radius: 40px
+    font-size: 20px
+    line-height: 24px
+    font-weight: 400
+    outline: none
+    &::placeholder
+        color: $black-50
+        font-family: $text-base-family
     +media-xs(down)
         padding: 12px 20px 12px 60px
         background-size: 20px
@@ -127,6 +138,7 @@
         padding: 0
         width: auto
         cursor: pointer
+        background-color: transparent
         .person
             fill: $main-blue
         &:hover
@@ -144,6 +156,8 @@
         background-color: #EFEFEF
         margin-top: 34px
         text-transform: uppercase
+        +media-xs(down)
+            width: 320px
     .user-popup
         display: flex
         align-items: center
@@ -153,6 +167,10 @@
         background-color: #c4c4c4
         border-radius: 50%
         margin-right: 30px
+        overflow: hidden
+        display: flex
+        align-items: center
+        justify-content: center
     .user-popup__name
         font-size: 18px
         font-weight: 400
@@ -164,11 +182,10 @@
         font-weight: 400
         line-height: 18px
         color: $main-pink
-        text-transform: underline
+        text-decoration: underline
     .user-popup__links
         padding: 40px 28px
         margin: -20px 0
-    
     .user-popup__logout-link
         font-size: 15px
         font-weight: 400
@@ -177,7 +194,6 @@
         text-decoration: none
         margin-left: 28px
         transition: color .4s
-
     .user-popup__logout-link:hover
         color: $main-pink
     .user-popup__link
@@ -197,7 +213,7 @@
         object-fit: contain
         fill: $black-text
         transition: fill .4s
-    .user-popup__link:hover .user-popup__icon 
+    .user-popup__link:hover .user-popup__icon
         fill: $main-pink
     .user-popup__link:hover
         color: $main-pink
