@@ -7,6 +7,13 @@ import DeleteButton from './DeleteButton';
 import Text from './Text';
 
 const RowAdmin = (props) => {
+  /**
+   * Возвращает один из компонентов в зависимости от его типа
+   * @param {text} type тип элемента
+   * @param {text, object} text даные элемента (текс или объект с данными)
+   * @param {number} id ключ для безошибочной отрисовки нескольких компонентов
+   * @returns {Component} возвращает компонент на основании полученного значения типа
+   */
   const createComponents = (type, text, id ) => {
     switch (type) {
       case 'headerText' : 
@@ -16,13 +23,12 @@ const RowAdmin = (props) => {
       case 'emptyBlock' :
         return <EmptyBlock key={id}/>
       case 'editButton' :
-        return <EditButton text={text} key={id}/>
+        return <EditButton data={text} key={id}/>
       case 'deleteButton' :
-        return <DeleteButton text={text} key={id}/>
+        return <DeleteButton data={text} key={id}/>
       case 'text' : 
         return <Text text={text} key={id}/>
     }
-    
   }
   const {columns } = props;
   

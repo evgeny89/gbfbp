@@ -62,13 +62,13 @@ class CrudController extends Controller
      * @return RedirectResponse
      * create new entry
      */
-    public function create(Request $request): RedirectResponse
-    {
+    public function create(Request $request)
+    {   
         if (!$this->buttons['add']) {
             return redirect()->route('home');
         }
-        $this->model::create($request->all());
-        return redirect()->route($this->routes['all']);
+        $res = $this->model::create($request->all());
+        return (bool) $res ? collect(['message' => 'ok', 'id' => $res]) : collect(['message' => 'error']);
     }
 
     /**
@@ -89,27 +89,27 @@ class CrudController extends Controller
      * @return RedirectResponse
      * update entry properties
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         if (!$this->buttons['edit']) {
             return redirect()->route('home');
         }
-        $this->model::find($id)->update($request->all());
-        return redirect()->route($this->routes['all']);
+        $res = $this->model::find($id)->update($request->all());
+        return (bool) $res ? collect(['message' => 'ok']) : collect(['message' => 'error']);
     }
 
     /**
      * @param $id
-     * @return RedirectResponse
+     * @return boolean
      * delete entry
      */
-    public function delete($id): RedirectResponse
+    public function delete($id): string
     {
         if (!$this->buttons['delete']) {
             return redirect()->route('home');
         }
-        $this->model::find($id)->delete();
-        return redirect()->route($this->routes['all']);
+
+        return collect(['result' => $this->model::find($id)->delete()])->toJson();
     }
 
     /**
@@ -193,12 +193,12 @@ class CrudController extends Controller
      */
     protected function setRoutes(string $name, string $list)
     {
-        $this->routes['all'] = "admin.$list"; // список
-        $this->routes['get'] = "admin.$name"; // форма редактирования
-        $this->routes['edit'] = "admin.save-{$name}"; // сохранение изменений
-        $this->routes['save'] = "admin.save-new-{$name}"; // сохранение новой записи
-        $this->routes['delete'] = "admin.delete-{$name}"; // удаление записи
-        $this->routes['create'] = "admin.new-{$name}"; // форма новой записи
+        $this->routes['all'] = route("admin.{$list}");//"admin.$list"; // список
+        $this->routes['get'] = route("admin.{$name}", ['id' => "=id="]);//"admin.$name"; // форма редактирования
+        $this->routes['edit'] = route("admin.save-{$name}", ['id' => "=id="]);//"admin.save-{$name}";  // сохранение изменений
+        $this->routes['save'] = route("admin.save-new-{$name}"); //"admin.save-new-{$name}"; // сохранение новой записи
+        $this->routes['delete'] = route("admin.delete-{$name}", ['id' => "=id="]); // "/admin/{$name}/id/delete"; // удаление записи
+        $this->routes['create'] = route("admin.new-{$name}");//"admin.new-{$name}"; // форма новой записи
     }
 
     /**
