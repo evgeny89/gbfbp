@@ -24,10 +24,3 @@ const Select = ({ name, value, text, selectAll }) => {
 }
 
 export default Select;
-
-
-
-
-
-
-

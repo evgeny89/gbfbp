@@ -96,7 +96,6 @@ class UserController extends CrudController
 
         $res = DB::table('users')->whereId($id)->update($validated);
         return (bool) $res ? collect(['message' => 'ok']) : collect(['message' => 'error']);
-    
     }
 
     protected function accessRoles(Collection $fields): Collection
