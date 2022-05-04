@@ -10,17 +10,41 @@
                 {{-- PRODUCTS --}}
                 <div class="favorite__products">
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
-                    @include('partials.product_thumb')
+                    @include('partials.product_thumb', ['button' => '
+                        <span class="button__buy">
+                            В корзину
+                        </span>
+                    '])
 
                 </div>
                 {{-- PRODUCTS --}}
