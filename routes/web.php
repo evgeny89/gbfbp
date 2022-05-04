@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('pages.home_page');
 })->name('home');
 
+Route::get('contact', function () {
+    return view('pages.contact_page');
+})->name('contact');
+
 // GET
 Route::get('login', [AuthController::class, 'loginPage'])->name('login_page');
 Route::get('register', [AuthController::class, 'register'])->name('register');
