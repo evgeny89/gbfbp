@@ -61,7 +61,7 @@
                     @yield('log-files')
                 </div>
             </aside>
-            <section class="col-8 workspace" id="admin-left-field"
+            <section class="col-10 workspace" id="admin-left-field"
                 data-dataAdmin =   "{{ $dataAdmin }}"
             ></section>
             @push('footer-scripts')

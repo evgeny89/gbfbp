@@ -1,7 +1,6 @@
 import React from "react";
 
 const HeaderText = (props) => {
-  
   return (
     <p className="admin-header-text">
       {props.text}
