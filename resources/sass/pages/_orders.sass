@@ -43,18 +43,17 @@
     color: $main-pink
 
   .order__products
-    display: flex
-    flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(auto-fit, calc(100% / 6))
     margin: 0 -10px
+    +media-md(down)
+      grid-template-columns: repeat(auto-fit, calc(100% / 4))
+    +media-xs(down)
+      grid-template-columns: repeat(auto-fit, calc(100% / 3))
 
   .order__products-item
     padding: 0 10px
-    flex: 0 1 calc(100% / 6)
     margin-bottom: 10px
-    +media-md(down)
-      flex: 0 1 calc(100% / 4)
-    +media-xs(down)
-      flex: 0 1 calc(100% / 3)
 
   .item__image
     margin-bottom: 10px
