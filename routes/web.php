@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StaticPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,14 +16,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('pages.home_page');
-})->name('home');
-
-Route::get('contact', function () {
-    return view('pages.contact_page');
-})->name('contact');
 
 // GET
 Route::get('login', [AuthController::class, 'loginPage'])->name('login_page');
@@ -47,6 +40,10 @@ Route::middleware('auth')->group(function () {
     Route::post('profile/photo', [ProfileController::class, 'saveUserImage'])->name('profile_update_photo');
     Route::post('shop/create', [ProfileController::class, 'createUserShop'])->name('create_shop');
 });
+
+// Static page
+Route::get('/', [StaticPageController::class, 'home'])->name('home');
+Route::get('contact', [StaticPageController::class, 'contacts'])->name('contact');
 
 /*
 |=======================================================================================================================
