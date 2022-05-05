@@ -21,7 +21,7 @@
                     компания
                 </h2>
                 <a href="#" class="footer-link">о нас</a>
-                <a href="#" class="footer-link">контакты</a>
+                <a href="{{ route('contact') }}" class="footer-link">контакты</a>
             </div>
             <div class="footer-wrapper__container">
                 <div class="footer__logo">
