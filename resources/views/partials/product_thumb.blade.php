@@ -1,4 +1,4 @@
-<div class="product__thumb">
+<div class="product__thumb" data-product-id="1">
     <div class="image__wrapper">
         <div class="button__remove">
             <div class="remove__icon"></div>
@@ -13,9 +13,7 @@
             Разноцветные часы
         </div>
         <div class="product__buttons">
-            <span class="button__buy">
-                В корзину
-            </span>
+            {!! $button !!}
         </div>
     </div>
 </div>

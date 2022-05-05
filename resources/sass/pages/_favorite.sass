@@ -1,7 +1,10 @@
 .favorite__wrapper
   padding: 40px 0
 .favorite__products
-  display: flex
-  flex-wrap: wrap
-  align-items: center
+  display: grid
+  grid-template-columns: repeat(auto-fit, calc(100% / 6))
   margin: 0 -10px
+  +media-md(down)
+    grid-template-columns: repeat(auto-fit, calc(100% / 4))
+  +media-xs(down)
+    grid-template-columns: repeat(auto-fit, calc(100% / 3))

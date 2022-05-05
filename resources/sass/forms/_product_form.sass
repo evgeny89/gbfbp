@@ -1,0 +1,120 @@
+.product__form-popup
+  font-size: 20px
+  line-height: 24px
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 10
+  overflow-x: hidden
+  overflow-y: auto
+
+.form__backdrop
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 9
+  background: $black-text
+  opacity: .5
+
+.product__form
+  width: auto
+  margin: 2rem
+  +media-sm(down)
+    margin: .2rem
+
+.product__form-wrapper
+  position: relative
+  background-color: $light-text
+  border-radius: 20px
+  padding: 40px
+  max-width: 70%
+  margin: 0 auto
+  box-shadow: 0 4px 4px $black-50
+  +media-lg(down)
+    max-width: 85%
+  +media-sm(down)
+    max-width: 100%
+
+
+.product__form-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 20px
+
+  .form__close
+    width: 30px
+    height: 30px
+    border-radius: 50%
+    cursor: pointer
+    font-size: 20px
+    background-color: $black-text
+    color: $light-text
+    display: flex
+    justify-content: center
+    align-items: center
+
+.product__form-row
+  display: grid
+  grid-template-columns: 35% 65%
+  margin-bottom: 20px
+  +media-sm(down)
+    display: flex
+    flex-direction: column
+
+.product__form-column
+  display: flex
+  flex-direction: column
+  margin-bottom: 20px
+
+.product__form-row label,
+.product__form-column label
+  color: $main-green
+.product__data
+  border: none
+  padding: 5px
+  background-color: $gray
+
+.form__buttons
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+  .button__add,
+  .button__save
+    margin-bottom: 5px
+    text-align: center
+    border: 1px solid $main-green
+    background-color: transparent
+    color: $main-green
+    transition: color, background-color .5s
+    padding: 10px 20px
+    border-radius: 40px
+    font-family: 'Maler', sans-serif
+    font-style: normal
+    font-weight: 400
+    font-size: 18px
+    line-height: 24px
+    &:hover
+      color: $light-text
+      background-color: $main-green
+
+  .button__cancel
+    border: 1px solid $main-blue
+    background-color: transparent
+    color: $main-blue
+    padding: 10px 20px
+    border-radius: 40px
+    font-family: 'Maler', sans-serif
+    font-style: normal
+    font-weight: 400
+    font-size: 18px
+    line-height: 24px
+    transition: color, background-color .5s
+    &:hover
+      color: $light-text
+      background-color: $main-blue
