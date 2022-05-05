@@ -78,7 +78,7 @@ class UserController extends CrudController
         return view('admin.base.item', ['entry' => $entry, 'fields' => $fields, 'routes' => $this->routes]);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         if (!$this->buttons['edit']) {
             return redirect()->route('home');
@@ -94,8 +94,8 @@ class UserController extends CrudController
             'role_id' => ['required', 'exists:roles,id', 'in:'. implode(',', Role::where('level', '<', $this->getUserLevelRole())->pluck('id')->toArray())],
         ]);
 
-        DB::table('users')->whereId($id)->update($validated);
-        return redirect()->route($this->routes['all']);
+        $res = DB::table('users')->whereId($id)->update($validated);
+        return (bool) $res ? collect(['message' => 'ok']) : collect(['message' => 'error']);
     }
 
     protected function accessRoles(Collection $fields): Collection
@@ -116,6 +116,11 @@ class UserController extends CrudController
         return Role::whereId(Auth::user()->role_id)->first()->level;
     }
 
+    private final function getAllUserRole()
+    {
+        return Role::all();
+    }
+
     private function getJsonData(): string
     {
         return collect([
@@ -123,11 +128,14 @@ class UserController extends CrudController
                 $query->select('id')
                     ->from(with(new Role)->getTable())
                     ->where('level', '<', $this->getUserLevelRole());
-            })->get(),
+            })
+                ->with('role:id,name')
+                ->get(),
             'columns' => $this->columns,
             'title' => $this->title,
             'buttons' => $this->buttons,
             'routes' => $this->routes,
+            'roleUsers' => $this->getAllUserRole(),
         ])->toJson();
     }
 }

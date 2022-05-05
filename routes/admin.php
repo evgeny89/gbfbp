@@ -23,12 +23,12 @@ Route::name('admin.')->group(function () {
     Route::get('/categories', [CategoryController::class, 'list'])->name('categories');
     Route::get('/categories/new', [CategoryController::class, 'newEntry'])->name('new-category');
     Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('category');
-    Route::get('/categories/{id}/delete', [CategoryController::class, 'delete'])->name('delete-category');
+    Route::post('/categories/{id}/delete', [CategoryController::class, 'delete'])->name('delete-category');
 
     Route::get('/materials', [MaterialController::class, 'list'])->name('materials');
     Route::get('/materials/new', [MaterialController::class, 'newEntry'])->name('new-material');
     Route::get('/materials/{id}/edit', [MaterialController::class, 'edit'])->name('material');
-    Route::get('/materials/{id}/delete', [MaterialController::class, 'delete'])->name('delete-material');
+    Route::post('/materials/{id}/delete', [MaterialController::class, 'delete'])->name('delete-material');
 
     Route::post('/users/new', [UserController::class, 'create'])->name('save-new-user');
     Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('save-user');

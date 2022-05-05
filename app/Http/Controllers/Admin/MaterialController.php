@@ -65,14 +65,14 @@ class MaterialController extends CrudController
         $this->addButtons(['edit', 'delete', 'add']);
     }
 
-    public function create(Request $request): RedirectResponse
+    public function create(Request $request)
     {
         $request = $this->validationData($request);
 
         return parent::create($request);
     }
 
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, $id)
     {
         $request = $this->validationData($request);
 
