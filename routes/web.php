@@ -3,7 +3,7 @@
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StaticPageController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,8 +42,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // Static page
-Route::get('/', [StaticPageController::class, 'home'])->name('home');
-Route::get('contact', [StaticPageController::class, 'contacts'])->name('contact');
+Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('contact', [PageController::class, 'contacts'])->name('contact');
 
 /*
 |=======================================================================================================================
