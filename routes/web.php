@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('contact', [PageController::class, 'contacts'])->name('contact');
 Route::get('about', [PageController::class, 'about'])->name('about');
+Route::get('rules-seller', [PageController::class, 'rulesSeller'])->name('rulesSeller');
 
 /*
 |=======================================================================================================================

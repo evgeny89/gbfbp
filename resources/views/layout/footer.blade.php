@@ -13,7 +13,7 @@
                 <h2 class="footer-wrapper__title title_seller">
                     продавцам
                 </h2>
-                <a href="#" class="footer-link">правила размещения</a>
+                <a href="{{ route('rulesSeller') }}" class="footer-link">правила размещения</a>
                 <a href="#" class="footer-link">правила расчётов</a>
             </div>
             <div class="footer-wrapper__container">

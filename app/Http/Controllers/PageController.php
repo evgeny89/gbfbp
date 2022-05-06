@@ -30,4 +30,12 @@ class PageController extends Controller
     {
         return view('pages.about_page');
     }
+
+    /**
+     * @return View
+     */
+    public function rulesSeller(): View
+    {
+        return view('pages.rules_seller_page');
+    }
 }
