@@ -13,7 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js/')
     .js('resources/js/layout/popup.js', 'public/js/').react()
-    .js('resources/js/layout/shop.js', 'public/js/').react()
+    .js('resources/js/shop.js', 'public/js/').react()
     .extract(['react']);
 
 mix.js('resources/js/layout/admin.js', 'public/js/').react().extract(['react']);
