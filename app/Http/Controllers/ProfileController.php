@@ -6,14 +6,18 @@ use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\CreateShopRequest;
 use App\Http\Requests\ProfileDataRequest;
 use App\Http\Requests\ProfilePhotoRequest;
+use App\Models\Category;
+use App\Models\Material;
 use App\Models\PaymentCard;
 use App\Models\Product;
+use App\Models\ProductPhoto;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -53,7 +57,17 @@ class ProfileController extends Controller
      */
     public function shopPage(): View
     {
-        return view('pages.user_shop', ['user' => User::with('shop')->find(Auth::id())]);
+        $shop = User::find(Auth::id())->shop();
+        return view('pages.user_shop', ['data' => collect([
+            'shop' => $shop->with('products.images')->first(),
+            'routes' => [
+                'createShop' => route('create_shop'),
+                'updateShop' => route('update_shop', ['shop' => $shop->first()]),
+                'createItem' => route('create_product'),
+                'updateItem' => route('update_product', ['product' => "=product="]),
+                'getSelectValues' => route('product-select-data'),
+            ],
+        ])->toJson()]);
     }
 
     /*
@@ -105,51 +119,86 @@ class ProfileController extends Controller
 
     /**
      * @param CreateShopRequest $request
-     * @return RedirectResponse
+     * @return Shop
      */
-    public function createUserShop(CreateShopRequest $request): RedirectResponse
+    public function createUserShop(CreateShopRequest $request): Shop
     {
-        Shop::create($request->only(['name', 'user_id']));
-        return redirect()->back();
+        $shop = Shop::create($request->only(['name', 'user_id']));
+        return $shop->with('products.images')->first();
     }
 
     /**
      * @param Request $request
      * @param Shop $shop
-     * @return RedirectResponse
+     * @return Shop
      */
-    public function updateUserShop(Request $request, Shop $shop): RedirectResponse
+    public function updateUserShop(Request $request, Shop $shop): Shop
     {
         if (!Gate::allows('update-shop', $shop)) {
             abort(403);
         }
 
         $shop->update($request->only('name'));
-        return redirect()->back();
+        $shop->fresh();
+        return $shop->with('products.images')->first();
     }
 
     /**
      * @param CreateProductRequest $request
-     * @return RedirectResponse
+     * @return Product
      */
-    public function createProduct(CreateProductRequest $request): RedirectResponse
+    public function createProduct(CreateProductRequest $request): Product
     {
-        $shop = Shop::find($request->only('shop_id'));
+        $shop = Shop::whereId($request->only('shop_id'))->first();
 
-        if(!Gate::check('update-shop', $shop)) {
+        if (!Gate::allows('update-shop', $shop)) {
             abort(403);
         }
 
         $product = Product::create($request->all());
 
-        $product->images->createMany($request->allFiles());
-
-        return redirect()->back();
+        foreach ($request->file('file_name') as $file) {
+            $photo = new ProductPhoto;
+            $photo->file_name = $file;
+            $photo->product_id = $product->id;
+            $photo->save();
+        }
+        return $product;
     }
 
-    public function updateProduct()
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @return Product
+     */
+    public function updateProduct(Request $request, Product $product): Product
     {
+        if(!Gate::check('update-product', $product)) {
+            abort(403);
+        }
 
+        $product->update($request->all());
+
+        foreach ($request->file('file_name') as $file) {
+            $photo = new ProductPhoto;
+            $photo->file_name = $file;
+            $photo->product_id = $product->id;
+            $photo->save();
+        }
+
+        $product->fresh();
+        return $product;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSelectValues(): string
+    {
+        return collect([
+            'materials' => Material::all(),
+            'categories' => Category::all(),
+        ])->toJson();
     }
 
     /*
