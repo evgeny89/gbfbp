@@ -38,7 +38,6 @@ Route::middleware('auth')->group(function () {
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
     Route::post('profile/photo', [ProfileController::class, 'saveUserImage'])->name('profile_update_photo');
-    Route::post('shop/create', [ProfileController::class, 'createUserShop'])->name('create_shop');
 });
 
 // Static page
@@ -53,5 +52,10 @@ Route::get('contact', [PageController::class, 'contacts'])->name('contact');
 Route::prefix('api')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('user-popup', [UserApiController::class, 'getPopupData'])->name('get-popup-data');
+        Route::post('shop/create', [ProfileController::class, 'createUserShop'])->name('create_shop');
+        Route::post('shop/{shop}/update', [ProfileController::class, 'updateUserShop'])->name('update_shop');
+        Route::get('product/get-select-values', [ProfileController::class, 'getSelectValues'])->name('product-select-data');
+        Route::post('product/create', [ProfileController::class, 'createProduct'])->name('create_product');
+        Route::post('product/{product}/update', [ProfileController::class, 'updateProduct'])->name('update_product');
     });
 });
