@@ -1,3 +1,4 @@
+/*  Стили для страницы Контакты */
 .contact-page
   &-title
     margin: 40px 0 40px 60px
@@ -47,6 +48,7 @@
       font-size: 16px
       line-height: 20px
   &-br
+    display: block
     height: 36px
     +media-md(only)
       height: 30px
@@ -54,3 +56,15 @@
       height: 24px
     +media(0, 500px)
       height: 20px
+
+/* Стили для страницы about  */
+
+.about-wrapper-text
+  display: flex
+  flex-wrap: wrap
+.about-link
+  color: $main-blue
+  text-decoration: none
+  transition: .4s
+.about-link:hover
+  text-decoration: underline

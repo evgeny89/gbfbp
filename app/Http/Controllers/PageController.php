@@ -22,4 +22,12 @@ class PageController extends Controller
     {
         return view('pages.contact_page');
     }
+
+    /**
+     * @return View
+     */
+    public function about(): View
+    {
+        return view('pages.about_page');
+    }
 }

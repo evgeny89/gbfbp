@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 // Static page
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('contact', [PageController::class, 'contacts'])->name('contact');
+Route::get('about', [PageController::class, 'about'])->name('about');
 
 /*
 |=======================================================================================================================
