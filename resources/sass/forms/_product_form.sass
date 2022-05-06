@@ -78,6 +78,12 @@
   border: none
   padding: 5px
   background-color: $gray
+.product__photos
+  display: grid
+  grid-gap: 20px
+  grid-template-columns: repeat(6, 1fr)
+  +media-md(down)
+      grid-template-columns: repeat(4, 1fr)
 
 .form__buttons
   display: flex

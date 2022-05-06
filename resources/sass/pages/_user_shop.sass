@@ -26,12 +26,24 @@
         &:hover
             color: $light-text
             background-color: $main-blue
+    .shop-create__title
+        font-size: 20px
+        text-transform: uppercase
+    .shop-create__input
+        border: transparent
+        outline: transparent
+        background-color: $gray
+        margin: 0 10px
+        height: 25px
+        font-size: 20px
+    .shop-save__btn
+        font-size: 15px
+        padding: 2px 40px
     .user__shops
         display: flex
         color: $main-blue
         margin: 40px 0
     .shop__item
-        cursor: pointer
         display: flex
         margin-right: 20px
         .shop__name
@@ -41,9 +53,12 @@
         .icon__edit
             width: 20px
             height: 20px
+            cursor: pointer
             path
                 fill: $black-text
                 transition: .3s fill
+            &:hover path
+                fill: $main-pink
     .products__wrapper
         display: grid
         grid-template-columns: repeat(auto-fit, calc(100% / 6))
