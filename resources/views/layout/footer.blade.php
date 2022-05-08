@@ -13,14 +13,14 @@
                 <h2 class="footer-wrapper__title title_seller">
                     продавцам
                 </h2>
-                <a href="#" class="footer-link">правила размещения</a>
+                <a href="{{ route('rulesSeller') }}" class="footer-link">правила размещения</a>
                 <a href="#" class="footer-link">правила расчётов</a>
             </div>
             <div class="footer-wrapper__container">
                 <h2 class="footer-wrapper__title title_company">
                     компания
                 </h2>
-                <a href="#" class="footer-link">о нас</a>
+                <a href="{{ route('about') }}" class="footer-link">о нас</a>
                 <a href="{{ route('contact') }}" class="footer-link">контакты</a>
             </div>
             <div class="footer-wrapper__container">
