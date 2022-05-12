@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 
-function ProductFormComponent({product, close, routes, save}) {
+function ProductFormComponent({product, close, routes, save, update}) {
     const [materials, setMaterials] = useState([]);
     const [categories, setCategories] = useState([]);
     const [err, setErr] = useState({})
@@ -16,14 +16,14 @@ function ProductFormComponent({product, close, routes, save}) {
             data: new FormData(form.current)
         })
             .then(r => {
-                if (!product.id) {
+                if (product.id) {
+                    update(r.data)
+                } else {
                     save(r.data)
                 }
                 close();
             })
             .catch(e => console.log(e.message))
-
-        //send data to backend
     };
 
     useEffect(() => {

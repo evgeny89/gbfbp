@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ProductThumbComponent from "./ProductThumbComponent";
 import ProductFormComponent from "./ProductFormComponent";
+import axios from "axios";
 
 function ProductListComponent({shop, routes}) {
     const [formStatus, setFormStatus] = useState(false);
@@ -21,6 +22,22 @@ function ProductListComponent({shop, routes}) {
         toggleModal();
     }
 
+    const updateProduct = (product) => {
+        setProducts([...products.map(item => item.id === product.id ? product : item)])
+    }
+
+    const deleteProduct = (product) => {
+        const deleteRoute = routes.deleteItem.replace('=product=', product.id)
+        axios.get(deleteRoute)
+            .then(r => {
+                if (r.data) {
+                    setProducts([...products.filter(item => item.id !== product.id)])
+                } else {
+                    console.error("Ошбка удаления товара");
+                }
+            })
+    }
+
     const addProduct = (product) => {
         setProducts([...products, product])
     }
@@ -29,7 +46,7 @@ function ProductListComponent({shop, routes}) {
         <>
             {!products.length && <p> No products in this shop yet! </p>}
             <div className="products__wrapper">
-                {products.map((item) => <ProductThumbComponent key={item.id} product={item} edit={editProduct}/>)}
+                {products.map((item) => <ProductThumbComponent key={item.id} product={item} edit={editProduct} remove={deleteProduct}/>)}
                 <div className="product__new" onClick={createProduct}>
                     <div className="button__wrapper">
                         <div className="button__add">
@@ -43,7 +60,8 @@ function ProductListComponent({shop, routes}) {
                     </div>
                 </div>
             </div>
-            {formStatus && <ProductFormComponent product={currentProduct} close={toggleModal} routes={routes} save={addProduct}/>}
+            {formStatus &&
+                <ProductFormComponent product={currentProduct} close={toggleModal} routes={routes} save={addProduct} update={updateProduct}/>}
         </>
     );
 }

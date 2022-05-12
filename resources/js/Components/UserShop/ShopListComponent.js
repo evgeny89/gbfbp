@@ -11,19 +11,23 @@ function ShopListComponent({shop, save, routes}) {
     }
 
     const submitForm = () => {
-        const route = shop ? routes.updateShop : routes.createShop
-        if (form.current.elements.name.value.length) {
-            axios({
-                method: "POST",
-                url: route,
-                headers: {"Content-Type": "multipart/form-data"},
-                data: new FormData(form.current)
-            })
-                .then(r => {
-                    setShowForm(false);
-                    save(r.data)
+        if (form.current.elements.name.value === shop.name) {
+            setShowForm(false);
+        } else {
+            const route = shop ? routes.updateShop : routes.createShop
+            if (form.current.elements.name.value.length) {
+                axios({
+                    method: "POST",
+                    url: route,
+                    headers: {"Content-Type": "multipart/form-data"},
+                    data: new FormData(form.current)
                 })
-                .catch(e => setErr(e.message))
+                    .then(r => {
+                        setShowForm(false);
+                        save(r.data)
+                    })
+                    .catch(e => setErr(e.message))
+            }
         }
     }
 

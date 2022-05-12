@@ -1,15 +1,19 @@
 import React from "react";
 
-function ProductThumbComponent({product, edit}) {
+function ProductThumbComponent({product, edit, remove}) {
     const editProduct = () => {
         edit(product);
+    }
+
+    const deleteProduct = () => {
+        remove(product);
     }
 
     return (
         <div className="product__thumb" >
             <div className="image__wrapper">
                 <div className="button__remove">
-                    <div className="remove__icon" data-product-id={product.id}></div>
+                    <div className="remove__icon" onClick={deleteProduct}></div>
                 </div>
                 <img src={product.images[0].medium_image} className="product__image" alt=""/>
             </div>
