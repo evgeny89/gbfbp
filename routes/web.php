@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ProfileApiController;
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
@@ -52,10 +53,13 @@ Route::get('contact', [PageController::class, 'contacts'])->name('contact');
 Route::prefix('api')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('user-popup', [UserApiController::class, 'getPopupData'])->name('get-popup-data');
-        Route::post('shop/create', [ProfileController::class, 'createUserShop'])->name('create_shop');
-        Route::post('shop/{shop}/update', [ProfileController::class, 'updateUserShop'])->name('update_shop');
-        Route::get('product/get-select-values', [ProfileController::class, 'getSelectValues'])->name('product-select-data');
-        Route::post('product/create', [ProfileController::class, 'createProduct'])->name('create_product');
-        Route::post('product/{product}/update', [ProfileController::class, 'updateProduct'])->name('update_product');
+
+        Route::post('shop/create', [ProfileApiController::class, 'createUserShop'])->name('create_shop');
+        Route::post('shop/{shop}/update', [ProfileApiController::class, 'updateUserShop'])->name('update_shop');
+
+        Route::get('product/get-select-values', [ProfileApiController::class, 'getSelectValues'])->name('product-select-data');
+        Route::post('product/create', [ProfileApiController::class, 'createProduct'])->name('create_product');
+        Route::post('product/{product}/update', [ProfileApiController::class, 'updateProduct'])->name('update_product');
+        Route::get('product/{product}/delete', [ProfileApiController::class, 'deleteProduct'])->name('delete_product');
     });
 });
