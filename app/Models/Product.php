@@ -26,13 +26,13 @@ class Product extends Model
     | FUNCTION
     |--------------------------------------------------------------------------
     */
-    public function delete()
+    public function delete(): bool
     {
         foreach ($this->images as $image) {
-            $image->deleteCurrentImages($image->file_name);
+            $image->delete();
         }
 
-        parent::delete();
+        return parent::delete();
     }
 
     /*
