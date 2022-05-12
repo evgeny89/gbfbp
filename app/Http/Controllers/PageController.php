@@ -38,4 +38,12 @@ class PageController extends Controller
     {
         return view('pages.rules_seller_page');
     }
+
+    /**
+     * @return View
+     */
+    public function rulesSettlements(): View
+    {
+        return view('pages.rules_settlements_page');
+    }
 }

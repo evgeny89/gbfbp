@@ -14,7 +14,7 @@
                     продавцам
                 </h2>
                 <a href="{{ route('rulesSeller') }}" class="footer-link">правила размещения</a>
-                <a href="#" class="footer-link">правила расчётов</a>
+                <a href="{{ route('rulesSettlements') }}" class="footer-link">правила расчётов</a>
             </div>
             <div class="footer-wrapper__container">
                 <h2 class="footer-wrapper__title title_company">
