@@ -5,8 +5,8 @@
                 <h2 class="footer-wrapper__title title_buyer">
                     покупателям
                 </h2>
-                <a href="#" class="footer-link">как сделать заказ</a>
-                <a href="#" class="footer-link">способы оплаты</a>
+                <a href="{{ route('howMakeOrder') }}" class="footer-link">как сделать заказ</a>
+                <a href="{{ route('paymant') }}" class="footer-link">способы оплаты</a>
                 <a href="#" class="footer-link">доставка</a>
             </div>
             <div class="footer-wrapper__container">
