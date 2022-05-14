@@ -26,6 +26,9 @@
                     hand-made@handmade.ru
                 </p>
             </div>
+            <div class="contact-page-map">
+                <iframe src="https://yandex.ru/map-widget/v1/-/CCUFbRDhHD" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+            </div>
         </div>
     </section>
 @endsection

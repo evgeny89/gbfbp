@@ -22,4 +22,44 @@ class PageController extends Controller
     {
         return view('pages.contact_page');
     }
+
+    /**
+     * @return View
+     */
+    public function about(): View
+    {
+        return view('pages.about_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function rulesSeller(): View
+    {
+        return view('pages.rules_seller_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function rulesSettlements(): View
+    {
+        return view('pages.rules_settlements_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function howMakeOrder(): View
+    {
+        return view('pages.how_order_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function paymant(): View
+    {
+        return view('pages.paymant_page');
+    }
 }
