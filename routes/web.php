@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\UserApiController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
     Route::get('orders', [ProfileController::class, 'ordersPage'])->name('orders_page');
     Route::get('user_shop', [ProfileController::class, 'shopPage'])->name('shop_page');
+    Route::get('product', [ProductController::class, 'productPage'])->name('product_page');
 
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
