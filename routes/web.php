@@ -48,6 +48,9 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('contact', [PageController::class, 'contacts'])->name('contact');
 Route::get('about', [PageController::class, 'about'])->name('about');
 Route::get('rules-seller', [PageController::class, 'rulesSeller'])->name('rulesSeller');
+Route::get('rules-settlements', [PageController::class, 'rulesSettlements'])->name('rulesSettlements');
+Route::get('how-make-order', [PageController::class, 'howMakeOrder'])->name('howMakeOrder');
+Route::get('paymant', [PageController::class, 'paymant'])->name('paymant');
 
 /*
 |=======================================================================================================================
