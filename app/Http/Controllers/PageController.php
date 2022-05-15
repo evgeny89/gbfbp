@@ -62,4 +62,12 @@ class PageController extends Controller
     {
         return view('pages.paymant_page');
     }
+
+    /**
+     * @return View
+     */
+    public function deliveryPage(): View
+    {
+        return view('pages.delivery_page');
+    }
 }

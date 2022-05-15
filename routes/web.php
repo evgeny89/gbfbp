@@ -49,6 +49,7 @@ Route::get('rules-seller', [PageController::class, 'rulesSeller'])->name('rulesS
 Route::get('rules-settlements', [PageController::class, 'rulesSettlements'])->name('rulesSettlements');
 Route::get('how-make-order', [PageController::class, 'howMakeOrder'])->name('howMakeOrder');
 Route::get('paymant', [PageController::class, 'paymant'])->name('paymant');
+Route::get('delivery', [PageController::class, 'deliveryPage'])->name('delivery_page');
 
 /*
 |=======================================================================================================================
