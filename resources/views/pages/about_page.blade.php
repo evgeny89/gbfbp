@@ -4,7 +4,7 @@
     <section class="contact-page">
         <div class="container">
             <h2 class="contact-page-title">О&nbsp;нас</h2>
-            <div class="contact-page-text">
+            <div class="contact-page-text contact-page-text_mb">
                 <div class="about-wrapper-text">
                     <p class="contact-page-paragraph">
                         В нашем&nbsp; 
