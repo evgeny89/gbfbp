@@ -7,6 +7,11 @@ use Intervention\Image\Facades\Image;
 
 trait UploadImages
 {
+    /*
+    |--------------------------------------------------------------------------
+    | FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
     /**
      * @param $image
      * @return string
@@ -39,7 +44,7 @@ trait UploadImages
      * @param $image_name
      * @return void
      */
-    protected function deleteOldImages($image_name)
+    protected function deleteCurrentImages($image_name)
     {
         if ($image_name) {
             foreach ($this->folders as $folder) {
@@ -58,7 +63,7 @@ trait UploadImages
         return $this->image_folder ?? 'uploads';
     }
 
-    public function getFoldersAttribute()
+    public function getFoldersAttribute(): array
     {
         return $this->images ?? ['origin' => 'origin'];
     }

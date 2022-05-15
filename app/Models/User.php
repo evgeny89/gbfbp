@@ -5,6 +5,9 @@ namespace App\Models;
 use App\Traits\UploadImages;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -64,20 +67,32 @@ class User extends Authenticatable
 
     /*
     |--------------------------------------------------------------------------
+    | FUNCTION
+    |--------------------------------------------------------------------------
+    */
+    public function delete()
+    {
+        $this->deleteCurrentImages($this->photo);
+
+        parent::delete();
+    }
+
+    /*
+    |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function paymentCards(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function paymentCards(): HasMany
     {
         return $this->hasMany(PaymentCard::class);
     }
 
-    public function shop(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function shop(): HasOne
     {
         return $this->hasOne(Shop::class);
     }
@@ -92,7 +107,7 @@ class User extends Authenticatable
      */
     public function getSmallAvatarAttribute(): string
     {
-        return $this->photo ? asset("photos/{$this->images['small']}/{$this->photo}") : '';
+        return $this->photo ? asset("{$this->root_folder}/{$this->images['small']}/{$this->photo}") : '';
     }
 
     /*
@@ -118,7 +133,7 @@ class User extends Authenticatable
     {
         $fileName = $this->uploadImage($photo);
 
-        $this->deleteOldImages($this->photo);
+        $this->deleteCurrentImages($this->photo);
 
         $this->attributes['photo'] = $fileName;
     }

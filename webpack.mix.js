@@ -13,12 +13,15 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js/')
     .js('resources/js/layout/popup.js', 'public/js/').react()
-    .js('resources/js/layout/shop.js', 'public/js/').react()
+    .js('resources/js/shop.js', 'public/js/').react()
     .extract(['react']);
 
 mix.js('resources/js/layout/admin.js', 'public/js/').react().extract(['react']);
 
-mix.sass('resources/sass/app.sass', 'public/css');
+mix.sass('resources/sass/app.sass', 'public/css')
+    .options({
+        processCssUrls: false
+    });
 mix.sass('resources/sass/admin/app.sass', 'public/css/admin.css');
 
 mix.copyDirectory('resources/images', 'public/images');

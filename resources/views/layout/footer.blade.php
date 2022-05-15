@@ -6,7 +6,7 @@
                     покупателям
                 </h2>
                 <a href="{{ route('howMakeOrder') }}" class="footer-link">как сделать заказ</a>
-                <a href="{{ route('paymant') }}" class="footer-link">способы оплаты</a>
+                <a href="{{ route('payment') }}" class="footer-link">способы оплаты</a>
                 <a href="{{ route('delivery_page') }}" class="footer-link">доставка</a>
             </div>
             <div class="footer-wrapper__container">
