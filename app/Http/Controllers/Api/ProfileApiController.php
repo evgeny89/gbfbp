@@ -90,7 +90,7 @@ class ProfileApiController extends Controller
 
         if ($request->delete_images) {
             foreach ($request->delete_images as $image) {
-                ProductPhoto::whereFileName($image)->whereProductId($product->id)->delete();
+                ProductPhoto::whereId($image)->whereProductId($product->id)->first()->delete();
             }
         }
 

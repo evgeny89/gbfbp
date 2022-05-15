@@ -32,9 +32,9 @@ class UpdateProductRequest extends FormRequest
             'shop_id' => 'exclude',
             'category_id' => 'required|exists:categories,id',
             'material_id' => 'required|exists:materials,id',
-            'delete_images' => 'array',
+            'delete_images' => 'array|nullable',
             'delete_images.*' => 'string',
-            'file_name' => 'array',
+            'file_name' => 'array|nullable',
             'file_name.*' => 'image|file|mimes:jpg,png,jpeg,gif|max:4096',
         ];
     }
