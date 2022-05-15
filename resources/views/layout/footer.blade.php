@@ -5,23 +5,23 @@
                 <h2 class="footer-wrapper__title title_buyer">
                     покупателям
                 </h2>
-                <a href="{{ route('howMakeOrder') }}" class="footer-link">как сделать заказ</a>
-                <a href="{{ route('payment') }}" class="footer-link">способы оплаты</a>
-                <a href="#" class="footer-link">доставка</a>
+                <a href="{{ route('howMakeOrder_page') }}" class="footer-link">как сделать заказ</a>
+                <a href="{{ route('payment_page') }}" class="footer-link">способы оплаты</a>
+                <a href="{{ route('delivery_page') }}" class="footer-link">доставка</a>
             </div>
             <div class="footer-wrapper__container">
                 <h2 class="footer-wrapper__title title_seller">
                     продавцам
                 </h2>
-                <a href="{{ route('rulesSeller') }}" class="footer-link">правила размещения</a>
-                <a href="{{ route('rulesSettlements') }}" class="footer-link">правила расчётов</a>
+                <a href="{{ route('rulesSeller_page') }}" class="footer-link">правила размещения</a>
+                <a href="{{ route('rulesSettlements_page') }}" class="footer-link">правила расчётов</a>
             </div>
             <div class="footer-wrapper__container">
                 <h2 class="footer-wrapper__title title_company">
                     компания
                 </h2>
-                <a href="{{ route('about') }}" class="footer-link">о нас</a>
-                <a href="{{ route('contact') }}" class="footer-link">контакты</a>
+                <a href="{{ route('about_page') }}" class="footer-link">о нас</a>
+                <a href="{{ route('contact_page') }}" class="footer-link">контакты</a>
             </div>
             <div class="footer-wrapper__container">
                 <div class="footer__logo">

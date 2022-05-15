@@ -18,7 +18,7 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function contacts(): View
+    public function contactsPage(): View
     {
         return view('pages.contact_page');
     }
@@ -26,7 +26,7 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function about(): View
+    public function aboutPage(): View
     {
         return view('pages.about_page');
     }
@@ -34,7 +34,7 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function rulesSeller(): View
+    public function rulesSellerPage(): View
     {
         return view('pages.rules_seller_page');
     }
@@ -42,7 +42,7 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function rulesSettlements(): View
+    public function rulesSettlementsPage(): View
     {
         return view('pages.rules_settlements_page');
     }
@@ -50,7 +50,7 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function howMakeOrder(): View
+    public function howMakeOrderPage(): View
     {
         return view('pages.how_order_page');
     }
@@ -58,8 +58,16 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function payment(): View
+    public function paymentPage(): View
     {
         return view('pages.payment_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function deliveryPage(): View
+    {
+        return view('pages.delivery_page');
     }
 }
