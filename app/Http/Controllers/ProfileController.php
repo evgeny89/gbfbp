@@ -47,12 +47,12 @@ class ProfileController extends Controller
      */
     public function shopPage(): View
     {
-        $shop = User::find(Auth::id())->shop();
+        $shop = User::find(Auth::id())->shop()->with('products.images')->first();
         return view('pages.user_shop', ['data' => collect([
-            'shop' => $shop->with('products.images')->first(),
+            'shop' => $shop,
             'routes' => [
                 'createShop' => route('create_shop'),
-                'updateShop' => route('update_shop', ['shop' => $shop->first()]),
+                'updateShop' => route('update_shop', ['shop' => $shop ?? "=shop="]),
                 'createItem' => route('create_product'),
                 'updateItem' => route('update_product', ['product' => "=product="]),
                 'deleteItem' => route('delete_product', ['product' => "=product="]),
