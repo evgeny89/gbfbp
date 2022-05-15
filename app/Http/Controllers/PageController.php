@@ -58,8 +58,8 @@ class PageController extends Controller
     /**
      * @return View
      */
-    public function paymant(): View
+    public function payment(): View
     {
-        return view('pages.paymant_page');
+        return view('pages.payment_page');
     }
 }
