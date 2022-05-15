@@ -5,16 +5,17 @@ function ShopListComponent({shop, save, routes}) {
     const [showForm, setShowForm] = useState(false);
     const [err, setErr] = useState('');
     const form = useRef(null);
+    const patternRoute = "=shop=";
 
     const showFormMethod = () => {
         setShowForm(true);
     }
 
     const submitForm = () => {
-        if (form.current.elements.name.value === shop.name) {
+        if (shop && form.current.elements.name.value === shop.name) {
             setShowForm(false);
         } else {
-            const route = shop ? routes.updateShop : routes.createShop
+            const route = shop ? getUpdateRoute() : routes.createShop
             if (form.current.elements.name.value.length) {
                 axios({
                     method: "POST",
@@ -29,6 +30,10 @@ function ShopListComponent({shop, save, routes}) {
                     .catch(e => setErr(e.message))
             }
         }
+    }
+
+    const getUpdateRoute = () => {
+        return routes.updateShop.includes(patternRoute) ? routes.updateShop.replace(patternRoute, shop.id) : routes.updateShop;
     }
 
     const handleKey = (e) => {
