@@ -45,12 +45,12 @@ Route::middleware('auth')->group(function () {
 
 // Static page
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('contact', [PageController::class, 'contacts'])->name('contact');
-Route::get('about', [PageController::class, 'about'])->name('about');
-Route::get('rules-seller', [PageController::class, 'rulesSeller'])->name('rulesSeller');
-Route::get('rules-settlements', [PageController::class, 'rulesSettlements'])->name('rulesSettlements');
-Route::get('how-make-order', [PageController::class, 'howMakeOrder'])->name('howMakeOrder');
-Route::get('payment', [PageController::class, 'payment'])->name('payment');
+Route::get('contact', [PageController::class, 'contactsPage'])->name('contact_page');
+Route::get('about', [PageController::class, 'aboutPage'])->name('about_page');
+Route::get('rules-seller', [PageController::class, 'rulesSellerPage'])->name('rulesSeller_page');
+Route::get('rules-settlements', [PageController::class, 'rulesSettlementsPage'])->name('rulesSettlements_page');
+Route::get('how-make-order', [PageController::class, 'howMakeOrderPage'])->name('howMakeOrder_page');
+Route::get('payment', [PageController::class, 'paymentPage'])->name('payment_page');
 Route::get('delivery', [PageController::class, 'deliveryPage'])->name('delivery_page');
 
 
