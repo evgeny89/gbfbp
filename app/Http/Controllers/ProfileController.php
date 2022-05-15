@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateShopRequest;
 use App\Http\Requests\ProfileDataRequest;
 use App\Http\Requests\ProfilePhotoRequest;
 use App\Models\PaymentCard;
-use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +12,11 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | VIEWS
+    |--------------------------------------------------------------------------
+    */
     /**
      * @return View
      */
@@ -23,6 +26,46 @@ class ProfileController extends Controller
         return view('pages.profile_page', compact('user'));
     }
 
+    /**
+     * @return View
+     */
+    public function favoritePage(): View
+    {
+        return view('pages.favorite_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function ordersPage(): View
+    {
+        return view('pages.orders_page');
+    }
+
+    /**
+     * @return View
+     */
+    public function shopPage(): View
+    {
+        $shop = User::find(Auth::id())->shop();
+        return view('pages.user_shop', ['data' => collect([
+            'shop' => $shop->with('products.images')->first(),
+            'routes' => [
+                'createShop' => route('create_shop'),
+                'updateShop' => route('update_shop', ['shop' => $shop->first()]),
+                'createItem' => route('create_product'),
+                'updateItem' => route('update_product', ['product' => "=product="]),
+                'deleteItem' => route('delete_product', ['product' => "=product="]),
+                'getSelectValues' => route('product-select-data'),
+            ],
+        ])->toJson()]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | ACTIONS
+    |--------------------------------------------------------------------------
+    */
     /**
      * @param ProfileDataRequest $request
      * @return RedirectResponse
@@ -65,40 +108,11 @@ class ProfileController extends Controller
         }
     }
 
-    /**
-     * @return View
-     */
-    public function favoritePage(): View
-    {
-        return view('pages.favorite_page');
-    }
-
-    /**
-     * @return View
-     */
-    public function ordersPage(): View
-    {
-        return view('pages.orders_page');
-    }
-
-    /**
-     * @return View
-     */
-    public function shopPage(): View
-    {
-        return view('pages.user_shop', ['user' => User::with('shop')->find(Auth::id())]);
-    }
-
-    /**
-     * @param CreateShopRequest $request
-     * @return RedirectResponse
-     */
-    public function createUserShop(CreateShopRequest $request): RedirectResponse
-    {
-        Shop::create($request->only(['name', 'user_id']));
-        return redirect()->back();
-    }
-
+    /*
+    |--------------------------------------------------------------------------
+    | PROTECTED FUNCTIONS
+    |--------------------------------------------------------------------------
+    */
     /**
      * @param ProfileDataRequest $request
      * @return array
