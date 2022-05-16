@@ -1,0 +1,106 @@
+/*  Стили для страницы Контакты */
+.contact-page
+  &-title
+    margin: 40px 0 40px 60px
+    font-family: 'Maler'
+    font-style: normal
+    font-weight: 400
+    font-size: 40px
+    line-height: 48px
+    display: flex
+    align-items: center
+    color: $main-pink
+    text-transform: uppercase
+    +media-md(only)
+      font-size: 34px
+      line-height: 42px
+    +media-sm(down)
+      font-size: 28px
+      line-height: 34px
+      margin-top: 30px
+      margin-bottom: 30px
+    +media(0, 500px)
+      font-size: 22px
+      line-height: 26px
+      margin-top: 22px
+      margin-bottom: 22px
+      margin-left: 10px
+  &-text
+    padding: 0px 60px
+    +media(0, 500px)
+      padding: 0px 10px
+  &-paragraph
+    font-family: 'Maler'
+    font-style: normal
+    font-weight: 400
+    font-size: 30px
+    line-height: 36px
+    display: flex
+    align-items: center
+    color: $black-text
+    +media-md(only)
+      font-size: 24px
+      line-height: 30px
+    +media-sm(down)
+      font-size: 20px
+      line-height: 24px
+    +media(0, 500px)
+      font-size: 16px
+      line-height: 20px
+  &-br
+    display: block
+    height: 36px
+    +media-md(only)
+      height: 30px
+    +media-sm(down)
+      height: 24px
+    +media(0, 500px)
+      height: 20px
+
+.contact-page-map
+  margin: 40px 0px 82px 60px
+  width: 710px
+  height: 322px
+  +media-md(only)
+    width: 500px
+  +media-sm(down)
+    margin-top: 30px
+    margin-bottom: 50px
+    height: 250px
+    width: 350px
+  +media(0, 500px)
+    margin: 22px 0px 22px 10px
+    width: 260px
+    height: 180px
+  & iframe
+    width: inherit
+    height: inherit
+
+/* Стили для страницы about  */
+
+.about-wrapper-text
+  display: flex
+  flex-wrap: wrap
+.about-link
+  color: $main-blue
+  text-decoration: none
+  transition: .4s
+.about-link:hover
+  text-decoration: underline
+
+/* Стили для страницы rules seller  */
+
+.rules-seller-page-title
+  color: $main-blue
+.contact-page-text_mb
+  margin-bottom: 40px
+  +media-sm(down)
+    margin-bottom: 30px
+    width: 95%
+  +media(0, 500px)
+    margin-bottom: 22px
+    width: 90%
+
+/* Стили для страницы How make order page  */
+.buyers-pages-title
+  color: $main-purple

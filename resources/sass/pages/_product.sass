@@ -1,0 +1,248 @@
+.product
+  .product__wrapper
+    padding: 100px 0
+    +media-sm(down)
+      padding: 20px 0
+
+  .product__header
+    margin-bottom: 25px
+
+  .header__row
+    display: flex
+    margin-bottom: 20px
+    +media-sm(down)
+      flex-direction: column
+
+  .product__name,
+  .product__price,
+  .product__price-old
+    font-size: 30px
+    line-height: 36px
+    +media-md(down)
+      font-size: 25px
+      line-height: 30px
+
+  .product__name,
+  .product__price-new,
+  .product__model,
+  .product__rating
+    margin-right: 30px
+
+  .product__price
+    display: flex
+
+  .product__price-old
+    color: $black-50
+
+  .product__model,
+  .reviews__text
+    font-size: 20px
+    line-height: 24px
+    white-space: nowrap
+
+  .product__rating
+    display: flex
+
+  .rating__icon
+    width: 24px
+    height: 24px
+    path
+      fill: $black-50
+
+  .rating__icon-star
+    path
+      fill: $main-pink
+
+  .reviews__text
+    cursor: pointer
+    border-bottom: 1px dashed $black-text
+
+  .product__images
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    margin-bottom: 40px
+
+  .main__image
+    position: relative
+    width: 35%
+    padding-bottom: 40%
+    margin-bottom: 40px
+    cursor: pointer
+    +media-lg(down)
+      width: 45%
+      padding-bottom: 51%
+    +media-sm(down)
+      width: 100%
+      padding-bottom: 100%
+
+    img
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  .sub__images
+    width: 35%
+    display: flex
+    justify-content: space-between
+    +media-lg(down)
+      width: 45%
+    +media-sm(down)
+      width: 100%
+
+  .sub__image
+    position: relative
+    width: 30%
+    padding-bottom: 34%
+    cursor: pointer
+
+    img
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  .product__manufacturer
+    display: flex
+
+  .product__buttons,
+  .product__manufacturer
+    margin-bottom: 40px
+
+  .product__description,
+  .description__item
+    margin-bottom: 20px
+
+  .product__description,
+  .product__reviews
+    width: 65%
+    +media-md(down)
+      width: 100%
+
+  .description__item
+    font-size: 20px
+    line-height: 24px
+    display: flex
+
+  .item__title
+    width: 40%
+    margin-right: 20px
+
+  .manufacturer__title,
+  .description__title,
+  .reviews__title
+    font-size: 30px
+    line-height: 36px
+    color: $main-purple
+    +media-md(down)
+      font-size: 25px
+      line-height: 30px
+    +media-sm(down)
+      font-size: 20px
+      line-height: 24px
+
+  .manufacturer__title
+    margin-right: 20px
+
+  .manufacturer__name
+    font-size: 30px
+    line-height: 36px
+    +media-md(down)
+      font-size: 25px
+      line-height: 30px
+    +media-sm(down)
+      font-size: 20px
+      line-height: 24px
+
+  .description__title,
+  .reviews__title
+    margin-bottom: 20px
+
+  .product__buttons
+    display: flex
+    align-items: center
+
+  .button__add
+    outline: none
+    cursor: pointer
+    box-sizing: border-box
+    background: $main-purple
+    border: 2px solid $main-purple
+    box-shadow: 5px 5px 5px $black-50
+    border-radius: 40px
+    padding: 20px
+    font-size: 20px
+    line-height: 24px
+    display: flex
+    align-items: center
+    text-align: center
+    color: $light-text
+    margin-right: 40px
+    font-family: $text-base-family
+    font-style: normal
+    text-transform: uppercase
+    font-weight: 400
+    +media-md(down)
+      font-size: 18px
+      line-height: 24px
+      padding: 10px
+
+  .button__favorite
+    outline: none
+    cursor: pointer
+    background-color: transparent
+    border: none
+
+    svg
+      width: 45px
+      height: 45px
+      +media-md(down)
+        width: 30px
+        height: 30px
+
+    path
+      fill: $main-purple
+
+  .review__item,
+  .item__header,
+  .item__rating
+    margin-bottom: 20px
+
+  .item__header
+    display: flex
+    align-items: center
+
+  .item__author
+    cursor: pointer
+    margin-right: 40px
+    border-bottom: 1px dashed $black-text
+
+  .item__date
+    color: $black-50
+
+  .item__rating
+    display: flex
+
+  .item__text
+    font-size: 15px
+    line-height: 18px
+
+  .reviews__button
+    padding: 20px
+    display: flex
+    justify-content: center
+
+  .button__show
+    cursor: pointer
+    border: none
+    background-color: transparent
+    color: $main-purple
+    font-size: 18px
+    line-height: 22px
+    font-family: $text-base-family

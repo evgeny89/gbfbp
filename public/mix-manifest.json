@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/popup.js": "/js/popup.js",
+    "/js/shop.js": "/js/shop.js",
     "/js/admin.js": "/js/admin.js",
     "/js/manifest.js": "/js/manifest.js",
     "/css/admin.css": "/css/admin.css",
@@ -10,5 +11,6 @@
     "/images/check-1__18-18.png": "/images/check-1__18-18.png",
     "/images/logo.png": "/images/logo.png",
     "/images/product_image.png": "/images/product_image.png",
+    "/images/product_main_image.png": "/images/product_main_image.png",
     "/js/vendors/imask.min.js": "/js/vendors/imask.min.js"
 }

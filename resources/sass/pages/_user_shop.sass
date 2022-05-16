@@ -1,7 +1,121 @@
 .shop
     .shop__wrapper
-        padding: 100px 0
+        padding: 40px 0
     .shop-create__step
         display: none
         &.active
             display: block
+    .shop-create__text
+        font-size: 25px
+        color: $main-blue
+        margin-bottom: 25px
+    .shop-create__btn,
+    .shop-save__btn
+        font-family: 'Maler', sans-serif
+        font-style: normal
+        font-weight: 400
+        font-size: 18px
+        line-height: 24px
+        padding: 25px 70px
+        border-radius: 40px
+        text-align: center
+        border: 1px solid $main-blue
+        background-color: transparent
+        color: $main-blue
+        transition: color, background-color .5s
+        &:hover
+            color: $light-text
+            background-color: $main-blue
+    .shop-create__title
+        font-size: 20px
+        text-transform: uppercase
+    .shop-create__input
+        border: transparent
+        outline: transparent
+        background-color: $gray
+        margin: 0 10px
+        height: 25px
+        font-size: 20px
+    .shop-save__btn
+        font-size: 15px
+        padding: 2px 40px
+    .user__shops
+        display: flex
+        color: $main-blue
+        margin: 40px 0
+    .shop__item
+        display: flex
+        margin-right: 20px
+        .shop__name
+            font-size: 20px
+            line-height: 24px
+            margin-right: 15px
+        .icon__edit
+            width: 20px
+            height: 20px
+            cursor: pointer
+            path
+                fill: $black-text
+                transition: .3s fill
+            &:hover path
+                fill: $main-pink
+    .products__wrapper
+        display: grid
+        grid-template-columns: repeat(auto-fit, calc(100% / 6))
+        margin: 0 -10px
+        +media-md(down)
+            grid-template-columns: repeat(auto-fit, calc(100% / 4))
+        +media-sm(down)
+            grid-template-columns: repeat(auto-fit, calc(100% / 3))
+    .product__new
+        padding: 10px
+        border-radius: 20px
+    .button__wrapper
+        background-color: $gray
+        position: relative
+        border-radius: 20px
+        padding-bottom: 131.33%
+        margin-bottom: 50px
+        cursor: pointer
+        &:hover
+            box-shadow: 0 4px 4px $black-50
+        .button__add
+            width: 100%
+            height: 100%
+            position: absolute
+            top: 0
+            left: 0
+            padding-top: 50%
+        .icon__plus
+            width: 30%
+            padding-bottom: 30%
+            outline: 3px solid $black-text
+            border-radius: 50%
+            margin: 0 auto
+            &:before,
+            &:after
+                content: ''
+                position: absolute
+                top: calc(50% - 3px)
+                left: 37%
+                width: 26%
+                height: 3px
+                background-color: $black-text
+                border-radius: 2px
+            &:after
+                -webkit-transform: rotate(-90deg)
+                -moz-transform: rotate(-90deg)
+                transform: rotate(-90deg)
+    .caption__text
+        font-weight: 400
+        font-size: 18px
+        line-height: 24px
+        color: $black-50
+        +media-lg(down)
+            font-size: 16px
+        +media-md(down)
+            font-size: 14px
+        +media-sm(down)
+            font-size: 12px
+
+@import "../forms/product_form"
