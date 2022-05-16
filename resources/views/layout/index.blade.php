@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body>
+    @include('icons.preloader')
     @include('layout.header')
     @include('layout.burger_menu')
 
