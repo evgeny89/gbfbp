@@ -46,7 +46,7 @@ class CreateProductRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'shop_id' => Shop::whereId(Auth::id())->first()->id,
+            'shop_id' => Shop::whereUserId(Auth::id())->first()->id,
         ]);
     }
 }
