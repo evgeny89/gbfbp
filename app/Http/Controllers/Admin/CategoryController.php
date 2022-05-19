@@ -12,6 +12,7 @@ class CategoryController extends CrudController
     protected $validation = [
         'name' => 'required|string|min:3|max:255',
         'slug' => 'required|string|min:3|max:255',
+        'image' => 'image|file|mimes:jpg,png,jpeg,gif|max:4096',
         'published' => 'required|boolean',
     ];
 
@@ -59,6 +60,11 @@ class CategoryController extends CrudController
                 'name' => 'published',
                 'type' => 'check',
                 'label' => 'Опубликован',
+            ],
+            [
+                'name' => 'image',
+                'type' => 'upload',
+                'label' => 'Изображение',
             ],
         ]);
 

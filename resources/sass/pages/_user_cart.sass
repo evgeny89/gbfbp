@@ -1,0 +1,183 @@
+.cart
+  .cart__wrapper
+    padding: 40px 0
+
+  .cart__header
+    font-size: 40px
+    line-height: 48px
+    color: $main-green
+    margin-bottom: 20px
+
+  .cart__items
+    margin-bottom: 20px
+
+  .cart__item
+    padding: 20px
+    background-color: $gray
+    margin-bottom: 20px
+    border-radius: 20px
+    width: 80%
+    display: grid
+    grid-template-columns: 20% 80%
+    align-items: center
+    box-shadow: 0 4px 4px $black-50
+    +media-md(down)
+      grid-template-columns: 25% 75%
+      width: 100%
+
+  .item__image
+    margin-right: 20px
+    position: relative
+    padding-bottom: 117%
+
+    img
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      border-radius: 20px
+      object-fit: cover
+
+  .item__description
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 100%
+
+  .item__name
+    font-size: 20px
+    line-height: 24px
+    color: $black-50
+    margin-bottom: 20px
+    +media-md(down)
+      margin-bottom: 10px
+      font-size: 18px
+      line-height: 22px
+
+  .item__buttons
+    display: flex
+
+  .button__plus,
+  .button__minus,
+  .item__count
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 40px
+    line-height: 48px
+
+  .button__plus,
+  .button__minus
+    font-family: $text-base-family
+    padding-bottom: 10px
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    cursor: pointer
+    +media-md(down)
+      width: 40px
+      height: 40px
+
+  .button__plus
+    border: 3px solid $main-green
+    margin-right: 20px
+
+  .item__count
+    min-width: 50px
+    margin-right: 20px
+    +media-md(down)
+      font-size: 35px
+      line-height: 0
+
+  .button__minus
+    border: 3px solid $main-pink
+
+  .item__price
+    font-size: 25px
+    line-height: 30px
+    text-shadow: 0 5px 5px $black-50
+    +media-md(down)
+      font-size: 20px
+      line-height: 25px
+
+  .cart__total
+    width: 80%
+    padding: 30px 20px
+    margin-bottom: 40px
+    border-radius: 20px
+    background-color: $gray
+    display: flex
+    box-shadow: 0 4px 4px $black-50
+    +media-md(down)
+      width: 100%
+
+  .total__title
+    font-size: 30px
+    line-height: 36px
+    color: $main-green
+    text-shadow: 0 5px 5px $black-50
+    margin-right: 20px
+    +media-md(down)
+      font-size: 25px
+      line-height: 30px
+
+  .total_sum
+    font-size: 30px
+    line-height: 36px
+    text-shadow: 0 5px 5px $black-50
+    +media-md(down)
+      font-size: 25px
+      line-height: 30px
+
+  .cart__buttons
+    display: flex
+    justify-content: center
+
+  .button__pay
+    padding: 20px 120px
+    font-size: 20px
+    line-height: 24px
+    color: $light-text
+    background-color: $main-blue
+    border-radius: 30px
+    cursor: pointer
+    border: none
+    font-family: $text-base-family
+
+  .button__remove
+    position: absolute
+    top: 0
+    right: 0
+    background-color: $light-text
+    border-radius: 50%
+    width: 30px
+    height: 30px
+    cursor: pointer
+
+  .remove__icon
+    position: relative
+    width: 100%
+    height: 100%
+    &:before,
+    &:after
+      content: ''
+      position: absolute
+      width: 20px
+      height: 4px
+      background-color: $black-text
+      border-radius: 2px
+      top: 45%
+      right: 5px
+    &:before
+      -webkit-transform: rotate(45deg)
+      -moz-transform: rotate(45deg)
+      transform: rotate(45deg)
+    &:after
+      -webkit-transform: rotate(-45deg)
+      -moz-transform: rotate(-45deg)
+      transform: rotate(-45deg)
+
+
+
