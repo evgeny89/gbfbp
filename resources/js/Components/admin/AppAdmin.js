@@ -3,14 +3,18 @@ import axios from 'axios';
 import RowAdmin from './RowAdmin';
 import Modal from "./Modal";
 import CreateButtons from "./CreateButton";
+import Pagination from "./pagination/Pagination";
+
 const AppAdmin = (props) => {
   
   let data = JSON.parse(props.dataadmin);
   const [dataAdmin, setDataAdmin] = useState(data);
   let [modalActive, setModalActive] = useState(false);
   const [dataInModal, setDataInModal] = useState(undefined);
-  const countRows = dataAdmin.entries.length + 1;
+  const rowsFromPage = 15;
+  const [numberPage, setNumberPage] = useState(1);
   const countColumns = dataAdmin.columns.length;
+  let countRows = dataAdmin.entries.length + 1;
 
   /**
    * Формирует массив объектов с данными для построения заголовков таблицы, 
@@ -117,11 +121,24 @@ const AppAdmin = (props) => {
       }
       rowsDataColumns.push(rowsElem);
     }
-    return rowsDataColumns; 
+    if (rowsDataColumns.length > rowsFromPage) {
+      let firstElem = (numberPage - 1) * rowsFromPage;
+      let lastElem =  rowsDataColumns.length <= numberPage * rowsFromPage ? rowsDataColumns.length - 1 : numberPage * rowsFromPage;
+      countRows = lastElem + 1;
+      const rowsColumns = rowsDataColumns.slice(firstElem, lastElem);
+      countRows = rowsColumns.length + 1;
+      return rowsColumns;
+    } else {
+      return rowsDataColumns; 
+    }
+    
   }
   
+  // Формирование данных для отображения
+   
   let headerColumns = getHeaderColumns(dataAdmin.columns);
   let dataRows = getRowsData(dataAdmin);
+  
   return (
     <>
       <h3 className="admin-right-title">{dataAdmin.title}</h3>
@@ -145,13 +162,20 @@ const AppAdmin = (props) => {
               ''
           }
         </div>
-        <div className="admin-right-pagination"></div>
+        <div className="admin-right-pagination">
+          <Pagination 
+            number={numberPage} 
+            setNumber={setNumberPage} 
+            countNumber={Math.ceil(dataAdmin.entries.length / rowsFromPage)} 
+          />
+        </div>
       </div>
-      <Modal  active={modalActive} 
-              setActive={setModalActive} 
-              data={dataInModal} 
-              setData={setDataAdmin} 
-              actionAfter={actionAfter}
+      <Modal  
+        active={modalActive} 
+        setActive={setModalActive} 
+        data={dataInModal} 
+        setData={setDataAdmin} 
+        actionAfter={actionAfter}
       />
     </>
   )
