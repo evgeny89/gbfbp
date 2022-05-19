@@ -318,3 +318,56 @@ h3.modal-title
     transition: background-color .4s
     &:hover 
         background-color: $main-blue
+/* Компоненты пагинации*/
+.pagination-content
+    height: 40px
+    display: flex
+.number-elem
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 40px
+    min-width: 30px
+    font-family: 'Inter-600'
+    font-style: normal
+    font-weight: 600
+    font-size: 25px
+    line-height: 30px
+    color: $black-text
+    padding: 0 8px
+    background: #ECECEC
+    border-radius: 10px
+    margin-right: 10px
+    cursor: pointer 
+    transition: all .4s
+    &:last-child
+        margin-right: 0px
+    &:hover 
+        background: $main-blue
+
+.number-elem_active
+    background: $main-blue
+
+.middle-elem
+    min-width: 32px
+    height: 40px
+    display: flex
+    align-items: flex-end
+    justify-content: center
+    border-radius: 10px
+    transition: all .4s
+    margin-right: 10px
+    &:last-child
+        margin-right: 0px
+    &:hover
+        background: $main-blue
+        border-radius: 10px
+.middle-point
+    width: 5px
+    height: 5px
+    border-radius: 5px
+    background-color: black
+    margin-right: 3px
+    margin-bottom: 1px
+    &:last-child
+        margin-right: 0
