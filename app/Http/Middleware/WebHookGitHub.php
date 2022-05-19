@@ -17,7 +17,7 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next)
     {
-        $post_data = $request->getContent();
+        /*$post_data = $request->getContent();
         $appHash = 'sha256='. hash_hmac('sha256', $post_data, env('APP_DEPLOY_KEY'));
         $hunHash = $request->header('X-Hub-Signature-256');
 
@@ -29,7 +29,7 @@ DEPLOY);
 
         if ($appHash !== $hunHash) {
             abort(401);
-        }
+        }*/
 
         return $next($request);
     }

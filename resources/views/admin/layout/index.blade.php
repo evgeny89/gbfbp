@@ -68,6 +68,7 @@
 
 </head>
 <body>
+@include('icons.preloader')
 @yield('content')
 
 <script src="{{ mix('/js/app.js') }}"></script>
