@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import axios from 'axios';
 import RowAdmin from './RowAdmin';
 import Modal from "./Modal";
@@ -9,12 +9,78 @@ const AppAdmin = (props) => {
   
   let data = JSON.parse(props.dataadmin);
   const [dataAdmin, setDataAdmin] = useState(data);
+  const [sortData, setSortData] = useState(dataAdmin.columns.map((el) => ({name: el.name, sortStatus: null, type: el.type})));
   let [modalActive, setModalActive] = useState(false);
   const [dataInModal, setDataInModal] = useState(undefined);
   const rowsFromPage = 15;
   const [numberPage, setNumberPage] = useState(1);
   const countColumns = dataAdmin.columns.length;
   let countRows = dataAdmin.entries.length + 1;
+  
+  /**
+   * Изменяет стейт касающийся сортировки
+   * @param {string} name имя сортируемого столбца 
+   * @param {string} sortName - название способа сортировки: null, ASK или DESK
+   */
+  const sortDataFunc = (name, sortName) => {
+    setSortData([...sortData.map((el) => {
+      if(el.name !== name) {
+        return {
+          ...el, 
+          sortStatus: null,
+        }
+      } else {
+        return {
+          ...el,
+          sortStatus: sortName,
+        }
+      }
+    })]);
+  }
+
+  /**
+   * Сортирует строки для вывода в порядке указанном в стейте для сортировки
+   */
+  useEffect(() => {
+    if(sortData.some((el) => el.sortStatus !== null)) {
+      let sortElem = sortData.find((el) => el.sortStatus !== null);
+      
+      if (sortElem.name === 'role') {
+        if (sortElem.sortStatus === "ASC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => a[sortElem.name].id - b[sortElem.name].id)}));
+        } else if (sortElem.sortStatus === "DESC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => b[sortElem.name].id - a[sortElem.name].id)}));
+        }
+      } else if (sortElem.name === 'id') {
+        if (sortElem.sortStatus === "ASC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => a[sortElem.name] - b[sortElem.name])}));
+        } else if (sortElem.sortStatus === "DESC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => b[sortElem.name] - a[sortElem.name])}));
+        }
+      } else if (sortElem.name === 'published') {
+        if (sortElem.sortStatus === "ASC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => a[sortElem.name] - b[sortElem.name])}));
+        } else if (sortElem.sortStatus === "DESC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => b[sortElem.name] - a[sortElem.name])}));
+        }
+      } else if (sortElem.type === 'text') {
+        if (sortElem.sortStatus === "ASC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => {
+            a[sortElem.name] = a[sortElem.name] === null ? '' : a[sortElem.name];
+            b[sortElem.name] = b[sortElem.name] === null ? '' : b[sortElem.name];
+            return a[sortElem.name].localeCompare(b[sortElem.name]);
+          })}));
+          
+        } else if (sortElem.sortStatus === "DESC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => {
+            a[sortElem.name] = a[sortElem.name] === null ? '' : a[sortElem.name];
+            b[sortElem.name] = b[sortElem.name] === null ? '' : b[sortElem.name];
+            return b[sortElem.name].localeCompare(a[sortElem.name])
+          })}));
+        }
+      }
+    }
+  }, [sortData]);
 
   /**
    * Формирует массив объектов с данными для построения заголовков таблицы, 
@@ -131,21 +197,20 @@ const AppAdmin = (props) => {
     } else {
       return rowsDataColumns; 
     }
-    
   }
   
   // Формирование данных для отображения
    
   let headerColumns = getHeaderColumns(dataAdmin.columns);
   let dataRows = getRowsData(dataAdmin);
-  
+
   return (
     <>
       <h3 className="admin-right-title">{dataAdmin.title}</h3>
       <section className="admin-right-table" style={{"gridTemplateRows": `repeat(${countRows}, 1fr)`, "gridTemplateColumns": `69px repeat(${countColumns}, auto) 69px`}}>
-        <RowAdmin columns={headerColumns}/>
+        <RowAdmin columns={headerColumns} sortFunc={sortDataFunc} sortData={sortData}/>
         <>
-          {dataRows.map((dataRow, id) => <RowAdmin columns={dataRow} key={id}/>)}
+          {dataRows.map((dataRow, id) => <RowAdmin columns={dataRow} key={id} sortFunc={null} sortData={null}/>)}
         </>
       </section>
       <div className="admin-right-button-pag">
