@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('product', [ProductController::class, 'productPage'])->name('product_page');
     Route::get('cart', [CartController::class, 'cartPage'])->name('user_cart');
     Route::get('category/{category}', [CategoryController::class, 'categoryPage'])->name('category_page');
+    Route::get('material/{material}', [CategoryController::class, 'materialPage'])->name('material_page');
 
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
