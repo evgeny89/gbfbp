@@ -1,5 +1,5 @@
 const routes = {
-    popup: 'api/user-popup',
+    popup: 'https://dev.hend-made.space/api/user-popup',
 }
 
 export default routes;
