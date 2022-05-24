@@ -7,7 +7,7 @@
             </div>
             @foreach($categories as $category)
                 <div class="menu__item">
-                    <a href="{{ route('category_page', ['category' => $category->id]) }}" class="item__link">
+                    <a href="{{ route('category_page', ['category' => $category->slug]) }}" class="item__link">
                         <div class="item__title">
                             {{ $category->name }}
                         </div>
