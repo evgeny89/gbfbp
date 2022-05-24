@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\View\View;
 
-class CategoryController extends Controller
+class CatalogController extends Controller
 {
     /**
      * @param Category $category

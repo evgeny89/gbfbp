@@ -1,6 +1,6 @@
 import React from "react";
 
-function CategoryProductComponent({product, addToCart}) {
+function CatalogProductComponent({product, addToCart}) {
     return (
         <div className="product__thumb" >
             <div className="image__wrapper">
@@ -14,7 +14,7 @@ function CategoryProductComponent({product, addToCart}) {
                     {product.name}
                 </div>
                 <div className="product__buttons">
-                    <button className="button__buy" data-id={product.id} onClick={e => addToCart(e.target.dataset.id)}>
+                    <button className="button__buy" onClick={() => addToCart(product.id)}>
                         В корзину
                     </button>
                 </div>
@@ -23,4 +23,4 @@ function CategoryProductComponent({product, addToCart}) {
     );
 }
 
-export default CategoryProductComponent;
+export default CatalogProductComponent;

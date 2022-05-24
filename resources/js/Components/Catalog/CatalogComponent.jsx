@@ -1,30 +1,30 @@
 import React, {useState} from 'react';
-import CategoryFilterComponent from './CategoryFilterComponent';
-import CategoryProductComponent from "./CategoryProductComponent";
+import CatalogFilterComponent from './CatalogFilterComponent';
+import CatalogProductComponent from "./CatalogProductComponent";
 
-const CategoryComponent = ({dataCategory, dataProducts}) => {
-    const [products, setProducts] = useState(dataProducts || []);
+const CatalogComponent = ({data, products}) => {
+    const [catalogProducts, setCatalogProducts] = useState(products || []);
     const [selectedSort, setSelectedSort] = useState('rating');
 
     const sortProducts = (sort) => {
         switch(sort) {
             case 'name':
-                setProducts([...products].sort((a, b) => a[sort].localeCompare(b[sort])));
+                setCatalogProducts([...catalogProducts].sort((a, b) => a[sort].localeCompare(b[sort])));
                 break;
             case 'popularity':
             case 'rating':
             case 'price':
-                setProducts([...products].sort((a, b) => b[sort] - a[sort]));
+                setCatalogProducts([...catalogProducts].sort((a, b) => b[sort] - a[sort]));
                 break;
             case 'update':
-                setProducts([...products].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)));
+                setCatalogProducts([...catalogProducts].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)));
                 break;
             default:
         }
     };
 
     const loadMoreProducts = () => {
-        setProducts([...products, ...dataProducts]);
+        setCatalogProducts([...catalogProducts, ...products]);
     };
 
     const sortChange = (sort) => {
@@ -41,30 +41,30 @@ const CategoryComponent = ({dataCategory, dataProducts}) => {
     };
 
     return (
-        <div className="category__wrapper">
-            <CategoryFilterComponent sort={selectedSort} sortChange={sortChange}/>
-            <h1 className="category__name">{dataCategory.name}</h1>
+        <div className="catalog__wrapper">
+            <CatalogFilterComponent sort={selectedSort} sortChange={sortChange}/>
+            <h1 className="catalog__name">{data.name}</h1>
                 {
-                    products.length
+                    catalogProducts.length
                         ?
                         <>
                             <div className="product__list">
                                 {
-                                    products.map(product => <CategoryProductComponent product={product} addToCart={addToCart}/>)
+                                    catalogProducts.map(product => <CatalogProductComponent product={product} addToCart={addToCart}/>)
                                 }
                             </div>
-                            <div className="category__buttons">
+                            <div className="catalog__buttons">
                                 <button className="load__products" onClick={loadMoreProducts}>
                                     Загрузить еще
                                 </button>
                             </div>
                         </>
                         :
-                        <h2 className="no_products">В категории нет товаров!</h2>
+                        <h2 className="no_products">Здесь еще нет товаров!</h2>
                 }
 
         </div>
     );
 };
 
-export default CategoryComponent;
+export default CatalogComponent;

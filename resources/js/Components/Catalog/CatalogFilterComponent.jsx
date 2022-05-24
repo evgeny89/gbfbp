@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CategoryFilterComponent = ({sort, sortChange}) => {
+const CatalogFilterComponent = ({sort, sortChange}) => {
     const filterItems = [
         {
             title: 'Популярности',
@@ -21,14 +21,16 @@ const CategoryFilterComponent = ({sort, sortChange}) => {
     ];
 
     return (
-        <div className="category__filter">
+        <div className="catalog__filter">
             <div className="filter__title">
                 Сортировать по:
             </div>
             <div className="filter__items">
                 {
                     filterItems.map(item =>
-                        <div className={sort === item.sort ? 'filter__item filter__active' : 'filter__item'} data-sort={item.sort} onClick={e => sortChange(e.target.dataset.sort)}>
+                        <div
+                            className={sort === item.sort ? 'filter__item filter__active' : 'filter__item'}
+                            onClick={() => sortChange(item.sort)}>
                             {item.title}
                         </div>
                     )
@@ -38,4 +40,4 @@ const CategoryFilterComponent = ({sort, sortChange}) => {
     );
 };
 
-export default CategoryFilterComponent;
+export default CatalogFilterComponent;
