@@ -97,6 +97,11 @@ class User extends Authenticatable
         return $this->hasOne(Shop::class);
     }
 
+    public function review(): hasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS
