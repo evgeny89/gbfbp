@@ -3,6 +3,7 @@
     "/js/popup.js": "/js/popup.js",
     "/js/shop.js": "/js/shop.js",
     "/js/cart.js": "/js/cart.js",
+    "/js/catalog.js": "/js/catalog.js",
     "/js/admin.js": "/js/admin.js",
     "/js/manifest.js": "/js/manifest.js",
     "/css/admin.css": "/css/admin.css",

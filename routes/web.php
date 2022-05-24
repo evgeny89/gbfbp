@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('user_shop', [ProfileController::class, 'shopPage'])->name('shop_page');
     Route::get('product', [ProductController::class, 'productPage'])->name('product_page');
     Route::get('cart', [CartController::class, 'cartPage'])->name('user_cart');
+    Route::get('category/{category?}', [CatalogController::class, 'categoryPage'])->name('category_page');
+    Route::get('material/{material?}', [CatalogController::class, 'materialPage'])->name('material_page');
 
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
