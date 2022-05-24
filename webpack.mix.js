@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/js/')
     .js('resources/js/shop.js', 'public/js/').react()
     .js('resources/js/cart.js', 'public/js/').react()
     .js('resources/js/category.js', 'public/js/').react()
+    .js('resources/js/slider.js', 'public/js/').react()
     .extract(['react']);
 
 mix.js('resources/js/layout/admin.js', 'public/js/').react().extract(['react']);
