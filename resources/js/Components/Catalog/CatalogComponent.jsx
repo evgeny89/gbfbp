@@ -50,7 +50,7 @@ const CatalogComponent = ({data, products}) => {
                         <>
                             <div className="product__list">
                                 {
-                                    catalogProducts.map(product => <CatalogProductComponent product={product} addToCart={addToCart}/>)
+                                    catalogProducts.map(product => <CatalogProductComponent key={product.id} product={product} addToCart={addToCart}/>)
                                 }
                             </div>
                             <div className="catalog__buttons">
