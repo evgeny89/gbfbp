@@ -12,7 +12,7 @@
                     </a>
                 </div>
             </div>
-            <div class="header__mobile-row">
+            <div class="header__mobile-row" id="search" data-route="{{ route('search') }}">
                 <input type="text" class="header__search" placeholder="я ищу...">
             </div>
             <div class="header__mobile-row">

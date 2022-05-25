@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from 'react-dom';
+import SearchComponent from "./Components/SearchComponent"
 import axios from "axios";
 const preloader = document.querySelector('.preloader')
 
@@ -21,3 +24,10 @@ axios.interceptors.response.use(function (response) {
     preloader.classList.remove('active');
     return Promise.reject(error);
 });
+
+ReactDOM.render(
+    <React.StrictMode>
+        <SearchComponent route={document.getElementById('search').dataset.route}/>
+    </React.StrictMode>,
+    document.getElementById('search')
+);

@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 // GET
 Route::get('login', [AuthController::class, 'loginPage'])->name('login_page');
 Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::get('product/{product:slug?}', [ProductController::class, 'productPage'])->name('product_page');
+Route::get('category/{category:slug?}', [CatalogController::class, 'categoryPage'])->name('category_page');
+Route::get('material/{material:slug?}', [CatalogController::class, 'materialPage'])->name('material_page');
 
 // POST
 Route::post('login', [AuthController::class, 'login'])->name('login');
@@ -38,10 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('favorite', [ProfileController::class, 'favoritePage'])->name('favorite_page');
     Route::get('orders', [ProfileController::class, 'ordersPage'])->name('orders_page');
     Route::get('user_shop', [ProfileController::class, 'shopPage'])->name('shop_page');
-    Route::get('product', [ProductController::class, 'productPage'])->name('product_page');
     Route::get('cart', [CartController::class, 'cartPage'])->name('user_cart');
-    Route::get('category/{category:slug?}', [CatalogController::class, 'categoryPage'])->name('category_page');
-    Route::get('material/{material:slug?}', [CatalogController::class, 'materialPage'])->name('material_page');
 
     // POST
     Route::post('profile/data', [ProfileController::class, 'saveUserData'])->name('profile_update_data');
@@ -65,6 +65,8 @@ Route::get('delivery', [PageController::class, 'deliveryPage'])->name('delivery_
 |=======================================================================================================================
  */
 Route::prefix('api')->group(function () {
+    Route::post('search', [UserApiController::class, 'search'])->name('search');
+
     Route::middleware('auth')->group(function () {
         Route::get('user-popup', [UserApiController::class, 'getPopupData'])->name('get-popup-data');
 
