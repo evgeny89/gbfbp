@@ -177,7 +177,7 @@ function ProductFormComponent({product, close, routes, save, update}) {
                                                 <button type="button" className="button__remove" onClick={() => removeFileImage(item.name)}>
                                                     <span className="remove__icon"></span>
                                                 </button>
-                                                <img src={URL.createObjectURL(item)} alt={item.name} width="150" height="198"/>
+                                                <img className="local-image" src={URL.createObjectURL(item)} alt={item.name} width="150" height="198"/>
                                             </div>
                                         )
                                     })

@@ -25,8 +25,6 @@ const SliderComponent = () => {
             }}
             modules={[Autoplay, EffectFade, Navigation, Pagination]}
             slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
         >
             {slides.map(image => <SwiperSlide key={image}><img src={image} /> </SwiperSlide>)}
         </Swiper>

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -25,7 +26,8 @@ class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255|',
+            'name' => 'required|min:3|max:255|string',
+            'slug' => 'required|string',
             'price' => 'required|integer|numeric|min:1',
             'weight' => 'string|min:3|max:255|nullable',
             'description' => 'string|min:3|nullable',
@@ -37,5 +39,16 @@ class UpdateProductRequest extends FormRequest
             'file_name' => 'array|nullable',
             'file_name.*' => 'image|file|mimes:jpg,png,jpeg,gif|max:4096',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' =>  Str::slug($this->name, '-'),
+        ]);
     }
 }

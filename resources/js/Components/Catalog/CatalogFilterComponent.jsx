@@ -28,7 +28,7 @@ const CatalogFilterComponent = ({sort, sortChange}) => {
             <div className="filter__items">
                 {
                     filterItems.map(item =>
-                        <div
+                        <div key={item.sort}
                             className={sort === item.sort ? 'filter__item filter__active' : 'filter__item'}
                             onClick={() => sortChange(item.sort)}>
                             {item.title}
