@@ -19,6 +19,7 @@ class Product extends Model
         'shop_id',
         'category_id',
         'material_id',
+        'slug',
     ];
 
     /*
