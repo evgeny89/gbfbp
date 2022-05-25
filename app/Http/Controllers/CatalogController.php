@@ -20,7 +20,7 @@ class CatalogController extends Controller
             return view('pages.catalog_page', ['data' => $category, 'products' => $products]);
         } else {
             $categories = Category::wherePublished(1)->get();
-            return view('pages.catalog_list', ['entries' => $categories, 'route_name' => 'category_page']);
+            return view('pages.catalog_list', ['entries' => $categories, 'route_name' => 'category_page', 'type' => 'category']);
         }
     }
 
@@ -35,7 +35,7 @@ class CatalogController extends Controller
             return view('pages.catalog_page', ['data' => $material, 'products' => $products]);
         } else {
             $materials = Material::wherePublished(1)->get();
-            return view('pages.catalog_list', ['entries' => $materials, 'route_name' => 'material_page']);
+            return view('pages.catalog_list', ['entries' => $materials, 'route_name' => 'material_page', 'type' => 'material']);
         }
     }
 }
