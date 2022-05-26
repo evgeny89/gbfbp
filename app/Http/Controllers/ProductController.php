@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
+     * @param Product $product
      * @return View
      */
-    public function productPage(): View
+    public function productPage(Product $product): View
     {
-        return view('pages.product_page');
+        return view('pages.product_page', ['product' => $product]);
     }
 }

@@ -19,6 +19,7 @@ class Product extends Model
         'shop_id',
         'category_id',
         'material_id',
+        'slug',
     ];
 
     /*
@@ -58,5 +59,10 @@ class Product extends Model
     public function material(): BelongsTo
     {
         return $this->belongsTo(Material::class);
+    }
+
+    public function review(): hasMany
+    {
+        return $this->hasMany(Review::class);
     }
 }
