@@ -16,7 +16,7 @@ const AppAdmin = (props) => {
   const [numberPage, setNumberPage] = useState(1);
   const countColumns = dataAdmin.columns.length;
   let countRows = dataAdmin.entries.length + 1;
-  
+  console.log(dataAdmin);
   /**
    * Изменяет стейт касающийся сортировки
    * @param {string} name имя сортируемого столбца 

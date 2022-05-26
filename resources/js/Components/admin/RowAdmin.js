@@ -5,6 +5,7 @@ import HeaderText from './HeaderText';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import Text from './Text';
+import Image from './Image';
 
 const RowAdmin = (props) => {
 
@@ -32,6 +33,8 @@ const RowAdmin = (props) => {
         return <DeleteButton data={text} key={id}/>
       case 'text' : 
         return <Text text={text} key={id}/>
+      case 'upload' :
+        return <Image text={text} key={id}/>
     }
   }
   

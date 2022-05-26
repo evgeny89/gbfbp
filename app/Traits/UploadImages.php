@@ -18,6 +18,8 @@ trait UploadImages
      */
     protected function uploadImage($image): string
     {
+        if (!$image) return '';
+       
         $fileName = md5($image->getClientOriginalName() . time()) . '.' . $image->getClientOriginalExtension();
 
         foreach ($this->folders as $folder) {
@@ -28,8 +30,7 @@ trait UploadImages
                     $constraint->aspectRatio();
                 });
             }
-
-            $path = "{$this->root_folder}/{$folder}/";
+            $path = $this->root_folder . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
             if(!Storage::exists($path)){
                 Storage::makeDirectory($path);
             }

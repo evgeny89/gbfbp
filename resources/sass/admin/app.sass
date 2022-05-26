@@ -186,8 +186,6 @@ table
     width: 18px
     height: 18px
     background-image: url('/images/check-0__18-18.png')
-/*.admin-input:checked + .admin-input-new
-    background-image: url('/images/check-1__18-18.png')*/
 .check
     position: absolute
     width: 18px
@@ -376,3 +374,55 @@ h3.modal-title
     margin-bottom: 1px
     &:last-child
         margin-right: 0
+
+/*  Компонент картинки  */
+.image-row
+    height: 50px
+.image-wrapper
+    border-bottom: 2px solid $second-gray
+    padding: 5px 0px
+.image-modal-wrapper
+    display: flex
+    flex-direction: column
+    align-items: center 
+.image-modal-img
+    display: block
+    height: 150px
+.admin-input-file
+    //appearance: none
+    //-webkit-appearance: none
+    //-moz-appearance: none
+    width: 0.1px
+    height: 0.1px
+    overflow: hidden
+    position: absolute
+    opacity: 0
+    z-index: -1
+
+.button-image-file
+    height: 65px
+    border: 2px solid $main-blue
+    min-width: 200px
+    border-radius: 40px
+    font-size: 20px
+    line-height: 24px
+    display: flex
+    align-items: center
+    justify-content: center
+    color: $main-blue
+    text-transform: uppercase
+    cursor: pointer
+    font-family: inherit
+    transition: .4s
+    outline: none
+    margin: 20px 0px
+    margin-right: 10px
+    &:hover
+        background-color: $main-blue
+        color: $light-text
+        border: 2px solid $main-blue
+        outline: none
+    &:active
+        outline: none
+    &:focus
+        outline: none
