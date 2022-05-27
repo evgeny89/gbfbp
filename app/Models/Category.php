@@ -28,6 +28,10 @@ class Category extends Model
         'home' => '320x250',
     ];
 
+    protected $appends = [
+        'home'
+    ];
+
     /**
      * photo directory
      * @var string
@@ -54,7 +58,7 @@ class Category extends Model
      */
     public function getHomeAttribute(): string
     {
-        return $this->image ? asset("{$this->root_folder}/{$this->images['small']}/{$this->image}") : '';
+        return $this->image ? asset("{$this->root_folder}/{$this->images['home']}/{$this->image}") : '';
     }
 
     /*

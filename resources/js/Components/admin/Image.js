@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Image = (props) => {
-  const { text } = props;
+  const { text, home } = props;
   return (
     <div className="image-wrapper">
-      <img className="image-row" src={text ? text : '/images/svg/camera-img.svg'}/>
+      <img className="image-row" src={home ? home : '/images/svg/camera-img.svg'}/>
     </div>
   )
 };

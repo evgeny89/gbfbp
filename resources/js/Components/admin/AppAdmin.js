@@ -12,11 +12,11 @@ const AppAdmin = (props) => {
   const [sortData, setSortData] = useState(dataAdmin.columns.map((el) => ({name: el.name, sortStatus: null, type: el.type})));
   let [modalActive, setModalActive] = useState(false);
   const [dataInModal, setDataInModal] = useState(undefined);
-  const rowsFromPage = 15;
+  const rowsFromPage = 10;
   const [numberPage, setNumberPage] = useState(1);
   const countColumns = dataAdmin.columns.length;
   let countRows = dataAdmin.entries.length + 1;
-  console.log(dataAdmin);
+  
   /**
    * Изменяет стейт касающийся сортировки
    * @param {string} name имя сортируемого столбца 
@@ -44,8 +44,22 @@ const AppAdmin = (props) => {
   useEffect(() => {
     if(sortData.some((el) => el.sortStatus !== null)) {
       let sortElem = sortData.find((el) => el.sortStatus !== null);
-      
-      if (sortElem.name === 'role') {
+      if (sortElem.name === 'image') {
+        if (sortElem.sortStatus === "ASC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => {
+            a[sortElem.name] = a[sortElem.name] === null ? '' : a[sortElem.name];
+            b[sortElem.name] = b[sortElem.name] === null ? '' : b[sortElem.name];
+            return a[sortElem.name].localeCompare(b[sortElem.name]);
+          })}));
+          
+        } else if (sortElem.sortStatus === "DESC") {
+          setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => {
+            a[sortElem.name] = a[sortElem.name] === null ? '' : a[sortElem.name];
+            b[sortElem.name] = b[sortElem.name] === null ? '' : b[sortElem.name];
+            return b[sortElem.name].localeCompare(a[sortElem.name])
+          })}));
+        }
+      } else if (sortElem.name === 'role') {
         if (sortElem.sortStatus === "ASC") {
           setDataAdmin(Object.assign({...dataAdmin}, {entries: [...dataAdmin.entries].sort((a, b) => a[sortElem.name].id - b[sortElem.name].id)}));
         } else if (sortElem.sortStatus === "DESC") {
@@ -178,6 +192,9 @@ const AppAdmin = (props) => {
           'type': column.type, 
           'text': column.relation ? entry[column.name][column.relation] : entry[column.name],
         };
+        if (column.type === 'upload') {
+          sectionRow.home = entry.home;
+        }
         rowsElem.push(sectionRow);
       }
       if (dataAdmin.buttons.delete === true) {
@@ -189,7 +206,7 @@ const AppAdmin = (props) => {
     }
     if (rowsDataColumns.length > rowsFromPage) {
       let firstElem = (numberPage - 1) * rowsFromPage;
-      let lastElem =  rowsDataColumns.length <= numberPage * rowsFromPage ? rowsDataColumns.length - 1 : numberPage * rowsFromPage;
+      let lastElem =  rowsDataColumns.length <= numberPage * rowsFromPage ? rowsDataColumns.length : numberPage * rowsFromPage;
       countRows = lastElem + 1;
       const rowsColumns = rowsDataColumns.slice(firstElem, lastElem);
       countRows = rowsColumns.length + 1;

@@ -67,7 +67,7 @@ class CategoryController extends CrudController
                 'label' => 'Опубликован',
             ],
             [
-                'name' => 'image',
+                'name' => 'image', 
                 'type' => 'upload',
                 'label' => 'Изображение',
             ],

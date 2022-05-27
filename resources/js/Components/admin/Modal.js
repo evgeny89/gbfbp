@@ -58,6 +58,9 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
           objElem.value = entries[columns[i].name] ?? '';
         }
       }
+      if (columns[i].name === 'image') {
+        objElem.value = entries?.home ? entries.home : null;
+      }
       objElem.text = columns[i].text;
       readyData.push(objElem);
     }
@@ -107,12 +110,9 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
     })
       .then((data) => {
         if (data.data.message === 'ok') {
-          if (Number(elemData.id) !== 0) {
-            elemData.id = Number(elemData.id);
-          } else {
-            elemData.id = data.data.id.id;
-          }
-          actionAfter(elemData);
+          const result = data.data.res;
+          result.image = result.home || null;
+          actionAfter(result);
           setActive(false);
         }
       })

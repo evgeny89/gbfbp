@@ -18,7 +18,7 @@ const RowAdmin = (props) => {
    * @param {number} id ключ для безошибочной отрисовки нескольких компонентов
    * @returns {Component} возвращает компонент на основании полученного значения типа
    */
-  const createComponents = (type, text, id, name=null) => {
+  const createComponents = (type, text, id, name=null, home=null) => {
     
     switch (type) {
       case 'headerText' : 
@@ -34,11 +34,11 @@ const RowAdmin = (props) => {
       case 'text' : 
         return <Text text={text} key={id}/>
       case 'upload' :
-        return <Image text={text} key={id}/>
+        return <Image text={text} key={id} home={home}/>
     }
   }
   
-  return columns.map((column, id) =>  createComponents(column.type, column.text, id, column.name));
+  return columns.map((column, id) =>  createComponents(column.type, column.text, id, column.name, column.home));
 }
 
 export default RowAdmin;

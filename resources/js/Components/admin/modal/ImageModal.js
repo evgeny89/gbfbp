@@ -19,8 +19,7 @@ const ImageModal = (props) => {
   };
   
   const previewFile = (preview, file) => {
-    console.log(preview);
-    console.log(file);
+    
     const reader  = new FileReader();
   
     reader.onloadend = function () {

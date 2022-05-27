@@ -25,9 +25,12 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-ReactDOM.render(
-    <React.StrictMode>
-        <SearchComponent route={document.getElementById('search').dataset.route}/>
-    </React.StrictMode>,
-    document.getElementById('search')
-);
+const search = document.getElementById('search');
+if (search) {
+    ReactDOM.render(
+        <React.StrictMode>
+            <SearchComponent route={document.getElementById('search').dataset.route}/>
+        </React.StrictMode>,
+        document.getElementById('search')
+    );
+}
