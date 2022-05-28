@@ -32,7 +32,7 @@ class Category extends Model
      * photo directory
      * @var string
      */
-    protected $image_folder = 'category';
+    protected $image_folder = 'category_photos';
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ class Category extends Model
      */
     public function getHomeAttribute(): string
     {
-        return $this->image ? asset("{$this->root_folder}/{$this->images['small']}/{$this->image}") : '';
+        return $this->image ? asset("{$this->root_folder}/{$this->images['home']}/{$this->image}") : '';
     }
 
     /*
