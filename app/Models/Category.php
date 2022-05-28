@@ -36,7 +36,7 @@ class Category extends Model
      * photo directory
      * @var string
      */
-    protected $image_folder = 'category';
+    protected $image_folder = 'category_photos';
 
     /*
     |--------------------------------------------------------------------------

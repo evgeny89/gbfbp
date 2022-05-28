@@ -36,7 +36,7 @@ class Material extends Model
      * photo directory
      * @var string
      */
-    protected $image_folder = 'material';
+    protected $image_folder = 'material_photos';
 
     /*
     |--------------------------------------------------------------------------
