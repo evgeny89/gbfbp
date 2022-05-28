@@ -74,3 +74,56 @@
     border: none
     font-family: $text-base-family
 
+
+.catalog__category
+  color: $main-pink
+
+.catalog__material
+  color: $main-blue
+
+.catalog__list
+  margin: 20px 0
+
+.catalog__title
+  font-size: 40px
+  line-height: 48px
+  margin-bottom: 20px
+  +media-md(down)
+    font-size: 35px
+    line-height: 35px
+
+.catalog__list-wrapper
+  display: grid
+  gap: 10px
+  grid-template-columns: repeat(auto-fit, calc((100% - 30px) / 4))
+  +media-md(down)
+    grid-template-columns: repeat(auto-fit, calc((100% - 20px) / 3))
+  +media-sm(down)
+    grid-template-columns: repeat(auto-fit, calc((100% - 10px) / 2))
+
+
+.catalog__item
+  text-align: center
+
+.item__link
+  text-decoration: none
+  font-size: 25px
+  line-height: 30px
+  color: inherit
+  +media-md(down)
+    font-size: 18px
+    line-height: 24px
+
+.item__image
+  position: relative
+  padding-bottom: 75%
+  margin-bottom: 20px
+
+  img
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: auto
+    border-radius: 20px
+    object-fit: cover
