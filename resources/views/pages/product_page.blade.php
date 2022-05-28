@@ -6,13 +6,13 @@
             <div class="product__wrapper">
                 <div class="product__header">
                     <div class="header__row">
-                        <h1 class="product__name">Часы из дерева</h1>
+                        <h1 class="product__name">{{ $product->name }}</h1>
                         <div class="product__price">
                             <div class="product__price-new">
-                                1299,00
+                                {{ $product->price }}
                             </div>
                             <div class="product__price-old">
-                                1299,00
+                                {{ $product->price }}
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         Продавец:
                     </div>
                     <div class="manufacturer__name">
-                        Color watch
+                        {{ $product->shop->name }}
                     </div>
                 </div>
                 <div class="product__description">
@@ -83,19 +83,19 @@
                         Описание
                     </div>
                     <div class="description__item">
-                        Часы с ярким изображением станут приятным и функциональным дополнением интерьера. Стрелки часов бесшумные, а часы точные благодаря кварцевому механизму. Сзади имеется удобная петелька, чтобы вешать часы на стену. Работают от пальчиковой батарейки (АА), в комплекте не входят. Часы подойдут для украшения дома, комнат отдыха или офисов открытого типа. Поставляются в прочной картонной упаковке с прозрачным окном. Вы сможете выбрать часы с изображением, подходящим под ваше пространство и отвечающим вашим вкусам. Часы - это практичный и стильный аксессуар.
+                        {{ $product->description }}
                     </div>
                     <div class="description__item">
                         <div class="item__title">
                             Вес изделия:
                         </div>
-                        400 г
+                        {{ $product->weight }}
                     </div>
                     <div class="description__item">
                         <div class="item__title">
                             Материал изделия:
                         </div>
-                        Дерево
+                        {{ $product->material->name }}
                     </div>
                 </div>
                 <div class="product__reviews">
