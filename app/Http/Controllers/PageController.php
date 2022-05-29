@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,7 +14,20 @@ class PageController extends Controller
      */
     public function home(): View
     {
-        return view('pages.home_page');
+        $categories = Category::wherePublished(1)->get();
+        $materials = Material::wherePublished(1)->get();
+        return view('pages.home_page', [
+            'categories' => view('partials.catalog_list', [
+                'entries' => $categories,
+                'route_name' => 'category_page',
+                'type' => 'category'
+            ]),
+            'materials' => view('partials.catalog_list', [
+                'entries' => $materials,
+                'route_name' => 'material_page',
+                'type' => 'material'
+            ])
+        ]);
     }
 
     /**
