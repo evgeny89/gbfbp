@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import CatalogFilterComponent from './CatalogFilterComponent';
 import CatalogProductComponent from "./CatalogProductComponent";
 
@@ -6,22 +6,18 @@ const CatalogComponent = ({data, products}) => {
     const [catalogProducts, setCatalogProducts] = useState(products || []);
     const [selectedSort, setSelectedSort] = useState('rating');
 
-    const sortProducts = (sort) => {
-        switch(sort) {
+    const sortedProducts = useMemo(() => {
+        switch(selectedSort) {
             case 'name':
-                setCatalogProducts([...catalogProducts].sort((a, b) => a[sort].localeCompare(b[sort])));
-                break;
-            case 'popularity':
+                return [...catalogProducts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
             case 'rating':
             case 'price':
-                setCatalogProducts([...catalogProducts].sort((a, b) => b[sort] - a[sort]));
-                break;
+                return [...catalogProducts].sort((a, b) => b[selectedSort] - a[selectedSort]);
             case 'update':
-                setCatalogProducts([...catalogProducts].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)));
-                break;
+                return [...catalogProducts].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
             default:
         }
-    };
+    }, [catalogProducts, selectedSort]);
 
     const loadMoreProducts = () => {
         setCatalogProducts([...catalogProducts, ...products]);
@@ -29,15 +25,10 @@ const CatalogComponent = ({data, products}) => {
 
     const sortChange = (sort) => {
         setSelectedSort(sort);
-        sortProducts(sort);
     };
 
     const addToCart = (product_id) => {
         console.log(product_id);
-    };
-
-    const removeFromCart = (e) => {
-        console.log(e.target.dataset.id);
     };
 
     return (
@@ -45,12 +36,12 @@ const CatalogComponent = ({data, products}) => {
             <CatalogFilterComponent sort={selectedSort} sortChange={sortChange}/>
             <h1 className="catalog__name">{data.name}</h1>
                 {
-                    catalogProducts.length
+                    sortedProducts.length
                         ?
                         <>
                             <div className="product__list">
                                 {
-                                    catalogProducts.map(product => <CatalogProductComponent key={product.id} product={product} addToCart={addToCart}/>)
+                                    sortedProducts.map((product, index) => <CatalogProductComponent key={index} product={product} addToCart={addToCart}/>)
                                 }
                             </div>
                             <div className="catalog__buttons">
