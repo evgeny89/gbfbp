@@ -3,6 +3,7 @@ import CheckBox from './CheckBox';
 import Text from './Text';
 import IdText from './IdText';
 import Select from './Select';
+import ImageModal from './ImageModal';
 
 const RowModal = (props) => {
   /**
@@ -24,6 +25,8 @@ const RowModal = (props) => {
         return <Text text={text} name={name} value={value}/>
       case 'select' :
         return <Select text={text} name={name} value={value} selectAll={selectAll} />
+      case 'upload' : 
+        return <ImageModal text={text} name={name} value={value} active={props.active}/>
     }
   }
   

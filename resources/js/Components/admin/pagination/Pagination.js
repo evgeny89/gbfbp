@@ -23,18 +23,20 @@ const Pagination = (props) => {
       paginationArr.splice(viewNum + 1, lnArr);
     } else if (indActive >= lnArr - viewNum) {
       paginationArr[lnArr - viewNum - 1].type = "pointElem";
-      if (indActive - viewNum < 0) {
+      if (indActive - viewNum <= 0) {
         paginationArr[lnArr - viewNum - 1].number = 1;
-      } else {
+      } else if (indActive - viewNum >= viewNum) {
         paginationArr[lnArr - viewNum - 1].number -= (viewNum - 1);
-      }
+      } 
       paginationArr.splice(0, lnArr - viewNum - 1);
     } else {
       paginationArr[indActive - 1].type = "pointElem";
       if (indActive - viewNum < 0) {
         paginationArr[indActive - 1].number = 1;
-      } else {
+      } else if (indActive - viewNum >= viewNum) {
         paginationArr[indActive - 1].number -= (viewNum - 1);
+      } else if (indActive - viewNum > 1) {
+        paginationArr[indActive - 1].number = viewNum + 1;
       }
       paginationArr.splice(0, indActive - 1);
 

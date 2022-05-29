@@ -28,6 +28,10 @@ class Category extends Model
         'home' => '320x250',
     ];
 
+    protected $appends = [
+        'home'
+    ];
+
     /**
      * photo directory
      * @var string
