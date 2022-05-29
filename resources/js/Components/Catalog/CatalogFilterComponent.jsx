@@ -3,8 +3,8 @@ import React from 'react';
 const CatalogFilterComponent = ({sort, sortChange}) => {
     const filterItems = [
         {
-            title: 'Популярности',
-            sort: 'popularity'
+            title: 'Имени',
+            sort: 'name'
         },
         {
             title: 'Рейтингу',
