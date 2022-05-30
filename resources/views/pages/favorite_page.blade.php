@@ -9,43 +9,9 @@
 
                 {{-- PRODUCTS --}}
                 <div class="favorite__products">
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
-                    @include('partials.product_thumb', ['button' => '
-                        <span class="button__buy">
-                            В корзину
-                        </span>
-                    '])
-
+                    @foreach(\App\Models\Product::take(5)->get() as $product)
+                        @include('partials.product_thumb', ['product' => $product])
+                    @endforeach
                 </div>
                 {{-- PRODUCTS --}}
 
