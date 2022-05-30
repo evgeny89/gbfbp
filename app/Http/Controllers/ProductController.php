@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Review;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
+     * @param Product $product
      * @return View
      */
-    public function productPage(): View
+    public function productPage(Product $product): View
     {
-        return view('pages.product_page');
+        $reviews = Review::whereProductId($product->id)->get();
+        return view('pages.product_page', ['product' => $product,
+                                                 'reviews' => $reviews]);
     }
 }

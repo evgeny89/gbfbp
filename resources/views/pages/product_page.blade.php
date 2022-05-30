@@ -103,13 +103,14 @@
                         Отзывы
                     </h3>
                     <div class="reviews__wrapper">
+                        @foreach($reviews as $review)
                         <div class="review__item">
                             <div class="item__header">
                                 <div class="item__author">
-                                    Наталья
+                                    {{ $review->user->name }}
                                 </div>
                                 <div class="item__date">
-                                    10 марта. 19:44
+                                    {{ $review->created_at }}
                                 </div>
                             </div>
                             <div class="item__rating">
@@ -130,38 +131,10 @@
                                 </svg>
                             </div>
                             <div class="item__text">
-                                Просто красота, мне очень понравились часики я купила их для дачи. Набрала посуды этой серии и решила взять эти часики, механизм хороший, часы ходили сутки, время показывали точно. Рекомендую к покупке.
+                                {{ $review->review }}
                             </div>
                         </div>
-                        <div class="review__item">
-                            <div class="item__header">
-                                <div class="item__author">
-                                    Валерий
-                                </div>
-                                <div class="item__date">
-                                    11 марта. 19:01
-                                </div>
-                            </div>
-                            <div class="item__rating">
-                                <svg class="rating__icon rating__icon-star" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5 0L14.0819 7.9463H22.4371L15.6776 12.8574L18.2595 20.8037L11.5 15.8926L4.74047 20.8037L7.32238 12.8574L0.56285 7.9463H8.91809L11.5 0Z" fill="#F731A3"/>
-                                </svg>
-                                <svg class="rating__icon rating__icon-star" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5 0L14.0819 7.9463H22.4371L15.6776 12.8574L18.2595 20.8037L11.5 15.8926L4.74047 20.8037L7.32238 12.8574L0.56285 7.9463H8.91809L11.5 0Z" fill="#F731A3"/>
-                                </svg>
-                                <svg class="rating__icon rating__icon-star" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5 0L14.0819 7.9463H22.4371L15.6776 12.8574L18.2595 20.8037L11.5 15.8926L4.74047 20.8037L7.32238 12.8574L0.56285 7.9463H8.91809L11.5 0Z" fill="#F731A3"/>
-                                </svg>
-                                <svg class="rating__icon rating__icon-star" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5 0L14.0819 7.9463H22.4371L15.6776 12.8574L18.2595 20.8037L11.5 15.8926L4.74047 20.8037L7.32238 12.8574L0.56285 7.9463H8.91809L11.5 0Z" fill="#F731A3"/>
-                                </svg>
-                                <svg class="rating__icon rating__icon-star" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11.5 0L14.0819 7.9463H22.4371L15.6776 12.8574L18.2595 20.8037L11.5 15.8926L4.74047 20.8037L7.32238 12.8574L0.56285 7.9463H8.91809L11.5 0Z" fill="#F731A3"/>
-                                </svg>
-                            </div>
-                            <div class="item__text">
-                                Хорошие, красивые часы! Жаль что без рамочки, стекла.... Ну а так все хорошо. Все пришло в целости.
-                            </div>
+                        @endforeach
                         </div>
                         <div class="reviews__button">
                             <button class="button__show">
