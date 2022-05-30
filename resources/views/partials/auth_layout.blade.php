@@ -1,5 +1,5 @@
 <div class="header__personal">
-    <a href="#" class="header__cart">
+    <a href="{{ route('user_cart') }}" class="header__cart">
         <img class="header__cart-image" src="{{ asset('/images/svg/cart.svg') }}" alt="cart" width="50" height="50">
     </a>
     <div class="header__user">
