@@ -4,7 +4,7 @@ function CatalogProductComponent({product, addToCart}) {
     return (
         <div className="product__thumb" >
             <div className="image__wrapper">
-                <img src={product.image} className="product__image" alt=""/>
+                <img src={product.images[0].medium_image} className="product__image" alt=""/>
             </div>
             <div className="product__caption">
                 <div className="product__price">

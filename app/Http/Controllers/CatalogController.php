@@ -16,7 +16,7 @@ class CatalogController extends Controller
     public function categoryPage(Category $category = null): View
     {
         if ($category) {
-            $products = Product::whereCategoryId($category->id)->get();
+            $products = Product::whereCategoryId($category->id)->with('images')->get();
             return view('pages.catalog_page', ['data' => $category, 'products' => $products]);
         } else {
             $categories = Category::wherePublished(1)->get();
@@ -31,7 +31,7 @@ class CatalogController extends Controller
     public function materialPage(Material $material = null): View
     {
         if ($material) {
-            $products = Product::whereMaterialId($material->id)->get();
+            $products = Product::whereMaterialId($material->id)->with('images')->get();
             return view('pages.catalog_page', ['data' => $material, 'products' => $products]);
         } else {
             $materials = Material::wherePublished(1)->get();
