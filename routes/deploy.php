@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -14,10 +15,10 @@ use Symfony\Component\Process\Process;
 |
 */
 
-Route::post('/deploy', function (\Illuminate\Http\Request $request) {
+Route::post('/deploy', function (Request $request) {
     $payload = $request->all();
     if ($payload['ref'] === 'refs/heads/master') {
-        $process = new Process([env('APP_DEPLOY_PATH') .'deploy.sh']);
+        $process = Process::fromShellCommandline('../deploy.sh');
         $process->run();
 
         if (!$process->isSuccessful()) {

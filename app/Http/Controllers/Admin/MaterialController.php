@@ -12,7 +12,7 @@ class MaterialController extends CrudController
     protected $validation = [
         'name' => 'required|string|min:3|max:255',
         'slug' => 'required|string|min:3|max:255',
-        'image' => 'image|file|mimes:jpg,png,jpeg,gif|max:4096',
+        'image' => 'image|file|mimes:jpg,png,jpeg,gif|max:4096|nullable',
         'published' => 'required|boolean',
     ];
 
@@ -42,6 +42,11 @@ class MaterialController extends CrudController
                 'name' => 'published',
                 'text' => 'Опубликован',
                 'type' => 'check',
+            ],
+            [
+                'name' => 'image',
+                'type' => 'upload',
+                'text' => 'Изображение',
             ],
         ]);
 

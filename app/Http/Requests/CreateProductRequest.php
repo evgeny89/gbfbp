@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CreateProductRequest extends FormRequest
 {
@@ -26,7 +27,8 @@ class CreateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|min:3|max:255|',
+            'name' => 'required|min:3|max:255|string',
+            'slug' => 'required|string',
             'price' => 'required|integer|numeric|min:1',
             'weight' => 'string|min:3|max:255|nullable',
             'description' => 'string|min:3|nullable',
@@ -40,13 +42,13 @@ class CreateProductRequest extends FormRequest
 
     /**
      * Prepare the data for validation.
-     *
      * @return void
      */
     protected function prepareForValidation()
     {
         $this->merge([
             'shop_id' => Shop::whereUserId(Auth::id())->first()->id,
+            'slug' =>  Str::slug($this->name, '-'),
         ]);
     }
 }

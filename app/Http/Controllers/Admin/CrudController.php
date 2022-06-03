@@ -68,7 +68,7 @@ class CrudController extends Controller
             return redirect()->route('home');
         }
         $res = $this->model::create($request->all());
-        return (bool) $res ? collect(['message' => 'ok', 'id' => $res]) : collect(['message' => 'error']);
+        return (bool) $res ? collect(['message' => 'ok', 'res' => $res]) : collect(['message' => 'error']);
     }
 
     /**
@@ -95,7 +95,8 @@ class CrudController extends Controller
             return redirect()->route('home');
         }
         $res = $this->model::find($id)->update($request->all());
-        return (bool) $res ? collect(['message' => 'ok']) : collect(['message' => 'error']);
+        $elem = $this->model::whereId($id)->first();
+        return (bool) $res ? collect(['message' => 'ok', 'res' => $elem]) : collect(['message' => 'error']);
     }
 
     /**
@@ -193,12 +194,12 @@ class CrudController extends Controller
      */
     protected function setRoutes(string $name, string $list)
     {
-        $this->routes['all'] = route("admin.{$list}");//"admin.$list"; // список
-        $this->routes['get'] = route("admin.{$name}", ['id' => "=id="]);//"admin.$name"; // форма редактирования
-        $this->routes['edit'] = route("admin.save-{$name}", ['id' => "=id="]);//"admin.save-{$name}";  // сохранение изменений
-        $this->routes['save'] = route("admin.save-new-{$name}"); //"admin.save-new-{$name}"; // сохранение новой записи
-        $this->routes['delete'] = route("admin.delete-{$name}", ['id' => "=id="]); // "/admin/{$name}/id/delete"; // удаление записи
-        $this->routes['create'] = route("admin.new-{$name}");//"admin.new-{$name}"; // форма новой записи
+        $this->routes['all'] = route("admin.{$list}");
+        $this->routes['get'] = route("admin.{$name}", ['id' => "=id="]);
+        $this->routes['edit'] = route("admin.save-{$name}", ['id' => "=id="]);
+        $this->routes['save'] = route("admin.save-new-{$name}");
+        $this->routes['delete'] = route("admin.delete-{$name}", ['id' => "=id="]);
+        $this->routes['create'] = route("admin.new-{$name}");
     }
 
     /**

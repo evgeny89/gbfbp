@@ -16,6 +16,7 @@ class ProductController extends Controller
     {
         $reviews = Review::whereProductId($product->id)->get();
         return view('pages.product_page', ['product' => $product,
-                                                 'reviews' => $reviews]);
+                                           'reviews' => $reviews]);
+
     }
 }

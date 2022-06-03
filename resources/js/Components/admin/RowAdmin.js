@@ -5,8 +5,12 @@ import HeaderText from './HeaderText';
 import EditButton from './EditButton';
 import DeleteButton from './DeleteButton';
 import Text from './Text';
+import Image from './Image';
 
 const RowAdmin = (props) => {
+
+  const {columns, sortFunc, sortData } = props;
+  
   /**
    * Возвращает один из компонентов в зависимости от его типа
    * @param {text} type тип элемента
@@ -14,10 +18,11 @@ const RowAdmin = (props) => {
    * @param {number} id ключ для безошибочной отрисовки нескольких компонентов
    * @returns {Component} возвращает компонент на основании полученного значения типа
    */
-  const createComponents = (type, text, id ) => {
+  const createComponents = (type, text, id, name=null, home=null) => {
+    
     switch (type) {
       case 'headerText' : 
-        return <HeaderText text={text} key={id}/>
+        return <HeaderText text={text} name={name} status={sortData.find((el) => el.name === name).sortStatus} sortFunc={sortFunc} key={id}/>
       case 'check' : 
         return <CheckBox text={text} key={id}/>
       case 'emptyBlock' :
@@ -28,11 +33,12 @@ const RowAdmin = (props) => {
         return <DeleteButton data={text} key={id}/>
       case 'text' : 
         return <Text text={text} key={id}/>
+      case 'upload' :
+        return <Image text={text} key={id} home={home}/>
     }
   }
-  const {columns } = props;
   
-  return columns.map((column, id) =>  createComponents(column.type, column.text, id));
+  return columns.map((column, id) =>  createComponents(column.type, column.text, id, column.name, column.home));
 }
 
 export default RowAdmin;

@@ -4,9 +4,10 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))
     +media-sm(down)
         padding: 20px
+
 .footer-wrapper
     display: grid
-    column-gap: 20px 
+    column-gap: 20px
     grid-template-columns: 1fr 1fr 1fr 313px
     +media-xl(down)
         grid-template-columns: 1fr 1fr 1fr 247px
@@ -20,6 +21,7 @@
     +media(0, 500px)
         grid-template: auto auto auto auto / 1fr
         row-gap: 20px
+
     &__title
         font-weight: 400
         font-size: 38px
@@ -46,8 +48,10 @@
 
 .title_buyer
     color: $main-purple
-.title_seller   
+
+.title_seller
     color: $main-blue
+
 .title_company
     color: $main-pink
 
@@ -123,7 +127,9 @@
 
 .title_buyer ~ .footer-link:hover
     color: $main-purple
+
 .title_seller ~ .footer-link:hover
     color: $main-blue
+
 .title_company ~ .footer-link:hover
     color: $main-pink

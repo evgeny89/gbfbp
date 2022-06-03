@@ -58,6 +58,9 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
           objElem.value = entries[columns[i].name] ?? '';
         }
       }
+      if (columns[i].name === 'image') {
+        objElem.value = entries?.home ? entries.home : null;
+      }
       objElem.text = columns[i].text;
       readyData.push(objElem);
     }
@@ -93,19 +96,23 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
     setErrorsText([]);
     const elemData = {};
     [...formRef.current.elements].forEach((el) => elemData[el.name] = el.value);
+    const fd = new FormData(formRef.current);
+    if (Object.keys(elemData).some((el) => el === "published")) {
+      fd.append("published", elemData.published);
+    }
     await axios({
       method: 'post',
+      headers: {
+        "ContentType": "multipart/form-data"
+      },
       url: textRoutes,
-      data: elemData
+      data: fd
     })
       .then((data) => {
         if (data.data.message === 'ok') {
-          if (Number(elemData.id) !== 0) {
-            elemData.id = Number(elemData.id);
-          } else {
-            elemData.id = data.data.id.id;
-          }
-          actionAfter(elemData);
+          const result = data.data.res;
+          result.image = result.home || null;
+          actionAfter(result);
           setActive(false);
         }
       })
@@ -118,8 +125,8 @@ const Modal = ({ active, setActive, data, actionAfter }) => {
     <div className={active ? "modal-view active" : "modal-view"} onClick={closeModal}>
       <div className={active ? "modal-view__content active" : "modal-view__content"} onClick={e => e.stopPropagation()}>
         <h3 className="modal-title">{data?.entries ? "Редактирование" : "Создание"}</h3>
-        <form ref={formRef} id="form-modal" className="modal-form" style={{ "gridTemplateRows": `repeat(${countRows - 1}, 1fr)` }}>
-          {prepareData ? prepareData.map((item, id) => <RowModal data={{ ...item }} key={id} />) : null}
+        <form ref={formRef} id="form-modal" className="modal-form" style={{ "gridTemplateRows": `repeat(${countRows - 1}, auto)` }}>
+          {prepareData ? prepareData.map((item, id) => <RowModal data={{ ...item }} active={active} key={id} />) : null}
         </form>
         <div className="modal-wrapper-button-errors">
           <button className="modal-button-submit" onClick={submitForm}>Отправить</button>
