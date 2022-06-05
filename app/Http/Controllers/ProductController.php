@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Review;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -13,6 +14,9 @@ class ProductController extends Controller
      */
     public function productPage(Product $product): View
     {
-        return view('pages.product_page', ['product' => $product]);
+        $reviews = Review::whereProductId($product->id)->get();
+        return view('pages.product_page', ['product' => $product,
+                                           'reviews' => $reviews]);
+
     }
 }
