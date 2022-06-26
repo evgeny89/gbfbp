@@ -1,8 +1,8 @@
 import React from "react";
 
-function CatalogProductComponent({product, addToCart}) {
+function CatalogProductComponent({link, product, addToCart}) {
     return (
-        <div className="product__thumb" >
+        <a href={link} className="product__thumb" >
             <div className="image__wrapper">
                 <img src={product.images[0].medium_image} className="product__image" alt=""/>
             </div>
@@ -19,7 +19,7 @@ function CatalogProductComponent({product, addToCart}) {
                     </button>
                 </div>
             </div>
-        </div>
+        </a>
     );
 }
 

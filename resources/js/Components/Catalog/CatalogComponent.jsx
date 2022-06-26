@@ -2,7 +2,7 @@ import React, {useMemo, useState} from 'react';
 import CatalogFilterComponent from './CatalogFilterComponent';
 import CatalogProductComponent from "./CatalogProductComponent";
 
-const CatalogComponent = ({data, products}) => {
+const CatalogComponent = ({route, data, products}) => {
     const [catalogProducts, setCatalogProducts] = useState(products || []);
     const [selectedSort, setSelectedSort] = useState('rating');
 
@@ -27,6 +27,10 @@ const CatalogComponent = ({data, products}) => {
         setSelectedSort(sort);
     };
 
+    const getRouteLink = (product) => {
+        return route.replace('==slug==', product.slug);
+    }
+
     const addToCart = (product_id) => {
         console.log(product_id);
     };
@@ -41,7 +45,7 @@ const CatalogComponent = ({data, products}) => {
                         <>
                             <div className="product__list">
                                 {
-                                    sortedProducts.map((product, index) => <CatalogProductComponent key={index} product={product} addToCart={addToCart}/>)
+                                    sortedProducts.map((product) => <CatalogProductComponent key={product.id} link={getRouteLink(product)} product={product} addToCart={addToCart}/>)
                                 }
                             </div>
                             <div className="catalog__buttons">
