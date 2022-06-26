@@ -42,11 +42,15 @@ function ProductListComponent({shop, routes}) {
         setProducts([...products, product])
     }
 
+    const getRouteLink = (product) => {
+        return routes.productLink.replace('==slug==', product.slug);
+    }
+
     return (
         <>
             {!products.length && <p> No products in this shop yet! </p>}
             <div className="products__wrapper">
-                {products.map((item) => <ProductThumbComponent key={item.id} product={item} edit={editProduct} remove={deleteProduct}/>)}
+                {products.map((item) => <ProductThumbComponent link={getRouteLink(item)} key={item.id} product={item} edit={editProduct} remove={deleteProduct}/>)}
                 <div className="product__new" onClick={createProduct}>
                     <div className="button__wrapper">
                         <div className="button__add">

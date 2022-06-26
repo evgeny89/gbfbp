@@ -57,6 +57,7 @@ class ProfileController extends Controller
                 'updateItem' => route('update_product', ['product' => "=product="]),
                 'deleteItem' => route('delete_product', ['product' => "=product="]),
                 'getSelectValues' => route('product-select-data'),
+                'productLink' => route('product_page', ['product' => '==slug==']),
             ],
         ])->toJson()]);
     }

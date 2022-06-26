@@ -1,16 +1,18 @@
 import React from "react";
 
-function ProductThumbComponent({product, edit, remove}) {
-    const editProduct = () => {
+function ProductThumbComponent({link, product, edit, remove}) {
+    const editProduct = (e) => {
+        e.preventDefault();
         edit(product);
     }
 
-    const deleteProduct = () => {
+    const deleteProduct = (e) => {
+        e.preventDefault();
         remove(product);
     }
 
     return (
-        <div className="product__thumb" >
+        <a href={link} className="product__thumb" >
             <div className="image__wrapper">
                 <div className="button__remove">
                     <div className="remove__icon" onClick={deleteProduct}></div>
@@ -34,7 +36,7 @@ function ProductThumbComponent({product, edit, remove}) {
                     </button>
                 </div>
             </div>
-        </div>
+        </a>
     );
 }
 

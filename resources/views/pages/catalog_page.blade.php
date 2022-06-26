@@ -3,7 +3,7 @@
 @section('content')
     <section class="catalog">
         <div class="container">
-            <div id="catalog" data-data="{{$data}}" data-products="{{$products}}"></div>
+            <div id="catalog" data-route="{{$route}}" data-data="{{$data}}" data-products="{{$products}}"></div>
         </div>
     </section>
 @endsection

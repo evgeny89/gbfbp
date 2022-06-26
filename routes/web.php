@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 // GET
 Route::get('login', [AuthController::class, 'loginPage'])->name('login_page');
 Route::get('register', [AuthController::class, 'register'])->name('register');
-Route::get('product/{product:slug?}', [ProductController::class, 'productPage'])->name('product_page');
+Route::get('product/{product:slug}', [ProductController::class, 'productPage'])->name('product_page');
 Route::get('category/{category:slug?}', [CatalogController::class, 'categoryPage'])->name('category_page');
 Route::get('material/{material:slug?}', [CatalogController::class, 'materialPage'])->name('material_page');
 
