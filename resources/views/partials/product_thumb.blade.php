@@ -1,5 +1,5 @@
 @php($show_btn = $favorite ?? true)
-<div class="product__thumb" data-product-id="{{ $product->id }}">
+<a href="{{ route('product_page', ['product' => $product->slug]) }}" class="product__thumb" data-product-id="{{ $product->id }}">
     <div class="image__wrapper">
         @if($show_btn)
             <div class="button__remove">
@@ -21,4 +21,4 @@
             </div>
         @endif
     </div>
-</div>
+</a>
