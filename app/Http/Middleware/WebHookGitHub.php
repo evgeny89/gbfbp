@@ -93,7 +93,6 @@ class WebHookGitHub
      */
     protected function secret(): string
     {
-        $this->saveInLog(config(self::KEY));
         return config(self::KEY);
     }
 
