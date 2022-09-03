@@ -3,34 +3,114 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class WebHookGitHub
 {
+    public const HEADER = 'X-Hub-Signature-256';
+    public const ALGO = 'sha256';
+    public const KEY = 'app.deploy_key';
+    public const REF = 'refs/heads/master';
+    public const ERROR_MESSAGES = [
+        'header' => 'header not found',
+        'hash' => 'hash not valid',
+        'ref' => 'not master branch',
+    ];
+
     /**
      * Handle an incoming request.
      *
      * @param  Request  $request
-     * @param  Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  Closure(Request): (Response|RedirectResponse)  $next
+     * @return JsonResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): JsonResponse
     {
-        /*$post_data = $request->getContent();
-        $appHash = 'sha256='. hash_hmac('sha256', $post_data, env('APP_DEPLOY_KEY'));
-        $hunHash = $request->header('X-Hub-Signature-256');
+        $this->verifyHeader($request);
+        $this->verifyHash($request);
 
-        Log::channel('deploy')->info(<<<DEPLOY
-Deploy info:
-github hash => $hunHash;
-app hash => $appHash;
-DEPLOY);
-
-        if ($appHash !== $hunHash) {
-            abort(401);
-        }*/
+        if ($this->getRefHook($request) !== self::REF) {
+            return response()->json(self::ERROR_MESSAGES['ref']);
+        }
 
         return $next($request);
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    protected function verifyHash(Request $request): void
+    {
+        abort_unless($this->verified($request), 401, self::ERROR_MESSAGES['hash']);
+    }
+
+    /**
+     * @param Request $request
+     * @return void
+     */
+    protected function verifyHeader(Request $request): void
+    {
+        abort_unless($this->signature($request), 404, self::ERROR_MESSAGES['header']);
+    }
+
+    /**
+     * @param Request $request
+     * @return bool
+     */
+    protected function verified(Request $request): bool
+    {
+        return hash_equals($this->signature($request), $this->calculate($request));
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    protected function calculate(Request $request): string
+    {
+        return hash_hmac(self::ALGO, $request->getContent(), $this->secret());
+    }
+
+    /**
+     * @param Request $request
+     * @return string|null
+     */
+    protected function signature(Request $request): ?string
+    {
+        $signature = $request->header(self::HEADER);
+
+        return Str::after($signature, '=');
+    }
+
+    /**
+     * @return string
+     */
+    protected function secret(): string
+    {
+        return config(self::KEY);
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    protected function getRefHook(Request $request): string
+    {
+        return $request->get("ref");
+    }
+
+    /**
+     * @param string $str
+     * @return void
+     */
+    protected function saveInLog(string $str): void
+    {
+        Log::channel('deploy')->info($str);
     }
 }
