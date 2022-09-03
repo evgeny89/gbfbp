@@ -8,17 +8,18 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class WebHookGitHub
 {
     public const HEADER = 'X-Hub-Signature-256';
     public const ALGO = 'sha256';
-    public const KEY = 'APP_DEPLOY_KEY';
-    public const ERRORS_MESSAGES = [
+    public const KEY = 'app.deploy_key';
+    public const REF = 'refs/heads/master';
+    public const ERROR_MESSAGES = [
         'header' => 'header not found',
         'hash' => 'hash not valid',
+        'ref' => 'not master branch',
     ];
 
     /**
@@ -30,13 +31,11 @@ class WebHookGitHub
      */
     public function handle(Request $request, Closure $next): JsonResponse
     {
-        $this->saveInLog($request);
-
         $this->verifyHeader($request);
         $this->verifyHash($request);
 
-        if ($this->hasCreatedHook($request)) {
-            return response()->json("ok");
+        if ($this->getRefHook($request) !== self::REF) {
+            return response()->json(self::ERROR_MESSAGES['ref']);
         }
 
         return $next($request);
@@ -48,7 +47,7 @@ class WebHookGitHub
      */
     protected function verifyHash(Request $request): void
     {
-        abort_unless($this->verified($request), 401, self::ERRORS_MESSAGES['hash']);
+        abort_unless($this->verified($request), 401, self::ERROR_MESSAGES['hash']);
     }
 
     /**
@@ -57,7 +56,7 @@ class WebHookGitHub
      */
     protected function verifyHeader(Request $request): void
     {
-        abort_unless($this->signature($request), 404, self::ERRORS_MESSAGES['header']);
+        abort_unless($this->signature($request), 404, self::ERROR_MESSAGES['header']);
     }
 
     /**
@@ -94,33 +93,25 @@ class WebHookGitHub
      */
     protected function secret(): string
     {
-        return env(self::KEY);
+        $this->saveInLog(config(self::KEY));
+        return config(self::KEY);
     }
 
     /**
      * @param Request $request
-     * @return bool
+     * @return string
      */
-    protected function hasCreatedHook(Request $request): bool
+    protected function getRefHook(Request $request): string
     {
-        return Validator::make($request->all(), [
-            'zen'     => ['required', 'string'],
-            'hook_id' => ['required', 'integer'],
-
-            'hook'          => ['required', 'array'],
-            'hook.id'       => ['required', 'integer'],
-            'hook.active'   => ['required', 'bool'],
-            'hook.events'   => ['required', 'array'],
-            'hook.events.*' => ['required', 'string'],
-        ])->passes();
+        return $request->get("ref");
     }
 
     /**
-     * @param Request $request
+     * @param string $str
      * @return void
      */
-    protected function saveInLog(Request $request)
+    protected function saveInLog(string $str): void
     {
-        Log::channel('deploy')->info($this->verified($request));
+        Log::channel('deploy')->info($str);
     }
 }

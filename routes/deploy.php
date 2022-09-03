@@ -11,23 +11,18 @@ use Symfony\Component\Process\Process;
 | WebHook Routes
 |--------------------------------------------------------------------------
 |
-| This route for github webhook to deploy repository in server
+| This route for gitHub webhook to deploy repository in server
 |
 */
 
-Route::post('/deploy', function (Request $request) {
-    $payload = $request->all();
-    if ($payload['ref'] === 'refs/heads/master') {
-        $process = Process::fromShellCommandline('../deploy.sh');
-        $process->run();
+Route::post('/deploy', function () {
+    $process = Process::fromShellCommandline('../deploy.sh');
+    $process->run();
 
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
-        Log::info('deploy '. $process->getOutput());
-        return response($process->getOutput());
-    } else {
-        return response('not master');
+    if (!$process->isSuccessful()) {
+        throw new ProcessFailedException($process);
     }
+
+    Log::info('deploy ' . $process->getOutput());
+    return response($process->getOutput());
 });
